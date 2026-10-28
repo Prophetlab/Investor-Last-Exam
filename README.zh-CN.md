@@ -12,6 +12,14 @@
 
 </div>
 
+## 78 秒了解 Investor’s Last Exam
+
+[![点击观看 Investor’s Last Exam 78 秒介绍视频](docs/assets/investors-last-exam-poster.png)](docs/assets/investors-last-exam-78s.mp4)
+
+**[▶ 点击观看视频](docs/assets/investors-last-exam-78s.mp4)** · 1080p · 英文旁白与中英双语字幕 · [下载 MP4](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/assets/investors-last-exam-78s.mp4)
+
+通过时间冻结环境、Tesla 与 Nebius 的研究任务流程，以及 11 个模型的评测结果，快速了解 ILE。
+
 **Investor’s Last Exam（ILE）** 是由真实买方投资人和基金经理主导设计的股票投资研究基准。模型需要在严格限定的历史信息环境中，调查证据、建立预测、形成投资判断，并根据新信息更新观点。评测既检查分析过程，也在适用任务中对照后续实际结果。
 
 一份逻辑完整的研报，能否支持准确的预测？一个看似合理的预测，能否转化为有价值的投资判断？ILE 希望把这条链路中的能力与失败原因分开测量。

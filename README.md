@@ -12,6 +12,14 @@
 
 </div>
 
+## Watch the 78-second overview
+
+[![Watch Investor’s Last Exam — 78-second overview](docs/assets/investors-last-exam-poster.png)](docs/assets/investors-last-exam-78s.mp4)
+
+**[▶ Watch the video](docs/assets/investors-last-exam-78s.mp4)** · 1080p · English narration with Chinese and English subtitles · [Download MP4](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/assets/investors-last-exam-78s.mp4)
+
+A short introduction to the time-frozen environment, Tesla and Nebius research workflows, and the evaluation of eleven models.
+
 Investor’s Last Exam (**ILE**) is a buy-side-expert-led benchmark for equity investment research. Agents investigate evidence, build forecasts, form investment judgments, and update their views using information available at a specified historical cutoff. Their answers are evaluated against expert-defined financial requirements and, where applicable, subsequent realized outcomes.
 
 A convincing research report is only part of the test. ILE examines whether evidence, assumptions, calculations, and decisions fit together—and whether forecasts hold up when the results arrive.
