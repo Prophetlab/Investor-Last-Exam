@@ -40,7 +40,7 @@ def public_task(t):
         task_version="1.0.0",
         prompt=t["question"],
         cutoff=datetime.fromisoformat(t["cutoff"].replace("Z", "+00:00")),
-        timezone="UTC",
+        timezone=json.loads((ROOT / "environment/task-timezones.json").read_text())[t["id"]],
         target_definition={"submission_mode": t["submission_mode"]},
         capability_set={"datasets": list(DATASETS)},
         submit_tool=ToolDefinition(

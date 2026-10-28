@@ -12,14 +12,50 @@ from prophet_bench_env.model_adapters import (
     OpenAICompatibleChatAdapter,
     OpenAIResponsesAdapter,
 )
-from prophet_bench_env.model_adapters.errors import ProviderHTTPError
-from prophet_bench_env.model_adapters.http import ProviderHTTPResponse
+from prophet_bench_env.model_adapters.errors import EmptyModelResponseError, ProviderHTTPError
+from prophet_bench_env.model_adapters.http import (
+    ProviderHTTPResponse,
+    _empty_terminal,
+    _mark_empty_retries,
+)
+from prophet_bench_env.model_adapters.retry import (
+    run_with_empty_response_retries,
+    run_with_empty_response_retries_async,
+)
 
 from .config import Route
 from .streams import AnthropicStreamAssembly, StreamAssembly
 
 
 class Configurable:
+    @staticmethod
+    def _empty_exhausted(response, count):
+        raise EmptyModelResponseError("Provider returned no answer after bounded retries")
+
+    def _with_empty_retries(self, operation):
+        return run_with_empty_response_retries(
+            operation,
+            is_empty=_empty_terminal,
+            on_exhausted=self._empty_exhausted,
+            on_success=_mark_empty_retries,
+            model_label=self.settings.model,
+            max_retries=self.settings.empty_response_retries,
+            base_seconds=self.settings.empty_response_base_seconds,
+            retry_transport=self._with_retries,
+        )
+
+    async def _awith_empty_retries(self, operation):
+        return await run_with_empty_response_retries_async(
+            operation,
+            is_empty=_empty_terminal,
+            on_exhausted=self._empty_exhausted,
+            on_success=_mark_empty_retries,
+            model_label=self.settings.model,
+            max_retries=self.settings.empty_response_retries,
+            base_seconds=self.settings.empty_response_base_seconds,
+            retry_transport=self._awith_retries,
+        )
+
     def _payload(self, request):
         if not any(m.get("role") in ("system", "developer") for m in request.messages):
             request = replace(

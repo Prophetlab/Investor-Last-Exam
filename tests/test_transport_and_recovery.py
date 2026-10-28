@@ -1,12 +1,54 @@
 import json
+from dataclasses import replace
 
 import httpx
+import pytest
 
 from ile_bench.config import route
 from ile_bench.evaluation import answer_from_trial, grade_trial
 from ile_bench.models import model
-from ile_bench.tasks import load_tasks
+from ile_bench.tasks import load_tasks, public_task
+from prophet_bench_env.model_adapters.errors import EmptyModelResponseError
 from prophet_bench_env.ports.model import ModelRequest
+
+
+def test_original_task_timezones_are_retained():
+    for code, zone in [
+        ("O01", "UTC"),
+        ("M01", "America/New_York"),
+        ("TP01", "Asia/Shanghai"),
+        ("TP05", "America/New_York"),
+    ]:
+        assert public_task(load_tasks([code])[0]).timezone == zone
+
+
+def test_empty_provider_output_is_not_a_fabricated_final_answer():
+    r = route(
+        "SOLVER",
+        {
+            "SOLVER_MODEL": "fake",
+            "SOLVER_BASE_URL": "https://example.invalid",
+            "SOLVER_API_KEY": "fixture",
+            "SOLVER_STREAM": "false",
+        },
+    )
+    r = replace(r, settings=replace(r.settings, empty_response_retries=0, max_retries=0))
+
+    def handler(request):
+        return httpx.Response(
+            200,
+            json={
+                "choices": [
+                    {"message": {"role": "assistant", "content": ""}, "finish_reason": "stop"}
+                ]
+            },
+        )
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        with pytest.raises(EmptyModelResponseError):
+            model(r, client=client).generate(
+                ModelRequest(({"role": "user", "content": "test"},), ())
+            )
 
 
 def test_streamed_chat_retains_tool_arguments_and_usage():
