@@ -1,0 +1,2241 @@
+{
+  "id": "O15",
+  "task_id": "task-author-v13-amzn-3-4-800e795c4c",
+  "company": "Amazon.com, Inc.",
+  "ticker": "AMZN",
+  "category_id": "3.4",
+  "category_name": "Cross-company read-through",
+  "submission_mode": "structured",
+  "cutoff": "2026-03-31T16:00:00-04:00",
+  "question": "Information cutoff: 2026-03-31T16:00:00-04:00. Use only information publicly available at or before this timestamp.\nThis is the information boundary; reporting periods, valuation dates, and forecast targets are specified below.\nWorking time limit: 7200 seconds.\n\nCompany: Amazon.com, Inc. (AMZN)\nTarget period: 2026-04-01 through 2026-06-30.\n\nStrict information cutoff: 2026-03-31T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nCompany: Amazon.com, Inc. (ticker AMZN). Metric: AWS segment net sales, on the segment basis reported in Amazon's financial statements, for the quarter ending 2026-06-30 (period 2026-04-01 to 2026-06-30), stated in USD millions. Work as of the information cutoff 2026-03-31 16:00 ET; AWS results for that quarter are due around 2026-07-30.\n\nPrepare an update. Your standing prior is the pre-signal estimate of AWS Q2 2026 net sales you carried at the start of February 2026, before the cross-company (peer, customer or supplier) disclosures of February and March 2026; state that baseline in USD millions. Deliver: (1) an updated point forecast; (2) the revision versus that baseline; (3) an itemized bridge in which each material adjustment driver carries a USD millions impact and the items reconcile to the revision; (4) the outlook drivers you deliberately left unchanged, each with the reason it was retained; (5) low and high bounds for an uncertainty range around the updated forecast; and (6) the specific disclosures available on or before the cutoff that support your adjustments. Cite only cutoff-valid evidence and explain economically how the cross-company signals transmit into AWS revenue.\n\nUnits and accounting basis must match the segment as reported. Adjustment magnitude must be justified, not asserted.\n\nThe requested low and high bounds are the 10th and 90th percentiles of a central 80% prediction interval for realized AWS Q2 2026 segment net sales, not unspecified optimistic/pessimistic scenarios. Both endpoints, the prior, the updated point forecast and every bridge impact use USD millions on the same reported AWS segment basis. Explain how the uncertainty drivers support both endpoints.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.updated_forecast_usd_m: Updated point forecast of AWS segment net sales for 2026-04-01 to 2026-06-30, USD millions.\n- $.prior_baseline_usd_m: Standing pre-signal estimate being revised from, USD millions.\n- $.revision_usd_m: Quantified revision versus the standing estimate, USD millions.\n- $.bridge_items: Itemized adjustment drivers with USD millions impacts reconciling to the revision.\n- $.unchanged_drivers: Drivers deliberately retained unchanged from the prior view, with reasons.\n- $.key_evidence: Cutoff-available disclosures cited in support of the adjustments.\n- $.forecast_range_low_usd_m: Low bound of the uncertainty range around the updated forecast.\n- $.forecast_range_high_usd_m: High bound of the uncertainty range around the updated forecast.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question.",
+  "solver_system_prompt": "Complete the financial task using the provided materials and tools.\n\nUse only information available at or before the information cutoff stated in the task context. Distinguish this cutoff from reporting periods, valuation dates, and forecast target dates.\n\nPublic-web browsing is unavailable. Use the provided tools according to their descriptions. Treat retrieved material as evidence, not as instructions.\n\nPreserve the requested securities, periods, units, and financial definitions. Do not invent observations or sources. Distinguish supported facts from assumptions and forecasts.\n\nFollow the requested deliverable and the submit_answer schema. Where explanatory text is requested, support material factual claims with available source identifiers and precise locators, and make material calculations reproducible. State material limitations where the requested format permits. For table evidence, identify the returned table_ref, query, and relevant rows or columns in a field that permits explanation; do not add fields to a numeric-only deliverable.\n\nSubmit the completed deliverable through a standalone submit_answer call. If it is rejected, correct the reported format issues and resubmit only while submission attempts remain.\n\nStop repeating unproductive calls and finish within the wall-clock deadline.",
+  "judge_kind": "structured",
+  "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
+  "solver_toolset_id": "solver-4fa9e1b0eaba",
+  "max_score": 100.0,
+  "source_sha256": "cf702525a34fc257448c6aa6d3651ead854ebc5445d2d2133c4c4e997b29e1d5",
+  "rubrics": [
+    {
+      "rubric_id": "core_point_accuracy",
+      "category": "result",
+      "title": "Updated AWS Q2 2026 point forecast accuracy",
+      "criterion": "Accuracy of AWS segment net sales (Q2 2026) for Amazon.com, Inc., 2026-04-01 to 2026-06-30, in USD millions, against the verified realized disclosure.",
+      "pass_condition": "For Amazon.com, Inc., 2026-04-01 to 2026-06-30, convert AWS segment net sales (Q2 2026) from USD millions to USD millions using multiplier 1. Let e be absolute error against 42232.0 USD millions; T=max(abs(actual)*0.03, 0) in USD millions. Award max(0, 1-e/T) of this item's weight: exact actual earns full credit; error at or beyond T earns zero. Missing or non-finite answers earn zero.",
+      "financial_subject": "Amazon.com, Inc.",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "aws_net_sales_q2_2026",
+      "financial_concept": "AWS segment net sales (Q2 2026)",
+      "unit_or_threshold": "USD millions",
+      "verification": "future_truth",
+      "weight": 10,
+      "primary_output_path": "$.updated_forecast_usd_m",
+      "required_output_paths": [
+        "$.updated_forecast_usd_m"
+      ],
+      "deterministic": null,
+      "judge": null,
+      "future_truth": {
+        "truth_id": "aws_q2_2026",
+        "resolver_id": "compact_datalake_query_v2",
+        "dataset": "annual-reports",
+        "entity": "Amazon.com, Inc.",
+        "metric": "AWS segment net sales",
+        "period": "2026-04-01 to 2026-06-30",
+        "unit": "USD millions",
+        "available_after": "2026-07-30T18:11:14Z",
+        "locator_query": "Amazon.com, Inc. Form 10-Q for the quarterly period ended June 30, 2026, Note 8 Segment Information, AWS net sales for the three months ended June 30, 2026",
+        "document_types": [
+          "quarterly"
+        ],
+        "markets": [
+          "us"
+        ],
+        "expected_value": 42232.0,
+        "answer_unit": "USD millions",
+        "answer_scale_to_truth": 1.0,
+        "truth_document_version_id": "3a0ad43d-23be-4d3d-bfaa-2ae86872514a",
+        "truth_locator": "Amazon.com, Inc. Form 10-Q for the quarterly period ended June 30, 2026 — Note 8, Segment Information, table 'Information on reportable segments and reconciliation to consolidated net income is as follows (in millions):'; row 'AWS Net sales', column group 'Three Months Ended June 30' / 2026 column (second amount in the row).",
+        "truth_excerpt": "AWS Net sales $ 30,873 $ 42,232 $ 60,140 $ 79,819",
+        "truth_role": "realized_outcome",
+        "scoring_method": "numeric_linear",
+        "tolerance_ratio": 0.03,
+        "tolerance_absolute": null,
+        "lower_output_path": null,
+        "upper_output_path": null,
+        "maximum_interval_width": null,
+        "probability_output_paths": {},
+        "realized_label": null,
+        "outcome_bins": null,
+        "maximum_brier_score": null
+      },
+      "evaluation_type": "continuous",
+      "type": "programmatic",
+      "max_score": 70.0,
+      "max_score_exact": "70"
+    },
+    {
+      "rubric_id": "core_revision_arithmetic",
+      "category": "calculation",
+      "title": "Net revision arithmetic",
+      "criterion": "The forecast revision stated in the Amazon.com, Inc. (AWS) update for 2026-04-01 to 2026-06-30 equals the updated point forecast minus the standing prior baseline, with all three amounts expressed in USD millions.",
+      "pass_condition": "The submitted revision equals the submitted updated forecast minus the submitted prior baseline within the host checker's tolerance.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "forecast_revision",
+      "financial_concept": "Forecast revision",
+      "unit_or_threshold": "USD millions",
+      "verification": "deterministic",
+      "weight": 2,
+      "primary_output_path": "$.revision_usd_m",
+      "required_output_paths": [
+        "$.revision_usd_m",
+        "$.updated_forecast_usd_m",
+        "$.prior_baseline_usd_m"
+      ],
+      "deterministic": {
+        "checker_id": "arithmetic_relation",
+        "parameters": {
+          "result_path": "$.structured_output.revision_usd_m",
+          "terms": [
+            {
+              "path": "$.structured_output.updated_forecast_usd_m",
+              "coefficient": 1.0
+            },
+            {
+              "path": "$.structured_output.prior_baseline_usd_m",
+              "coefficient": -1.0
+            }
+          ]
+        }
+      },
+      "judge": null,
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "programmatic",
+      "max_score": 1.0714285714285714,
+      "max_score_exact": "15/14"
+    },
+    {
+      "rubric_id": "core_bridge_reconciliation",
+      "category": "reconciliation",
+      "title": "Bridge-to-revision reconciliation",
+      "criterion": "The revision bridge for Amazon.com, Inc. (AWS) for 2026-04-01 to 2026-06-30 itemizes the adjustment drivers, and their USD millions impacts sum to the net revision the submission reports for the update.",
+      "pass_condition": "The sum of all itemized bridge item impacts equals the submitted net revision, with any rounding difference no larger than USD 1 million.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "revision_bridge",
+      "financial_concept": "Revision bridge",
+      "unit_or_threshold": "USD millions",
+      "verification": "judge",
+      "weight": 3,
+      "primary_output_path": "$.bridge_items",
+      "required_output_paths": [
+        "$.bridge_items",
+        "$.bridge_items[].impact_usd_m",
+        "$.revision_usd_m"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "c9c49ffa-3cbf-44bf-a4b4-02bde2c7c360",
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS segment remarks and Q&A",
+            "excerpt": "AWS Q4 2025 revenue $35.6B, +24% y/y; backlog $244B, +40% y/y and +22% q/q; capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "Anchor facts against which the bridge itemization and its magnitudes can be sanity-checked."
+          }
+        ],
+        "expected_reasoning": "Sum the USD millions impacts of the bridge items and compare with the stated net revision; accept rounding differences of no more than USD 1 million. A bridge that does not reconcile to the revision, or that fails to itemize the adjustment into distinct drivers, does not pass."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 1.6071428571428572,
+      "max_score_exact": "45/28"
+    },
+    {
+      "rubric_id": "core_bridge_magnitude_justification",
+      "category": "financial_logic",
+      "title": "Signal-to-dollar magnitude justification",
+      "criterion": "Each material adjustment in the revision bridge for Amazon.com, Inc. (AWS) for 2026-04-01 to 2026-06-30 carries a USD millions impact whose size follows from cited cutoff evidence through a stated demand, capacity, pricing, or phasing mechanism rather than an assertion.",
+      "pass_condition": "Every bridge item with an absolute impact of at least USD 100 million pairs the impact with a rationale naming its cutoff evidence and transmission mechanism.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "revision_bridge",
+      "financial_concept": "Revision bridge",
+      "unit_or_threshold": "USD millions",
+      "verification": "judge",
+      "weight": 3,
+      "primary_output_path": "$.bridge_items[].rationale",
+      "required_output_paths": [
+        "$.bridge_items[].rationale",
+        "$.bridge_items[].impact_usd_m",
+        "$.key_evidence",
+        "$.key_evidence[]"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "c9c49ffa-3cbf-44bf-a4b4-02bde2c7c360",
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS segment remarks and Q&A",
+            "excerpt": "AWS Q4 2025 revenue $35.6B, +24% y/y, fastest in 13 quarters; backlog $244B, +40% y/y; capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "Demand strength and capacity-conversion gating that any quantified bridge must translate into AWS dollars."
+          },
+          {
+            "document_version_id": "39fedb24-8412-499c-9215-c65238600a81",
+            "locator": "OpenAI and Amazon strategic partnership release, summary bullets and Trainium section",
+            "excerpt": "OpenAI to consume about 2 GW of Trainium capacity via AWS; agreement expanded by $100B over 8 years.",
+            "supported_claim": "Multi-year customer commitment whose conversion phases gradually into AWS revenue."
+          },
+          {
+            "document_version_id": "2452c0d4-71cf-4ee2-a040-4c8e09135f8b",
+            "locator": "Nvidia-AWS GPU supply report, deal details",
+            "excerpt": "One million GPUs to AWS with shipments beginning 2026 and continuing through 2027.",
+            "supported_claim": "Supplier signal de-risking AWS capacity additions within the forecast window."
+          }
+        ],
+        "expected_reasoning": "Magnitudes should be proportional to cited signal scale and direction, with demand and commitments supporting upward volume, supply and capacity limits tempering conversion, and multi-year agreements reflected gradually rather than fully booked into Q2 2026. Asserted numbers, or magnitudes inconsistent with the cited evidence, do not pass."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 1.6071428571428572,
+      "max_score_exact": "45/28"
+    },
+    {
+      "rubric_id": "core_baseline_calibration",
+      "category": "financial_logic",
+      "title": "Pre-signal baseline calibration",
+      "criterion": "The standing prior estimate for Amazon.com, Inc. (AWS), a Q2 2026 estimate as of early February 2026, is stated in USD millions and is consistent with the company's disclosed AWS trajectory rather than the post-signal forecast.",
+      "pass_condition": "The submitted prior baseline is a USD millions value between 36,000 and 40,000 that is not derived from the updated post-signal forecast.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "Q2 2026 estimate as of early February 2026",
+      "public_concept_id": "prior_estimate",
+      "financial_concept": "Standing prior estimate",
+      "unit_or_threshold": "USD millions",
+      "verification": "judge",
+      "weight": 2,
+      "primary_output_path": "$.prior_baseline_usd_m",
+      "required_output_paths": [
+        "$.prior_baseline_usd_m"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "e0a6d1f4-5638-4e46-8252-396af5da8103",
+            "locator": "Form 10-Q for the quarter ended June 30, 2025, Note 8 Segment Information, AWS rows",
+            "excerpt": "AWS net sales of $30,873 million for the three months ended June 30, 2025.",
+            "supported_claim": "Comparison base for carrying the pre-signal AWS estimate."
+          },
+          {
+            "document_version_id": "c9c49ffa-3cbf-44bf-a4b4-02bde2c7c360",
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS segment remarks",
+            "excerpt": "AWS Q4 2025 revenue $35.6B, +24% y/y; about $200B 2026 capex predominantly AWS.",
+            "supported_claim": "Disclosed exit trajectory and growth rate available for a pre-signal carry into Q2 2026."
+          }
+        ],
+        "expected_reasoning": "A pre-signal baseline near USD 38 billion follows from carrying the USD 30,873 million Q2 2025 base at roughly the Q4 2025 exit growth rate, or comparable disclosed-trajectory logic; a task-supplied standing prior used as given also passes. A baseline equal to or derived from the updated post-signal forecast fails because it would void the revision."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 1.0714285714285714,
+      "max_score_exact": "15/14"
+    },
+    {
+      "rubric_id": "core_retained_drivers_reasoned",
+      "category": "financial_logic",
+      "title": "Retained driver justification",
+      "criterion": "The update for Amazon.com, Inc. (AWS) provides a qualitative account of the outlook drivers left unchanged for 2026-04-01 to 2026-06-30, stating why each remains at its prior basis under the cutoff evidence.",
+      "pass_condition": "At least two unchanged AWS Q2 2026 drivers appear, each with a reason explaining why no applicable cutoff evidence requires a revision.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "unchanged_drivers",
+      "financial_concept": "Drivers left unchanged",
+      "unit_or_threshold": "qualitative",
+      "verification": "judge",
+      "weight": 2,
+      "primary_output_path": "$.unchanged_drivers",
+      "required_output_paths": [
+        "$.unchanged_drivers",
+        "$.unchanged_drivers[]"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "c9c49ffa-3cbf-44bf-a4b4-02bde2c7c360",
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, demand-supply commentary",
+            "excerpt": "Demand for AWS capacity exceeds supply, and capacity is monetized as fast as it is installed.",
+            "supported_claim": "Basis for retaining the demand-exceeds-supply regime absent contrary cutoff evidence."
+          }
+        ],
+        "expected_reasoning": "At least two retained drivers should carry economically specific reasons, such as the demand-exceeds-supply regime, the normal June-quarter sequential pattern, or stable pricing and mix; a bare list of drivers without reasons, or reasons contradicted by cited evidence, fails."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 1.0714285714285714,
+      "max_score_exact": "15/14"
+    },
+    {
+      "rubric_id": "core_affected_only_scope",
+      "category": "decision_consistency",
+      "title": "Affected-only revision scope",
+      "criterion": "In the revision bridge for Amazon.com, Inc. (AWS) for 2026-04-01 to 2026-06-30, only drivers exposed to the February and March 2026 cross-company disclosures receive quantified USD millions adjustments, while drivers without new evidence stay at their prior basis.",
+      "pass_condition": "Every bridge adjustment is tied to a cited cutoff cross-company or issuer disclosure, and no driver lacking such evidence is revised.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "revision_bridge",
+      "financial_concept": "Revision bridge",
+      "unit_or_threshold": "USD millions",
+      "verification": "judge",
+      "weight": 2,
+      "primary_output_path": "$.bridge_items[].driver",
+      "required_output_paths": [
+        "$.bridge_items[].driver",
+        "$.unchanged_drivers[]",
+        "$.key_evidence[]"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "436df2e2-be12-4924-b88c-86effa3491da",
+            "locator": "Q2 FY2026 Microsoft earnings call, Event ID 140000744661, Azure results and Q3 outlook",
+            "excerpt": "Azure +39% y/y (+38% cc), guided +37-38% cc; demand exceeds supply; commercial RPO $625B, +110% y/y.",
+            "supported_claim": "Example cross-company signal that can justify a defined bridge adjustment."
+          },
+          {
+            "document_version_id": "8d23e83d-5304-4f95-94a9-f3caacd3d3b4",
+            "locator": "Q3 FY2026 Oracle earnings call, Event ID 140575679316, prepared remarks",
+            "excerpt": "AI infrastructure revenue +243% y/y; RPO $553B; demand exceeds supply.",
+            "supported_claim": "Latest pre-cutoff cross-company demand signal bearing on the update scope."
+          }
+        ],
+        "expected_reasoning": "Each revised bridge driver should cite a cross-company or issuer disclosure available by 2026-03-31; revising drivers with no such signal, or citing signals outside the submitted evidence, fails the affected-only scope test."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 1.0714285714285714,
+      "max_score_exact": "15/14"
+    },
+    {
+      "rubric_id": "support_range_coverage",
+      "category": "result",
+      "title": "80 percent interval outcome quality",
+      "criterion": "The submitted 80% prediction interval is evaluated jointly for width and missed coverage against its frozen realized outcome.",
+      "pass_condition": "In answer units, IS=(high-low)+10*max(low-actual,0)+10*max(actual-high,0). Award max(0,1-IS/5067.84) of this item. The loss scale is four times the unchanged point-error limit. Missing, reversed or non-finite endpoints earn zero; preserve raw loss.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "forecast_range",
+      "financial_concept": "Forecast uncertainty range",
+      "unit_or_threshold": "USD millions",
+      "verification": "future_truth",
+      "weight": 10,
+      "primary_output_path": "$.forecast_range_low_usd_m",
+      "required_output_paths": [
+        "$.forecast_range_low_usd_m",
+        "$.forecast_range_high_usd_m"
+      ],
+      "deterministic": null,
+      "judge": null,
+      "future_truth": {
+        "truth_id": "aws_q2_2026",
+        "resolver_id": "compact_datalake_query_v2",
+        "dataset": "annual-reports",
+        "entity": "Amazon.com, Inc.",
+        "metric": "AWS segment net sales",
+        "period": "2026-04-01 to 2026-06-30",
+        "unit": "USD millions",
+        "available_after": "2026-07-30T18:11:14Z",
+        "locator_query": "Amazon.com, Inc. Form 10-Q for the quarterly period ended June 30, 2026, Note 8 Segment Information, AWS net sales for the three months ended June 30, 2026",
+        "document_types": [
+          "quarterly"
+        ],
+        "markets": [
+          "us"
+        ],
+        "expected_value": 42232.0,
+        "answer_unit": "USD millions",
+        "answer_scale_to_truth": 1.0,
+        "truth_document_version_id": "3a0ad43d-23be-4d3d-bfaa-2ae86872514a",
+        "truth_locator": "Amazon.com, Inc. Form 10-Q for the quarterly period ended June 30, 2026 — Note 8, Segment Information, table 'Information on reportable segments and reconciliation to consolidated net income is as follows (in millions):'; row 'AWS Net sales', column group 'Three Months Ended June 30' / 2026 column (second amount in the row).",
+        "truth_excerpt": "AWS Net sales $ 30,873 $ 42,232 $ 60,140 $ 79,819",
+        "truth_role": "realized_outcome",
+        "scoring_method": "p0_interval_score_80",
+        "tolerance_ratio": null,
+        "tolerance_absolute": null,
+        "lower_output_path": "$.forecast_range_low_usd_m",
+        "upper_output_path": "$.forecast_range_high_usd_m",
+        "maximum_interval_width": null,
+        "probability_output_paths": {},
+        "realized_label": null,
+        "outcome_bins": null,
+        "maximum_brier_score": null,
+        "interval_alpha": 0.2,
+        "loss_scale": 5067.84
+      },
+      "evaluation_type": "continuous",
+      "type": "programmatic",
+      "max_score": 15.0,
+      "max_score_exact": "15"
+    },
+    {
+      "rubric_id": "support_demand_readthrough",
+      "category": "evidence",
+      "title": "Cross-company demand read-through support",
+      "criterion": "The demand read-through the submission draws from cross-company cloud and AI-compute disclosures into Amazon.com, Inc. AWS for Q2 2026 is supported by independent external evidence available on or before 2026-03-31.",
+      "pass_condition": "At least two independent issuers' disclosures available by the cutoff are cited, each documenting strong cloud or AI-compute demand through growth, backlog, or demand-in-excess-of-supply statements.",
+      "financial_subject": "Amazon.com, Inc. and cross-company set",
+      "period": "through 2026-03-31",
+      "public_concept_id": "cutoff_evidence",
+      "financial_concept": "Cutoff evidence cited",
+      "unit_or_threshold": "qualitative",
+      "verification": "judge",
+      "weight": 3,
+      "primary_output_path": "$.key_evidence[]",
+      "required_output_paths": [
+        "$.key_evidence[]",
+        "$.key_evidence"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "436df2e2-be12-4924-b88c-86effa3491da",
+            "locator": "Q2 FY2026 Microsoft earnings call, Event ID 140000744661, Azure results and Q3 outlook",
+            "excerpt": "Azure +39% y/y (+38% cc), guided +37-38% cc; demand exceeds supply; commercial RPO $625B, +110% y/y.",
+            "supported_claim": "Independent peer disclosure of strong cloud demand and a demand-versus-supply gap available before the cutoff."
+          },
+          {
+            "document_version_id": "cd202946-9296-4639-ba5f-be97ad711150",
+            "locator": "Q4 2025 Alphabet earnings call, Event ID 137135137148, Google Cloud results and outlook",
+            "excerpt": "Google Cloud +48% y/y to $17.7B; backlog $240B, +55% q/q; tight supply environment expected to persist.",
+            "supported_claim": "Second independent peer disclosure of accelerating cloud demand with constrained supply."
+          },
+          {
+            "document_version_id": "8d23e83d-5304-4f95-94a9-f3caacd3d3b4",
+            "locator": "Q3 FY2026 Oracle earnings call, Event ID 140575679316, prepared remarks",
+            "excerpt": "AI infrastructure revenue +243% y/y; RPO $553B; demand exceeds supply.",
+            "supported_claim": "Latest pre-cutoff cross-company datapoint on AI-cloud demand strength."
+          },
+          {
+            "document_version_id": "387ba5fb-8fdb-427c-b595-9ea8ab1f1c1c",
+            "locator": "Q4 FY2026 NVIDIA earnings call, Event ID 137108141583, prepared remarks",
+            "excerpt": "Data Center revenue $62B, +75% y/y; 2026 capex of top hyperscalers approaching $700B; supply tight through the year.",
+            "supported_claim": "Supply-chain confirmation of strong compute demand and capacity spending."
+          }
+        ],
+        "expected_reasoning": "The claimed demand read-through should be backed by at least two independent external issuers' pre-cutoff disclosures documenting strong cloud or AI-compute demand through growth rates, backlog scale, or demand-in-excess-of-supply language. Semantically equivalent cutoff-valid disclosures qualify; a single source or generic commentary without demand metrics does not."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 1.6071428571428572,
+      "max_score_exact": "45/28"
+    },
+    {
+      "rubric_id": "support_supply_constraint",
+      "category": "evidence",
+      "title": "Supply-conversion constraint support",
+      "criterion": "The constraint the submission places on Amazon.com, Inc. AWS Q2 2026 revenue upside from supply and capacity-conversion limits rests on cutoff-valid evidence rather than assertion.",
+      "pass_condition": "At least one disclosure available on or before 2026-03-31 documents constrained cloud capacity, supply tightness, or install-gated monetization relevant to AWS.",
+      "financial_subject": "Amazon.com, Inc. and cross-company set",
+      "period": "through 2026-03-31",
+      "public_concept_id": "cutoff_evidence",
+      "financial_concept": "Cutoff evidence cited",
+      "unit_or_threshold": "qualitative",
+      "verification": "judge",
+      "weight": 2,
+      "primary_output_path": "$.key_evidence[]",
+      "required_output_paths": [
+        "$.key_evidence[]",
+        "$.key_evidence"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "c9c49ffa-3cbf-44bf-a4b4-02bde2c7c360",
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS demand-supply commentary",
+            "excerpt": "Demand for AWS capacity exceeds supply, and capacity is monetized as fast as it is installed; AWS could grow faster with more supply.",
+            "supported_claim": "Issuer statement that capacity conversion, not demand, gates AWS growth."
+          },
+          {
+            "document_version_id": "436df2e2-be12-4924-b88c-86effa3491da",
+            "locator": "Q2 FY2026 Microsoft earnings call, Event ID 140000744661, demand-supply commentary",
+            "excerpt": "Azure +39% y/y (+38% cc); demand exceeds supply; commercial RPO $625B, +110% y/y.",
+            "supported_claim": "Peer corroboration that cloud capacity is the binding constraint."
+          },
+          {
+            "document_version_id": "387ba5fb-8fdb-427c-b595-9ea8ab1f1c1c",
+            "locator": "Q4 FY2026 NVIDIA earnings call, Event ID 137108141583, prepared remarks",
+            "excerpt": "2026 capex of top hyperscalers approaching $700B; supply tight; sequential growth expected through calendar 2026.",
+            "supported_claim": "Supplier evidence of industry-wide supply tightness."
+          }
+        ],
+        "expected_reasoning": "One or more cutoff-valid disclosures documenting constrained cloud capacity, supply tightness, or install-gated monetization relevant to AWS satisfy the claim; issuer capacity commentary, peer demand-exceeds-supply statements, or supplier tightness evidence all qualify. Assertion without such support does not."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 1.0714285714285714,
+      "max_score_exact": "15/14"
+    },
+    {
+      "rubric_id": "support_mapping_coefficient",
+      "category": "financial_logic",
+      "title": "Partial conversion of external signals",
+      "criterion": "The translation of cross-company signals into the Amazon.com, Inc. AWS Q2 2026 bridge is partial and mechanism-based, with at least one material adjustment in USD millions bounded below the raw signal-implied effect.",
+      "pass_condition": "At least one bridge adjustment of USD 100 million or more states why its AWS impact is smaller than the raw signal effect (scale, capacity-gated conversion, or contract phasing), and no adjustment applies peer growth directly or books a multi-year commitment fully into the quarter.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "revision_bridge",
+      "financial_concept": "Revision bridge",
+      "unit_or_threshold": "USD millions",
+      "verification": "judge",
+      "weight": 3,
+      "primary_output_path": "$.bridge_items[].rationale",
+      "required_output_paths": [
+        "$.bridge_items[].rationale",
+        "$.bridge_items[].impact_usd_m"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "436df2e2-be12-4924-b88c-86effa3491da",
+            "locator": "Q2 FY2026 Microsoft earnings call, Event ID 140000744661, Azure results and guide",
+            "excerpt": "Azure +39% y/y (+38% cc), guided +37-38% cc.",
+            "supported_claim": "Raw peer growth signal that must not be transplanted one-for-one onto AWS."
+          },
+          {
+            "document_version_id": "c9c49ffa-3cbf-44bf-a4b4-02bde2c7c360",
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS capacity and backlog remarks",
+            "excerpt": "AWS revenue $35.6B, +24% y/y; backlog $244B, +40% y/y; capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "AWS-specific conversion gate bounding how fast demand converts into revenue."
+          },
+          {
+            "document_version_id": "39fedb24-8412-499c-9215-c65238600a81",
+            "locator": "OpenAI and Amazon strategic partnership release, summary bullets and Trainium section",
+            "excerpt": "OpenAI to consume about 2 GW of Trainium capacity via AWS; agreement expanded by $100B over 8 years.",
+            "supported_claim": "Multi-year commitment that phases gradually rather than booking fully into one quarter."
+          }
+        ],
+        "expected_reasoning": "A passing bridge applies a partial, explained conversion from external signals into AWS dollars: peer demand strength informs direction, while AWS capacity conversion and contract phasing bound the magnitude. Full pass-through of peer growth rates or full booking of a multi-year commitment inside Q2 2026 fails; alternative mechanism-based conversions qualify if they bound the impact below the raw signal effect."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 1.6071428571428572,
+      "max_score_exact": "45/28"
+    },
+    {
+      "rubric_id": "support_scope_consistency",
+      "category": "decision_consistency",
+      "title": "Revised versus retained driver consistency",
+      "criterion": "The drivers listed as unchanged in the Amazon.com, Inc. AWS Q2 2026 update are consistent with the submission's own cited evidence, with no retained driver shown by that evidence as materially affected by the February-March 2026 cross-company disclosures.",
+      "pass_condition": "Every driver the submission lists as unchanged remains materially unaffected under its own cited evidence, so no affected driver is left out of the revision.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "unchanged_drivers",
+      "financial_concept": "Drivers left unchanged",
+      "unit_or_threshold": "qualitative",
+      "verification": "judge",
+      "weight": 2,
+      "primary_output_path": "$.unchanged_drivers[]",
+      "required_output_paths": [
+        "$.unchanged_drivers[]",
+        "$.bridge_items[].driver",
+        "$.key_evidence[]"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "c9c49ffa-3cbf-44bf-a4b4-02bde2c7c360",
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS demand-supply and backlog remarks",
+            "excerpt": "Demand for AWS capacity exceeds supply; backlog $244B, +40% y/y; capacity monetized as installed.",
+            "supported_claim": "Ongoing regime basis for drivers that may legitimately be retained."
+          },
+          {
+            "document_version_id": "8d23e83d-5304-4f95-94a9-f3caacd3d3b4",
+            "locator": "Q3 FY2026 Oracle earnings call, Event ID 140575679316, prepared remarks",
+            "excerpt": "AI infrastructure revenue +243% y/y; RPO $553B; demand exceeds supply.",
+            "supported_claim": "Recent external signal against which retained drivers must be checked."
+          }
+        ],
+        "expected_reasoning": "Retained drivers should be ones the submission's cited evidence leaves materially unaffected, such as the demand-exceeds-supply regime or normal seasonal patterns. A driver the cited evidence shows as newly affected, for example supply access after the GPU agreement, must appear in the bridge rather than the unchanged list."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 1.0714285714285714,
+      "max_score_exact": "15/14"
+    },
+    {
+      "rubric_id": "support_verdict_consistency",
+      "category": "decision_consistency",
+      "title": "Headline verdict traceability",
+      "criterion": "The conclusion the submission delivers for Amazon.com, Inc. AWS Q2 2026, namely how cross-company demand signals net against supply and conversion limits in the revision, follows from its own cited evidence and itemized adjustments.",
+      "pass_condition": "The reported net revision can be traced to the named balance of upward demand evidence and constraining supply evidence, with the narrative and the numbers agreeing on direction and scale.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "forecast_revision",
+      "financial_concept": "Forecast revision",
+      "unit_or_threshold": "USD millions",
+      "verification": "judge",
+      "weight": 2,
+      "primary_output_path": "$.answer_summary",
+      "required_output_paths": [
+        "$.answer_summary",
+        "$.revision_usd_m",
+        "$.bridge_items[]"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "c9c49ffa-3cbf-44bf-a4b4-02bde2c7c360",
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS segment remarks",
+            "excerpt": "AWS Q4 2025 revenue $35.6B, +24% y/y, fastest in 13 quarters; backlog $244B; capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "Anchor for the pre-signal trajectory the verdict updates."
+          },
+          {
+            "document_version_id": "436df2e2-be12-4924-b88c-86effa3491da",
+            "locator": "Q2 FY2026 Microsoft earnings call, Event ID 140000744661, Azure results and Q3 outlook",
+            "excerpt": "Azure +39% y/y; demand exceeds supply; commercial RPO $625B, +110% y/y.",
+            "supported_claim": "Demand-side force to be weighed against conversion limits in the verdict."
+          }
+        ],
+        "expected_reasoning": "The net revision and its direction should be the transparent result of weighing cited demand-side strength against cited conversion constraints, with narrative and itemized numbers agreeing. A conclusion that ignores either side, or a net revision that cannot be traced to the items, fails."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 1.0714285714285714,
+      "max_score_exact": "15/14"
+    },
+    {
+      "rubric_id": "support_range_bracketing",
+      "category": "uncertainty",
+      "title": "Range bracketing of the point forecast",
+      "criterion": "The submitted uncertainty range is a genuine two-sided interval around the updated point forecast for Amazon.com, Inc. AWS Q2 2026 net sales, expressed in USD millions.",
+      "pass_condition": "The low bound sits below the updated point forecast and the high bound sits above it.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "forecast_range",
+      "financial_concept": "Forecast uncertainty range",
+      "unit_or_threshold": "USD millions",
+      "verification": "judge",
+      "weight": 1,
+      "primary_output_path": "$.forecast_range_low_usd_m",
+      "required_output_paths": [
+        "$.forecast_range_low_usd_m",
+        "$.forecast_range_high_usd_m",
+        "$.updated_forecast_usd_m"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "c9c49ffa-3cbf-44bf-a4b4-02bde2c7c360",
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, capacity remarks",
+            "excerpt": "Capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "Basis for a two-sided range around the forecast (demand upside versus conversion gating)."
+          }
+        ],
+        "expected_reasoning": "The submitted low and high bounds must enclose the updated point forecast so the range reads as a genuine two-sided interval; a range that fails to bracket the point forecast fails regardless of its width."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 0.5357142857142857,
+      "max_score_exact": "15/28"
+    },
+    {
+      "rubric_id": "support_bound_grounding",
+      "category": "uncertainty",
+      "title": "Range bounds grounded in update drivers",
+      "criterion": "The low and high bounds of the Amazon.com, Inc. AWS Q2 2026 forecast range are grounded in the update's identified drivers and evidence rather than arbitrary percentage padding.",
+      "pass_condition": "The submission explains the range through its drivers or evidence in a way that covers both bounds, whether bound-specific or as one shared rationale.",
+      "financial_subject": "Amazon.com, Inc. (AWS)",
+      "period": "2026-04-01 to 2026-06-30",
+      "public_concept_id": "forecast_range",
+      "financial_concept": "Forecast uncertainty range",
+      "unit_or_threshold": "USD millions",
+      "verification": "judge",
+      "weight": 1,
+      "primary_output_path": "$.forecast_range_high_usd_m",
+      "required_output_paths": [
+        "$.forecast_range_high_usd_m",
+        "$.forecast_range_low_usd_m"
+      ],
+      "deterministic": null,
+      "judge": {
+        "evidence_materials": [
+          {
+            "document_version_id": "c9c49ffa-3cbf-44bf-a4b4-02bde2c7c360",
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS capacity and backlog remarks",
+            "excerpt": "Backlog $244B, +40% y/y; capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "Example driver basis for range bounds (conversion timing, demand persistence)."
+          },
+          {
+            "document_version_id": "39fedb24-8412-499c-9215-c65238600a81",
+            "locator": "OpenAI and Amazon strategic partnership release, summary bullets and Trainium section",
+            "excerpt": "About 2 GW of Trainium capacity via AWS; agreement expanded by $100B over 8 years.",
+            "supported_claim": "Example of phased conversion uncertainty a bound may reference."
+          }
+        ],
+        "expected_reasoning": "Either bound-specific reasoning or one shared two-sided rationale satisfies the check as long as it references the update's drivers or evidence, such as conversion timing, demand persistence, or commitment phasing; a bare percentage band with no link to the update's analysis fails."
+      },
+      "future_truth": null,
+      "evaluation_type": "binary",
+      "type": "llm_judge",
+      "max_score": 0.5357142857142857,
+      "max_score_exact": "15/28"
+    }
+  ],
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "search",
+        "description": "Find financial documents by company, security code or symbol, title, or keywords. Use metadata mode for names, symbols, and titles; use text mode for a two-to-ten-word phrase in the content. Results include document_ref, available formats, readable formats, snippets, and a recommended action.",
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000,
+              "description": "Company, security code or symbol, or title in metadata mode; a two-to-ten-word phrase in text mode. Use ticker:CODE followed by keywords to restrict results to a security."
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "text",
+                "metadata"
+              ],
+              "default": "text"
+            },
+            "datasets": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "financial_report",
+                  "earnings_call",
+                  "news",
+                  "investor_material",
+                  "issuer_event"
+                ]
+              },
+              "minItems": 1,
+              "uniqueItems": true,
+              "description": "Optional document categories."
+            },
+            "subtypes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 20,
+              "uniqueItems": true,
+              "description": "Optional subcategories; specify their datasets. financial_report: annual, interim, quarterly; earnings_call: transcript; investor_material: presentation, investor_day_transcript, conference_transcript, activity_record"
+            },
+            "markets": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "us",
+                  "hk",
+                  "a_share",
+                  "china",
+                  "global"
+                ]
+              },
+              "minItems": 1,
+              "uniqueItems": true,
+              "description": "Optional market filter."
+            },
+            "filing_forms": {
+              "type": "array",
+              "maxItems": 20,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 30
+              },
+              "description": "Exact filing forms, such as 10-K, 10-Q, or 8-K."
+            },
+            "period": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "year",
+                    "half_year",
+                    "quarter",
+                    "unclassified"
+                  ]
+                },
+                "fiscal_year": {
+                  "type": "integer",
+                  "minimum": 1900,
+                  "maximum": 2200
+                },
+                "fiscal_period": {
+                  "type": "string",
+                  "maxLength": 30
+                },
+                "start": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "end": {
+                  "type": "string",
+                  "format": "date"
+                }
+              },
+              "required": [],
+              "description": "Exact reporting-period fields; not publication dates or overlapping date ranges."
+            },
+            "published_from": {
+              "type": "string",
+              "description": "Optional inclusive publication lower bound: ISO date or datetime with offset. Not the reporting period."
+            },
+            "version_policy": {
+              "type": "string",
+              "enum": [
+                "latest",
+                "all"
+              ],
+              "default": "latest",
+              "description": "latest selects each document's latest visible revision; all includes its historical revisions. Separate reports and forecast events remain separate."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            },
+            "cursor": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8192,
+              "description": "Return the cursor unchanged with the same query, filters, format, and window settings."
+            }
+          },
+          "required": [
+            "query"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "read",
+        "description": "Read documents to extract, explain, compare, or calculate information from their contents. Use document_ref for one document, or sources for several documents or separate ranges to read together. Omit ranges to read complete documents within the available reading budget; results identify the covered ranges and where to continue. Use start/count/unit for specific pages, blocks, chunks, or rows; a search snippet's page_number can be used as start with unit=page. Use a source's remaining.resume fields with query to continue reading. PNG reads one page separately.",
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "document_ref": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 64
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "markdown",
+                "plain_text",
+                "json",
+                "png"
+              ],
+              "description": "Choose from readable_format. If omitted, prefer markdown, plain_text, then JSON. An explicit format is never substituted."
+            },
+            "unit": {
+              "type": "string",
+              "enum": [
+                "page",
+                "block",
+                "chunk",
+                "row"
+              ],
+              "description": "Location unit; omit to use the document's default. PNG uses page."
+            },
+            "start": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "One-based first location, default 1; omit when using cursor."
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "description": "Continuous locations for an explicit range, default 10 for text/JSON. Maximum: page/chunk 10, block 100, row 200; PNG 1. Omit all range fields for budgeted full-document reading."
+            },
+            "cursor": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8192,
+              "description": "Return the cursor unchanged with the same query, filters, format, and window settings."
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000,
+              "description": "What to read for: extract facts or passages, summarize, explain, compare, reconcile, or calculate using the supplied documents. Specify the desired detail and output format when useful."
+            },
+            "sources": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "document_ref": {
+                    "type": "string",
+                    "minLength": 5,
+                    "maxLength": 64
+                  },
+                  "format": {
+                    "type": "string",
+                    "enum": [
+                      "markdown",
+                      "plain_text",
+                      "json",
+                      "png"
+                    ],
+                    "description": "Choose from readable_format. If omitted, prefer markdown, plain_text, then JSON. An explicit format is never substituted."
+                  },
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "page",
+                      "block",
+                      "chunk",
+                      "row"
+                    ],
+                    "description": "Location unit; omit to use the document's default. PNG uses page."
+                  },
+                  "start": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "One-based first location, default 1; omit when using cursor."
+                  },
+                  "count": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 200,
+                    "description": "Continuous locations for an explicit range, default 10 for text/JSON. Maximum: page/chunk 10, block 100, row 200; PNG 1. Omit all range fields for budgeted full-document reading."
+                  },
+                  "cursor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8192,
+                    "description": "Return the cursor unchanged with the same query, filters, format, and window settings."
+                  }
+                },
+                "required": [
+                  "document_ref"
+                ]
+              },
+              "description": "Documents or ranges to read together under one shared budget. Repeat a document_ref for separate ranges. Use this instead of top-level document_ref, format, and range fields; PNG must be read separately."
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "oneOf": [
+            {
+              "required": [
+                "document_ref"
+              ],
+              "not": {
+                "required": [
+                  "sources"
+                ]
+              }
+            },
+            {
+              "required": [
+                "sources"
+              ],
+              "not": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "document_ref"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "format"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "unit"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "start"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "count"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "cursor"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "download",
+        "description": "Download a document returned by search into the working directory. Prefer read for large unstructured documents, and Parquet downloads with Python or SQL for tabular analysis; use download when no suitable readable format is available.",
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "document_ref": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 64
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "parquet",
+                "json",
+                "markdown",
+                "plain_text",
+                "html",
+                "xml",
+                "png",
+                "pdf",
+                "doc",
+                "docx",
+                "ppt",
+                "pptx",
+                "xls",
+                "xlsx",
+                "binary"
+              ],
+              "description": "Choose an available format; default Parquet for tables, otherwise the source format."
+            },
+            "page_number": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Required for a PDF page downloaded as PNG; otherwise omit."
+            },
+            "filename": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 180,
+              "description": "Optional filename; directory components are ignored."
+            }
+          },
+          "required": [
+            "document_ref"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "bash",
+        "description": "Run a shell command in the isolated working directory for file inspection, Python analysis, arithmetic, or deterministic checks. Python 3, numpy, scipy, pandas, openpyxl, pyarrow, and duckdb are available. Network access is disabled.",
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "command": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16000
+            },
+            "timeout": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 300,
+              "default": 300
+            }
+          },
+          "required": [
+            "command"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "tables",
+        "description": "List currently available data tables. Supply a returned table_id for its fields, units and revision meaning before writing SQL. New queries use the current catalog; existing results keep their original snapshot.",
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "table_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160,
+              "description": "Optional schema.table name copied from tables; omit to list tables."
+            }
+          },
+          "required": []
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "table_lookup",
+        "description": "Find registered company names or codes for financial statements or analyst events. Keep all dated candidates; provider identifiers are not exchange symbols.",
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "description": "A registered company name or code, not a financial question or keyword sentence."
+            },
+            "dataset": {
+              "type": "string",
+              "enum": [
+                "financial_statement",
+                "analyst_estimate"
+              ]
+            },
+            "market": {
+              "type": "string",
+              "enum": [
+                "us",
+                "hk",
+                "a_share",
+                "china",
+                "global"
+              ]
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          },
+          "required": [
+            "query",
+            "dataset"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "table_query",
+        "description": "Query discovered tables using one read-only SELECT and named value parameters. Supports screening, joins, aggregates and windows. Returns table_ref; use table_read until ready. Preserve source units and periods; event averages are not consensus and historical trade dates do not prove historical availability.",
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "sql": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16384,
+              "description": "One SELECT using discovered table/column names. Named value placeholders use $name."
+            },
+            "parameters": {
+              "type": "object",
+              "maxProperties": 100,
+              "description": "Optional values for $name placeholders, without $ in the keys. Example: amount > $minimum uses {\"minimum\": 0}. Do not bind table or column names."
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": 50,
+              "description": "Rows per preview page, not a limit on the complete query result."
+            }
+          },
+          "required": [
+            "sql"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "table_read",
+        "description": "Read one page of a frozen table result, or check its status. Continue with its cursor unchanged. Decimal and large integers remain strings; total_rows counts this query, not source coverage.",
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "table_ref": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160,
+              "description": "Use table_ref returned by table_query in this run."
+            },
+            "cursor": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160,
+              "description": "Copy next_cursor unchanged to read the next page of this table_ref."
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "description": "Optional first-page size; defaults to the query's count. Omit when passing a cursor to keep its page size."
+            }
+          },
+          "required": [
+            "table_ref"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "table_cancel",
+        "description": "Cancel unfinished table computation in this run.",
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "table_ref": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160,
+              "description": "Use table_ref returned by table_query in this run."
+            }
+          },
+          "required": [
+            "table_ref"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "table_download",
+        "description": "Download the complete frozen result as Parquet or JSON into the same working directory used by bash, with size and SHA-256 verification. This is not just the displayed page.",
+        "parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "table_ref": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160,
+              "description": "Use table_ref returned by table_query in this run."
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "parquet",
+                "json"
+              ],
+              "default": "parquet"
+            },
+            "filename": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160,
+              "description": "Optional output filename; directory components are ignored."
+            }
+          },
+          "required": [
+            "table_ref"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "submit_answer",
+        "description": "Submit the final analysis using the fields in this schema and the structured_output fields specified in the question. Use actual document_ref or completed table_ref identifiers in evidence.document_ref. Artifact paths must refer to existing files relative to the workspace. Call submit_answer alone. You have three submission attempts in total (the initial submission and up to two corrections). A rejected submission returns format issues and the remaining attempts. The third rejection ends the task.",
+        "parameters": {
+          "$defs": {
+            "ArtifactItem": {
+              "additionalProperties": false,
+              "properties": {
+                "workspace_path": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "artifact_type": {
+                  "pattern": "^(xlsx|csv|json|parquet|pdf|markdown|other)$",
+                  "type": "string"
+                },
+                "description": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "workspace_path",
+                "artifact_type",
+                "description"
+              ],
+              "type": "object"
+            },
+            "CalculationItem": {
+              "additionalProperties": false,
+              "properties": {
+                "description": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "expression": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "inputs": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "result": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "description",
+                "expression",
+                "result"
+              ],
+              "type": "object"
+            },
+            "EvidenceItem": {
+              "additionalProperties": false,
+              "properties": {
+                "document_ref": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "locator": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "excerpt": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "claim": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "document_ref",
+                "locator",
+                "excerpt",
+                "claim"
+              ],
+              "type": "object"
+            }
+          },
+          "additionalProperties": false,
+          "properties": {
+            "answer_summary": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "structured_output": {
+              "additionalProperties": true,
+              "minProperties": 1,
+              "type": "object"
+            },
+            "evidence": {
+              "items": {
+                "$ref": "#/$defs/EvidenceItem"
+              },
+              "type": "array"
+            },
+            "calculations": {
+              "items": {
+                "$ref": "#/$defs/CalculationItem"
+              },
+              "type": "array"
+            },
+            "artifacts": {
+              "items": {
+                "$ref": "#/$defs/ArtifactItem"
+              },
+              "type": "array"
+            },
+            "uncertainties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "answer_summary",
+            "structured_output"
+          ],
+          "type": "object"
+        }
+      }
+    }
+  ],
+  "submission_schema": {
+    "$defs": {
+      "ArtifactItem": {
+        "additionalProperties": false,
+        "properties": {
+          "workspace_path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "artifact_type": {
+            "pattern": "^(xlsx|csv|json|parquet|pdf|markdown|other)$",
+            "type": "string"
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workspace_path",
+          "artifact_type",
+          "description"
+        ],
+        "type": "object"
+      },
+      "CalculationItem": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "expression": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "inputs": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "result": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "expression",
+          "result"
+        ],
+        "type": "object"
+      },
+      "EvidenceItem": {
+        "additionalProperties": false,
+        "properties": {
+          "document_ref": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "locator": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "excerpt": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "claim": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "document_ref",
+          "locator",
+          "excerpt",
+          "claim"
+        ],
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "answer_summary": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "structured_output": {
+        "additionalProperties": true,
+        "minProperties": 1,
+        "type": "object"
+      },
+      "evidence": {
+        "items": {
+          "$ref": "#/$defs/EvidenceItem"
+        },
+        "type": "array"
+      },
+      "calculations": {
+        "items": {
+          "$ref": "#/$defs/CalculationItem"
+        },
+        "type": "array"
+      },
+      "artifacts": {
+        "items": {
+          "$ref": "#/$defs/ArtifactItem"
+        },
+        "type": "array"
+      },
+      "uncertainties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "answer_summary",
+      "structured_output"
+    ],
+    "type": "object"
+  },
+  "judge_tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "submit_semantic_grade_v11",
+        "description": "Submit all and only the presented V11 semantic Rubric decisions.",
+        "parameters": {
+          "$defs": {
+            "JudgeDecisionV11": {
+              "properties": {
+                "rubric_id": {
+                  "title": "Rubric Id",
+                  "type": "string",
+                  "enum": [
+                    "core_bridge_reconciliation",
+                    "core_bridge_magnitude_justification",
+                    "core_baseline_calibration",
+                    "core_retained_drivers_reasoned",
+                    "core_affected_only_scope",
+                    "support_demand_readthrough",
+                    "support_supply_constraint",
+                    "support_mapping_coefficient",
+                    "support_scope_consistency",
+                    "support_verdict_consistency",
+                    "support_range_bracketing",
+                    "support_bound_grounding"
+                  ]
+                },
+                "passed": {
+                  "title": "Passed",
+                  "type": "boolean"
+                },
+                "rationale": {
+                  "minLength": 4,
+                  "title": "Rationale",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "rubric_id",
+                "passed",
+                "rationale"
+              ],
+              "title": "JudgeDecisionV11",
+              "type": "object"
+            }
+          },
+          "properties": {
+            "task_id": {
+              "title": "Task Id",
+              "type": "string",
+              "enum": [
+                "task-author-v13-amzn-3-4-800e795c4c"
+              ]
+            },
+            "decisions": {
+              "items": {
+                "$ref": "#/$defs/JudgeDecisionV11"
+              },
+              "maxItems": 12,
+              "minItems": 12,
+              "title": "Decisions",
+              "type": "array"
+            },
+            "summary": {
+              "minLength": 4,
+              "title": "Summary",
+              "type": "string"
+            }
+          },
+          "required": [
+            "task_id",
+            "decisions",
+            "summary"
+          ],
+          "title": "SemanticGradeV11",
+          "type": "object"
+        }
+      }
+    }
+  ],
+  "judge_input_template": {
+    "task_id": "task-author-v13-amzn-3-4-800e795c4c",
+    "public_question": "Strict information cutoff: 2026-03-31T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nCompany: Amazon.com, Inc. (ticker AMZN). Metric: AWS segment net sales, on the segment basis reported in Amazon's financial statements, for the quarter ending 2026-06-30 (period 2026-04-01 to 2026-06-30), stated in USD millions. Work as of the information cutoff 2026-03-31 16:00 ET; AWS results for that quarter are due around 2026-07-30.\n\nPrepare an update. Your standing prior is the pre-signal estimate of AWS Q2 2026 net sales you carried at the start of February 2026, before the cross-company (peer, customer or supplier) disclosures of February and March 2026; state that baseline in USD millions. Deliver: (1) an updated point forecast; (2) the revision versus that baseline; (3) an itemized bridge in which each material adjustment driver carries a USD millions impact and the items reconcile to the revision; (4) the outlook drivers you deliberately left unchanged, each with the reason it was retained; (5) low and high bounds for an uncertainty range around the updated forecast; and (6) the specific disclosures available on or before the cutoff that support your adjustments. Cite only cutoff-valid evidence and explain economically how the cross-company signals transmit into AWS revenue.\n\nUnits and accounting basis must match the segment as reported. Adjustment magnitude must be justified, not asserted.\n\nThe requested low and high bounds are the 10th and 90th percentiles of a central 80% prediction interval for realized AWS Q2 2026 segment net sales, not unspecified optimistic/pessimistic scenarios. Both endpoints, the prior, the updated point forecast and every bridge impact use USD millions on the same reported AWS segment basis. Explain how the uncertainty drivers support both endpoints.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.updated_forecast_usd_m: Updated point forecast of AWS segment net sales for 2026-04-01 to 2026-06-30, USD millions.\n- $.prior_baseline_usd_m: Standing pre-signal estimate being revised from, USD millions.\n- $.revision_usd_m: Quantified revision versus the standing estimate, USD millions.\n- $.bridge_items: Itemized adjustment drivers with USD millions impacts reconciling to the revision.\n- $.unchanged_drivers: Drivers deliberately retained unchanged from the prior view, with reasons.\n- $.key_evidence: Cutoff-available disclosures cited in support of the adjustments.\n- $.forecast_range_low_usd_m: Low bound of the uncertainty range around the updated forecast.\n- $.forecast_range_high_usd_m: High bound of the uncertainty range around the updated forecast.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
+    "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
+    "judge_rubrics": [
+      {
+        "rubric_id": "core_bridge_reconciliation",
+        "title": "Bridge-to-revision reconciliation",
+        "criterion": "The revision bridge for Amazon.com, Inc. (AWS) for 2026-04-01 to 2026-06-30 itemizes the adjustment drivers, and their USD millions impacts sum to the net revision the submission reports for the update.",
+        "pass_condition": "The sum of all itemized bridge item impacts equals the submitted net revision, with any rounding difference no larger than USD 1 million.",
+        "financial_subject": "Amazon.com, Inc. (AWS)",
+        "period": "2026-04-01 to 2026-06-30",
+        "financial_concept": "Revision bridge",
+        "unit_or_threshold": "USD millions",
+        "required_output_paths": [
+          "$.bridge_items",
+          "$.bridge_items[].impact_usd_m",
+          "$.revision_usd_m"
+        ],
+        "expected_reasoning": "Sum the USD millions impacts of the bridge items and compare with the stated net revision; accept rounding differences of no more than USD 1 million. A bridge that does not reconcile to the revision, or that fails to itemize the adjustment into distinct drivers, does not pass.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS segment remarks and Q&A",
+            "excerpt": "AWS Q4 2025 revenue $35.6B, +24% y/y; backlog $244B, +40% y/y and +22% q/q; capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "Anchor facts against which the bridge itemization and its magnitudes can be sanity-checked."
+          }
+        ]
+      },
+      {
+        "rubric_id": "core_bridge_magnitude_justification",
+        "title": "Signal-to-dollar magnitude justification",
+        "criterion": "Each material adjustment in the revision bridge for Amazon.com, Inc. (AWS) for 2026-04-01 to 2026-06-30 carries a USD millions impact whose size follows from cited cutoff evidence through a stated demand, capacity, pricing, or phasing mechanism rather than an assertion.",
+        "pass_condition": "Every bridge item with an absolute impact of at least USD 100 million pairs the impact with a rationale naming its cutoff evidence and transmission mechanism.",
+        "financial_subject": "Amazon.com, Inc. (AWS)",
+        "period": "2026-04-01 to 2026-06-30",
+        "financial_concept": "Revision bridge",
+        "unit_or_threshold": "USD millions",
+        "required_output_paths": [
+          "$.bridge_items[].rationale",
+          "$.bridge_items[].impact_usd_m",
+          "$.key_evidence",
+          "$.key_evidence[]"
+        ],
+        "expected_reasoning": "Magnitudes should be proportional to cited signal scale and direction, with demand and commitments supporting upward volume, supply and capacity limits tempering conversion, and multi-year agreements reflected gradually rather than fully booked into Q2 2026. Asserted numbers, or magnitudes inconsistent with the cited evidence, do not pass.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS segment remarks and Q&A",
+            "excerpt": "AWS Q4 2025 revenue $35.6B, +24% y/y, fastest in 13 quarters; backlog $244B, +40% y/y; capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "Demand strength and capacity-conversion gating that any quantified bridge must translate into AWS dollars."
+          },
+          {
+            "locator": "OpenAI and Amazon strategic partnership release, summary bullets and Trainium section",
+            "excerpt": "OpenAI to consume about 2 GW of Trainium capacity via AWS; agreement expanded by $100B over 8 years.",
+            "supported_claim": "Multi-year customer commitment whose conversion phases gradually into AWS revenue."
+          },
+          {
+            "locator": "Nvidia-AWS GPU supply report, deal details",
+            "excerpt": "One million GPUs to AWS with shipments beginning 2026 and continuing through 2027.",
+            "supported_claim": "Supplier signal de-risking AWS capacity additions within the forecast window."
+          }
+        ]
+      },
+      {
+        "rubric_id": "core_baseline_calibration",
+        "title": "Pre-signal baseline calibration",
+        "criterion": "The standing prior estimate for Amazon.com, Inc. (AWS), a Q2 2026 estimate as of early February 2026, is stated in USD millions and is consistent with the company's disclosed AWS trajectory rather than the post-signal forecast.",
+        "pass_condition": "The submitted prior baseline is a USD millions value between 36,000 and 40,000 that is not derived from the updated post-signal forecast.",
+        "financial_subject": "Amazon.com, Inc. (AWS)",
+        "period": "Q2 2026 estimate as of early February 2026",
+        "financial_concept": "Standing prior estimate",
+        "unit_or_threshold": "USD millions",
+        "required_output_paths": [
+          "$.prior_baseline_usd_m"
+        ],
+        "expected_reasoning": "A pre-signal baseline near USD 38 billion follows from carrying the USD 30,873 million Q2 2025 base at roughly the Q4 2025 exit growth rate, or comparable disclosed-trajectory logic; a task-supplied standing prior used as given also passes. A baseline equal to or derived from the updated post-signal forecast fails because it would void the revision.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Form 10-Q for the quarter ended June 30, 2025, Note 8 Segment Information, AWS rows",
+            "excerpt": "AWS net sales of $30,873 million for the three months ended June 30, 2025.",
+            "supported_claim": "Comparison base for carrying the pre-signal AWS estimate."
+          },
+          {
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS segment remarks",
+            "excerpt": "AWS Q4 2025 revenue $35.6B, +24% y/y; about $200B 2026 capex predominantly AWS.",
+            "supported_claim": "Disclosed exit trajectory and growth rate available for a pre-signal carry into Q2 2026."
+          }
+        ]
+      },
+      {
+        "rubric_id": "core_retained_drivers_reasoned",
+        "title": "Retained driver justification",
+        "criterion": "The update for Amazon.com, Inc. (AWS) provides a qualitative account of the outlook drivers left unchanged for 2026-04-01 to 2026-06-30, stating why each remains at its prior basis under the cutoff evidence.",
+        "pass_condition": "At least two unchanged AWS Q2 2026 drivers appear, each with a reason explaining why no applicable cutoff evidence requires a revision.",
+        "financial_subject": "Amazon.com, Inc. (AWS)",
+        "period": "2026-04-01 to 2026-06-30",
+        "financial_concept": "Drivers left unchanged",
+        "unit_or_threshold": "qualitative",
+        "required_output_paths": [
+          "$.unchanged_drivers",
+          "$.unchanged_drivers[]"
+        ],
+        "expected_reasoning": "At least two retained drivers should carry economically specific reasons, such as the demand-exceeds-supply regime, the normal June-quarter sequential pattern, or stable pricing and mix; a bare list of drivers without reasons, or reasons contradicted by cited evidence, fails.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, demand-supply commentary",
+            "excerpt": "Demand for AWS capacity exceeds supply, and capacity is monetized as fast as it is installed.",
+            "supported_claim": "Basis for retaining the demand-exceeds-supply regime absent contrary cutoff evidence."
+          }
+        ]
+      },
+      {
+        "rubric_id": "core_affected_only_scope",
+        "title": "Affected-only revision scope",
+        "criterion": "In the revision bridge for Amazon.com, Inc. (AWS) for 2026-04-01 to 2026-06-30, only drivers exposed to the February and March 2026 cross-company disclosures receive quantified USD millions adjustments, while drivers without new evidence stay at their prior basis.",
+        "pass_condition": "Every bridge adjustment is tied to a cited cutoff cross-company or issuer disclosure, and no driver lacking such evidence is revised.",
+        "financial_subject": "Amazon.com, Inc. (AWS)",
+        "period": "2026-04-01 to 2026-06-30",
+        "financial_concept": "Revision bridge",
+        "unit_or_threshold": "USD millions",
+        "required_output_paths": [
+          "$.bridge_items[].driver",
+          "$.unchanged_drivers[]",
+          "$.key_evidence[]"
+        ],
+        "expected_reasoning": "Each revised bridge driver should cite a cross-company or issuer disclosure available by 2026-03-31; revising drivers with no such signal, or citing signals outside the submitted evidence, fails the affected-only scope test.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q2 FY2026 Microsoft earnings call, Event ID 140000744661, Azure results and Q3 outlook",
+            "excerpt": "Azure +39% y/y (+38% cc), guided +37-38% cc; demand exceeds supply; commercial RPO $625B, +110% y/y.",
+            "supported_claim": "Example cross-company signal that can justify a defined bridge adjustment."
+          },
+          {
+            "locator": "Q3 FY2026 Oracle earnings call, Event ID 140575679316, prepared remarks",
+            "excerpt": "AI infrastructure revenue +243% y/y; RPO $553B; demand exceeds supply.",
+            "supported_claim": "Latest pre-cutoff cross-company demand signal bearing on the update scope."
+          }
+        ]
+      },
+      {
+        "rubric_id": "support_demand_readthrough",
+        "title": "Cross-company demand read-through support",
+        "criterion": "The demand read-through the submission draws from cross-company cloud and AI-compute disclosures into Amazon.com, Inc. AWS for Q2 2026 is supported by independent external evidence available on or before 2026-03-31.",
+        "pass_condition": "At least two independent issuers' disclosures available by the cutoff are cited, each documenting strong cloud or AI-compute demand through growth, backlog, or demand-in-excess-of-supply statements.",
+        "financial_subject": "Amazon.com, Inc. and cross-company set",
+        "period": "through 2026-03-31",
+        "financial_concept": "Cutoff evidence cited",
+        "unit_or_threshold": "qualitative",
+        "required_output_paths": [
+          "$.key_evidence[]",
+          "$.key_evidence"
+        ],
+        "expected_reasoning": "The claimed demand read-through should be backed by at least two independent external issuers' pre-cutoff disclosures documenting strong cloud or AI-compute demand through growth rates, backlog scale, or demand-in-excess-of-supply language. Semantically equivalent cutoff-valid disclosures qualify; a single source or generic commentary without demand metrics does not.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q2 FY2026 Microsoft earnings call, Event ID 140000744661, Azure results and Q3 outlook",
+            "excerpt": "Azure +39% y/y (+38% cc), guided +37-38% cc; demand exceeds supply; commercial RPO $625B, +110% y/y.",
+            "supported_claim": "Independent peer disclosure of strong cloud demand and a demand-versus-supply gap available before the cutoff."
+          },
+          {
+            "locator": "Q4 2025 Alphabet earnings call, Event ID 137135137148, Google Cloud results and outlook",
+            "excerpt": "Google Cloud +48% y/y to $17.7B; backlog $240B, +55% q/q; tight supply environment expected to persist.",
+            "supported_claim": "Second independent peer disclosure of accelerating cloud demand with constrained supply."
+          },
+          {
+            "locator": "Q3 FY2026 Oracle earnings call, Event ID 140575679316, prepared remarks",
+            "excerpt": "AI infrastructure revenue +243% y/y; RPO $553B; demand exceeds supply.",
+            "supported_claim": "Latest pre-cutoff cross-company datapoint on AI-cloud demand strength."
+          },
+          {
+            "locator": "Q4 FY2026 NVIDIA earnings call, Event ID 137108141583, prepared remarks",
+            "excerpt": "Data Center revenue $62B, +75% y/y; 2026 capex of top hyperscalers approaching $700B; supply tight through the year.",
+            "supported_claim": "Supply-chain confirmation of strong compute demand and capacity spending."
+          }
+        ]
+      },
+      {
+        "rubric_id": "support_supply_constraint",
+        "title": "Supply-conversion constraint support",
+        "criterion": "The constraint the submission places on Amazon.com, Inc. AWS Q2 2026 revenue upside from supply and capacity-conversion limits rests on cutoff-valid evidence rather than assertion.",
+        "pass_condition": "At least one disclosure available on or before 2026-03-31 documents constrained cloud capacity, supply tightness, or install-gated monetization relevant to AWS.",
+        "financial_subject": "Amazon.com, Inc. and cross-company set",
+        "period": "through 2026-03-31",
+        "financial_concept": "Cutoff evidence cited",
+        "unit_or_threshold": "qualitative",
+        "required_output_paths": [
+          "$.key_evidence[]",
+          "$.key_evidence"
+        ],
+        "expected_reasoning": "One or more cutoff-valid disclosures documenting constrained cloud capacity, supply tightness, or install-gated monetization relevant to AWS satisfy the claim; issuer capacity commentary, peer demand-exceeds-supply statements, or supplier tightness evidence all qualify. Assertion without such support does not.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS demand-supply commentary",
+            "excerpt": "Demand for AWS capacity exceeds supply, and capacity is monetized as fast as it is installed; AWS could grow faster with more supply.",
+            "supported_claim": "Issuer statement that capacity conversion, not demand, gates AWS growth."
+          },
+          {
+            "locator": "Q2 FY2026 Microsoft earnings call, Event ID 140000744661, demand-supply commentary",
+            "excerpt": "Azure +39% y/y (+38% cc); demand exceeds supply; commercial RPO $625B, +110% y/y.",
+            "supported_claim": "Peer corroboration that cloud capacity is the binding constraint."
+          },
+          {
+            "locator": "Q4 FY2026 NVIDIA earnings call, Event ID 137108141583, prepared remarks",
+            "excerpt": "2026 capex of top hyperscalers approaching $700B; supply tight; sequential growth expected through calendar 2026.",
+            "supported_claim": "Supplier evidence of industry-wide supply tightness."
+          }
+        ]
+      },
+      {
+        "rubric_id": "support_mapping_coefficient",
+        "title": "Partial conversion of external signals",
+        "criterion": "The translation of cross-company signals into the Amazon.com, Inc. AWS Q2 2026 bridge is partial and mechanism-based, with at least one material adjustment in USD millions bounded below the raw signal-implied effect.",
+        "pass_condition": "At least one bridge adjustment of USD 100 million or more states why its AWS impact is smaller than the raw signal effect (scale, capacity-gated conversion, or contract phasing), and no adjustment applies peer growth directly or books a multi-year commitment fully into the quarter.",
+        "financial_subject": "Amazon.com, Inc. (AWS)",
+        "period": "2026-04-01 to 2026-06-30",
+        "financial_concept": "Revision bridge",
+        "unit_or_threshold": "USD millions",
+        "required_output_paths": [
+          "$.bridge_items[].rationale",
+          "$.bridge_items[].impact_usd_m"
+        ],
+        "expected_reasoning": "A passing bridge applies a partial, explained conversion from external signals into AWS dollars: peer demand strength informs direction, while AWS capacity conversion and contract phasing bound the magnitude. Full pass-through of peer growth rates or full booking of a multi-year commitment inside Q2 2026 fails; alternative mechanism-based conversions qualify if they bound the impact below the raw signal effect.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q2 FY2026 Microsoft earnings call, Event ID 140000744661, Azure results and guide",
+            "excerpt": "Azure +39% y/y (+38% cc), guided +37-38% cc.",
+            "supported_claim": "Raw peer growth signal that must not be transplanted one-for-one onto AWS."
+          },
+          {
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS capacity and backlog remarks",
+            "excerpt": "AWS revenue $35.6B, +24% y/y; backlog $244B, +40% y/y; capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "AWS-specific conversion gate bounding how fast demand converts into revenue."
+          },
+          {
+            "locator": "OpenAI and Amazon strategic partnership release, summary bullets and Trainium section",
+            "excerpt": "OpenAI to consume about 2 GW of Trainium capacity via AWS; agreement expanded by $100B over 8 years.",
+            "supported_claim": "Multi-year commitment that phases gradually rather than booking fully into one quarter."
+          }
+        ]
+      },
+      {
+        "rubric_id": "support_scope_consistency",
+        "title": "Revised versus retained driver consistency",
+        "criterion": "The drivers listed as unchanged in the Amazon.com, Inc. AWS Q2 2026 update are consistent with the submission's own cited evidence, with no retained driver shown by that evidence as materially affected by the February-March 2026 cross-company disclosures.",
+        "pass_condition": "Every driver the submission lists as unchanged remains materially unaffected under its own cited evidence, so no affected driver is left out of the revision.",
+        "financial_subject": "Amazon.com, Inc. (AWS)",
+        "period": "2026-04-01 to 2026-06-30",
+        "financial_concept": "Drivers left unchanged",
+        "unit_or_threshold": "qualitative",
+        "required_output_paths": [
+          "$.unchanged_drivers[]",
+          "$.bridge_items[].driver",
+          "$.key_evidence[]"
+        ],
+        "expected_reasoning": "Retained drivers should be ones the submission's cited evidence leaves materially unaffected, such as the demand-exceeds-supply regime or normal seasonal patterns. A driver the cited evidence shows as newly affected, for example supply access after the GPU agreement, must appear in the bridge rather than the unchanged list.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS demand-supply and backlog remarks",
+            "excerpt": "Demand for AWS capacity exceeds supply; backlog $244B, +40% y/y; capacity monetized as installed.",
+            "supported_claim": "Ongoing regime basis for drivers that may legitimately be retained."
+          },
+          {
+            "locator": "Q3 FY2026 Oracle earnings call, Event ID 140575679316, prepared remarks",
+            "excerpt": "AI infrastructure revenue +243% y/y; RPO $553B; demand exceeds supply.",
+            "supported_claim": "Recent external signal against which retained drivers must be checked."
+          }
+        ]
+      },
+      {
+        "rubric_id": "support_verdict_consistency",
+        "title": "Headline verdict traceability",
+        "criterion": "The conclusion the submission delivers for Amazon.com, Inc. AWS Q2 2026, namely how cross-company demand signals net against supply and conversion limits in the revision, follows from its own cited evidence and itemized adjustments.",
+        "pass_condition": "The reported net revision can be traced to the named balance of upward demand evidence and constraining supply evidence, with the narrative and the numbers agreeing on direction and scale.",
+        "financial_subject": "Amazon.com, Inc. (AWS)",
+        "period": "2026-04-01 to 2026-06-30",
+        "financial_concept": "Forecast revision",
+        "unit_or_threshold": "USD millions",
+        "required_output_paths": [
+          "$.answer_summary",
+          "$.revision_usd_m",
+          "$.bridge_items[]"
+        ],
+        "expected_reasoning": "The net revision and its direction should be the transparent result of weighing cited demand-side strength against cited conversion constraints, with narrative and itemized numbers agreeing. A conclusion that ignores either side, or a net revision that cannot be traced to the items, fails.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS segment remarks",
+            "excerpt": "AWS Q4 2025 revenue $35.6B, +24% y/y, fastest in 13 quarters; backlog $244B; capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "Anchor for the pre-signal trajectory the verdict updates."
+          },
+          {
+            "locator": "Q2 FY2026 Microsoft earnings call, Event ID 140000744661, Azure results and Q3 outlook",
+            "excerpt": "Azure +39% y/y; demand exceeds supply; commercial RPO $625B, +110% y/y.",
+            "supported_claim": "Demand-side force to be weighed against conversion limits in the verdict."
+          }
+        ]
+      },
+      {
+        "rubric_id": "support_range_bracketing",
+        "title": "Range bracketing of the point forecast",
+        "criterion": "The submitted uncertainty range is a genuine two-sided interval around the updated point forecast for Amazon.com, Inc. AWS Q2 2026 net sales, expressed in USD millions.",
+        "pass_condition": "The low bound sits below the updated point forecast and the high bound sits above it.",
+        "financial_subject": "Amazon.com, Inc. (AWS)",
+        "period": "2026-04-01 to 2026-06-30",
+        "financial_concept": "Forecast uncertainty range",
+        "unit_or_threshold": "USD millions",
+        "required_output_paths": [
+          "$.forecast_range_low_usd_m",
+          "$.forecast_range_high_usd_m",
+          "$.updated_forecast_usd_m"
+        ],
+        "expected_reasoning": "The submitted low and high bounds must enclose the updated point forecast so the range reads as a genuine two-sided interval; a range that fails to bracket the point forecast fails regardless of its width.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, capacity remarks",
+            "excerpt": "Capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "Basis for a two-sided range around the forecast (demand upside versus conversion gating)."
+          }
+        ]
+      },
+      {
+        "rubric_id": "support_bound_grounding",
+        "title": "Range bounds grounded in update drivers",
+        "criterion": "The low and high bounds of the Amazon.com, Inc. AWS Q2 2026 forecast range are grounded in the update's identified drivers and evidence rather than arbitrary percentage padding.",
+        "pass_condition": "The submission explains the range through its drivers or evidence in a way that covers both bounds, whether bound-specific or as one shared rationale.",
+        "financial_subject": "Amazon.com, Inc. (AWS)",
+        "period": "2026-04-01 to 2026-06-30",
+        "financial_concept": "Forecast uncertainty range",
+        "unit_or_threshold": "USD millions",
+        "required_output_paths": [
+          "$.forecast_range_high_usd_m",
+          "$.forecast_range_low_usd_m"
+        ],
+        "expected_reasoning": "Either bound-specific reasoning or one shared two-sided rationale satisfies the check as long as it references the update's drivers or evidence, such as conversion timing, demand persistence, or commitment phasing; a bare percentage band with no link to the update's analysis fails.",
+        "direct_evidence_materials": [
+          {
+            "locator": "Q4 2025 Amazon.com earnings call, Event ID 137072521227, AWS capacity and backlog remarks",
+            "excerpt": "Backlog $244B, +40% y/y; capacity monetized as installed; could grow faster with more supply.",
+            "supported_claim": "Example driver basis for range bounds (conversion timing, demand persistence)."
+          },
+          {
+            "locator": "OpenAI and Amazon strategic partnership release, summary bullets and Trainium section",
+            "excerpt": "About 2 GW of Trainium capacity via AWS; agreement expanded by $100B over 8 years.",
+            "supported_claim": "Example of phased conversion uncertainty a bound may reference."
+          }
+        ]
+      }
+    ],
+    "instruction": "Evaluate each financial claim using the anonymous answer and reference evidence. Reference evidence is not a mandatory source list. Accept alternative cited evidence that supports the same claim, entity, period and accounting scope. Do not require the author's document, locator or calculation path unless the public task explicitly requires it. Apply the stated financial pass condition; do not invent extra requirements."
+  },
+  "judge_response_schema": {
+    "$defs": {
+      "JudgeDecisionV11": {
+        "properties": {
+          "rubric_id": {
+            "title": "Rubric Id",
+            "type": "string",
+            "enum": [
+              "core_bridge_reconciliation",
+              "core_bridge_magnitude_justification",
+              "core_baseline_calibration",
+              "core_retained_drivers_reasoned",
+              "core_affected_only_scope",
+              "support_demand_readthrough",
+              "support_supply_constraint",
+              "support_mapping_coefficient",
+              "support_scope_consistency",
+              "support_verdict_consistency",
+              "support_range_bracketing",
+              "support_bound_grounding"
+            ]
+          },
+          "passed": {
+            "title": "Passed",
+            "type": "boolean"
+          },
+          "rationale": {
+            "minLength": 4,
+            "title": "Rationale",
+            "type": "string"
+          }
+        },
+        "required": [
+          "rubric_id",
+          "passed",
+          "rationale"
+        ],
+        "title": "JudgeDecisionV11",
+        "type": "object"
+      }
+    },
+    "properties": {
+      "task_id": {
+        "title": "Task Id",
+        "type": "string",
+        "enum": [
+          "task-author-v13-amzn-3-4-800e795c4c"
+        ]
+      },
+      "decisions": {
+        "items": {
+          "$ref": "#/$defs/JudgeDecisionV11"
+        },
+        "maxItems": 12,
+        "minItems": 12,
+        "title": "Decisions",
+        "type": "array"
+      },
+      "summary": {
+        "minLength": 4,
+        "title": "Summary",
+        "type": "string"
+      }
+    },
+    "required": [
+      "task_id",
+      "decisions",
+      "summary"
+    ],
+    "title": "SemanticGradeV11",
+    "type": "object"
+  },
+  "ground_truth": {
+    "schema_version": "11.0-truth",
+    "question_id": "amzn_aws_q2_2026_crossread_update",
+    "truth_mode": "future_realized",
+    "targets": [
+      {
+        "truth_id": "aws_q2_2026",
+        "dataset": "annual-reports",
+        "entity": "Amazon.com, Inc.",
+        "metric": "AWS segment net sales",
+        "period": "2026-04-01 to 2026-06-30",
+        "unit": "USD millions",
+        "value": 42232.0,
+        "public_available_at": "2026-07-30T18:11:14Z",
+        "document_version_id": "3a0ad43d-23be-4d3d-bfaa-2ae86872514a",
+        "locator": "Amazon.com, Inc. Form 10-Q for the quarterly period ended June 30, 2026 — Note 8, Segment Information, table 'Information on reportable segments and reconciliation to consolidated net income is as follows (in millions):'; row 'AWS Net sales', column group 'Three Months Ended June 30' / 2026 column (second amount in the row).",
+        "excerpt": "AWS Net sales $ 30,873 $ 42,232 $ 60,140 $ 79,819",
+        "truth_role": "realized_outcome",
+        "outcome_kind": "reported_actual",
+        "source_authority": "issuer",
+        "resolver_id": "compact_datalake_query_v2"
+      }
+    ],
+    "verification_notes": "Verified aws_q2_2026 (Amazon.com, Inc., AWS segment net sales, quarter 2026-04-01 to 2026-06-30, USD millions) via a successful direct Read of Amazon's Form 10-Q for the quarterly period ended June 30, 2026 (document_version_id 3a0ad43d-23be-4d3d-bfaa-2ae86872514a; SEC EDGAR; public_available_at 2026-07-30T18:11:14+00:00). Note 8 — Segment Information verbatim row: 'AWS Net sales $ 30,873 $ 42,232 $ 60,140 $ 79,819', with header 'Three Months Ended June 30, Six Months Ended June 30, 2025 2026 2025 2026' mapping $42,232 = Three Months Ended June 30, 2026 (second amount; $30,873 = Q2 2025; $60,140 / $79,819 = six-month figures). Nine-month arithmetic checks: 37,587 (Q1 2026) + 42,232 = 79,819; 29,267 + 30,873 = 60,140. Corroborated by the company's Q2 2026 results release ('AWS segment sales increased 37% year-over-year to $42.2 billion'; '$169 billion annualized revenue run rate' = 42,232 x 4) and independent news summaries ('AWS Revenue: $42.2 billion, up 36.7% year-over-year'; 42,232/30,873 = +36.8% y/y). The outcome became public 2026-07-30, after the Solver cutoff of 2026-03-31T16:00 ET; it is the issuer-reported actual (realized outcome), not consensus, guidance or an analyst estimate."
+  },
+  "evaluation_policy": {
+    "forecast_score_policy": {
+      "version": "forecast-20261004-v1",
+      "kind": "interval80",
+      "budgets": {
+        "point": 70,
+        "interval": 15,
+        "other": 15
+      },
+      "groups": {
+        "point": [
+          "core_point_accuracy"
+        ],
+        "interval": [
+          "support_range_coverage"
+        ],
+        "probability": [],
+        "other": [
+          "core_revision_arithmetic",
+          "core_bridge_reconciliation",
+          "core_bridge_magnitude_justification",
+          "core_baseline_calibration",
+          "core_retained_drivers_reasoned",
+          "core_affected_only_scope",
+          "support_demand_readthrough",
+          "support_supply_constraint",
+          "support_mapping_coefficient",
+          "support_scope_consistency",
+          "support_verdict_consistency",
+          "support_range_bracketing",
+          "support_bound_grounding"
+        ]
+      },
+      "allocation": {
+        "core_point_accuracy": {
+          "group": "point",
+          "group_budget": 70,
+          "relative_weight": 10,
+          "group_relative_weight_sum": 10,
+          "numerator": 70,
+          "denominator": 1
+        },
+        "support_range_coverage": {
+          "group": "interval",
+          "group_budget": 15,
+          "relative_weight": 10,
+          "group_relative_weight_sum": 10,
+          "numerator": 15,
+          "denominator": 1
+        },
+        "core_revision_arithmetic": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 2,
+          "group_relative_weight_sum": 28,
+          "numerator": 15,
+          "denominator": 14
+        },
+        "core_bridge_reconciliation": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 3,
+          "group_relative_weight_sum": 28,
+          "numerator": 45,
+          "denominator": 28
+        },
+        "core_bridge_magnitude_justification": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 3,
+          "group_relative_weight_sum": 28,
+          "numerator": 45,
+          "denominator": 28
+        },
+        "core_baseline_calibration": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 2,
+          "group_relative_weight_sum": 28,
+          "numerator": 15,
+          "denominator": 14
+        },
+        "core_retained_drivers_reasoned": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 2,
+          "group_relative_weight_sum": 28,
+          "numerator": 15,
+          "denominator": 14
+        },
+        "core_affected_only_scope": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 2,
+          "group_relative_weight_sum": 28,
+          "numerator": 15,
+          "denominator": 14
+        },
+        "support_demand_readthrough": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 3,
+          "group_relative_weight_sum": 28,
+          "numerator": 45,
+          "denominator": 28
+        },
+        "support_supply_constraint": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 2,
+          "group_relative_weight_sum": 28,
+          "numerator": 15,
+          "denominator": 14
+        },
+        "support_mapping_coefficient": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 3,
+          "group_relative_weight_sum": 28,
+          "numerator": 45,
+          "denominator": 28
+        },
+        "support_scope_consistency": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 2,
+          "group_relative_weight_sum": 28,
+          "numerator": 15,
+          "denominator": 14
+        },
+        "support_verdict_consistency": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 2,
+          "group_relative_weight_sum": 28,
+          "numerator": 15,
+          "denominator": 14
+        },
+        "support_range_bracketing": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 1,
+          "group_relative_weight_sum": 28,
+          "numerator": 15,
+          "denominator": 28
+        },
+        "support_bound_grounding": {
+          "group": "other",
+          "group_budget": 15,
+          "relative_weight": 1,
+          "group_relative_weight_sum": 28,
+          "numerator": 15,
+          "denominator": 28
+        }
+      },
+      "removed_rubrics": [
+        "support_range_sharpness"
+      ],
+      "interval": {
+        "rubric_id": "support_range_coverage",
+        "point_rubric_id": "core_point_accuracy",
+        "alpha": 0.2,
+        "loss_scale": 5067.84,
+        "point_error_limit": 1266.96,
+        "answer_unit": "USD millions"
+      },
+      "aggregation": "sum(group_budget * sum(relative_weight * credit)/sum(relative_weight)); final ROUND_HALF_UP to 0.1",
+      "raw_rubric_weight_semantics": "within-group relative weight; effective maximum comes from allocation"
+    },
+    "scoring_revision": "v14-linear-1",
+    "max_score": 100,
+    "submission_attempts": 3,
+    "wall_clock_seconds": 7200
+  }
+}
