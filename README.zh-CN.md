@@ -14,9 +14,9 @@
 
 ## 78 秒了解 Investor’s Last Exam
 
-[![点击观看 Investor’s Last Exam 78 秒介绍视频](docs/assets/investors-last-exam-poster.png)](docs/assets/investors-last-exam-78s.mp4)
+[![点击观看 Investor’s Last Exam 78 秒介绍视频](docs/assets/investors-last-exam-poster.png)](https://prophetlab.github.io/Investor-Last-Exam/)
 
-**[▶ 点击观看视频](docs/assets/investors-last-exam-78s.mp4)** · 1080p · 英文旁白与中英双语字幕 · [下载 MP4](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/assets/investors-last-exam-78s.mp4)
+**[▶ 点击观看视频](https://prophetlab.github.io/Investor-Last-Exam/)** · 1080p · 英文旁白与中英双语字幕 · [下载 MP4](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/assets/investors-last-exam-78s.mp4)
 
 通过时间冻结环境、Tesla 与 Nebius 的研究任务流程，以及 11 个模型的评测结果，快速了解 ILE。
 

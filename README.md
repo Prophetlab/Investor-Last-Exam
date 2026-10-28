@@ -14,9 +14,9 @@
 
 ## Watch the 78-second overview
 
-[![Watch Investor’s Last Exam — 78-second overview](docs/assets/investors-last-exam-poster.png)](docs/assets/investors-last-exam-78s.mp4)
+[![Watch Investor’s Last Exam — 78-second overview](docs/assets/investors-last-exam-poster.png)](https://prophetlab.github.io/Investor-Last-Exam/)
 
-**[▶ Watch the video](docs/assets/investors-last-exam-78s.mp4)** · 1080p · English narration with Chinese and English subtitles · [Download MP4](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/assets/investors-last-exam-78s.mp4)
+**[▶ Watch the video](https://prophetlab.github.io/Investor-Last-Exam/)** · 1080p · English narration with Chinese and English subtitles · [Download MP4](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/assets/investors-last-exam-78s.mp4)
 
 A short introduction to the time-frozen environment, Tesla and Nebius research workflows, and the evaluation of eleven models.
 
