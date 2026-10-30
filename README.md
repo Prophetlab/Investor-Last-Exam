@@ -20,7 +20,7 @@ Preprint; submitted to arXiv, announcement pending. This is the same author-prov
 
 ## 78-second video overview
 
-https://github.com/user-attachments/assets/333ac228-db23-4110-86fe-9602423cded3
+https://github.com/user-attachments/assets/d0f6355a-2e99-4e43-989c-71e21839b3b1
 
 [Open standalone player](https://prophetlab.github.io/Investor-Last-Exam/) · 1080p · English narration with Chinese and English subtitles · [Download MP4](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/assets/investors-last-exam-78s.mp4)
 
@@ -48,8 +48,10 @@ Search, reads, downloads, cached results, and structured-table access share the 
 
 The current paper evaluates **86 assignments: 78 company-research assignments and 8 market assignments**. The first five categories contain twenty professional subtypes; Integrated Research combines these capabilities into full reports.
 
+<div align="center">
+
 | Category | Example deliverable | Tasks |
-|---|---|---:|
+|:---:|:---:|:---:|
 | Discover & Frame | Opportunity screen, catalyst map, or testable investment thesis | 10 |
 | Research & Evidence | Comparable historical series or reconciled financial facts | 13 |
 | Forecast & Model | Operating forecast, earnings bridge, or peer read-through | 13 |
@@ -58,6 +60,8 @@ The current paper evaluates **86 assignments: 78 company-research assignments an
 | Integrated Research | Report linking forecasts, stance, risks, and thesis conditions | 11 |
 | Market Trading | Price forecast or forward return/volatility ranking | 8 |
 | **Total** | | **86** |
+
+</div>
 
 ## Two examples
 
@@ -73,11 +77,15 @@ Calculation bridges and coherent recommendations do not establish that assumptio
 
 **Task N27** asks how American Electric Power’s funding position and fuel-cost recovery changed between H1 2025 and H1 2026, supported by its Q2 2026 report.
 
+<div align="center">
+
 | USD millions | H1 2025 | H1 2026 | Change |
-|---|---:|---:|---:|
+|:---:|:---:|:---:|:---:|
 | Operating cash inflow | 2,671 | 3,421 | +750 |
 | Investing cash use | 5,347 | 6,602 | +1,255 |
 | Pre-financing funding shortfall | 2,676 | 3,181 | **+505** |
+
+</div>
 
 All eleven systems recovered the eight reported inputs and reconciled both cash-flow identities. Only **five** computed both funding shortfalls, and **five** earned full credit on the integrated funding-conclusion criteria. Only **three** distinguished the net deferred-fuel adjustment from gross fuel collections.
 
@@ -91,8 +99,10 @@ The test is whether an agent understands the source and use of cash, including t
 
 All columns below are scores on a **0–100 scale**. They evaluate different task sets or criteria and are **not percentages of correct forecasts**.
 
+<div align="center">
+
 | System | Overall | Forecast & Model | Realized forecast outcomes |
-|---|---:|---:|---:|
+|:---:|:---:|:---:|:---:|
 | GPT-6 Astra | **68.1** | 52.5 | 37.7 |
 | Claude Opus 5.5 | 66.9 | **52.6** | 37.6 |
 | DeepSeek V4.1 Flash | 63.0 | 45.8 | **40.3** |
@@ -104,6 +114,8 @@ All columns below are scores on a **0–100 scale**. They evaluate different tas
 | Step 5 Preview | 55.1 | 43.9 | 31.2 |
 | Qwen 3.8 27B | 54.6 | 44.5 | 32.8 |
 | Ling 3.0 Flash | 42.6 | 38.5 | 33.4 |
+
+</div>
 
 *Source: paper Tables 3 and 13. Forecast & Model is the complete-task score for that category. Realized forecast outcomes is the Combined column of Table 13: task-normalized credit on point, interval, probability, and market-outcome criteria, averaged over applicable tasks.*
 
@@ -119,8 +131,10 @@ The paper also converts fundamental forecasts into trading signals by comparing 
 
 The retrospective sample contains **20 opportunities across 11 companies and 13 disclosures**, spanning **March–August 2026**. Forecast-implied signals produce long, short, or cash positions. Each opportunity receives 1/20 of initial capital, with no leverage or reallocation of unused capital.
 
+<div align="center">
+
 | System / control | Cumulative return | Excess vs. always long (pp) | Maximum drawdown |
-|---|---:|---:|---:|
+|:---:|:---:|:---:|:---:|
 | Hunyuan 4 Preview | **+8.50%** | **+7.32** | 2.72% |
 | DeepSeek V4.1 Flash | +7.98% | +6.80 | 3.65% |
 | GPT-6 Astra | +7.18% | +6.00 | **1.50%** |
@@ -134,6 +148,8 @@ The retrospective sample contains **20 opportunities across 11 companies and 13 
 | Always long | +1.18% | +0.00 | 7.63% |
 | Always short | −2.27% | −3.45 | 8.86% |
 
+</div>
+
 *Source: paper Table 4 and Appendix I.2. Values retain the paper’s rounding. Returns include 10 bps per entry/exit leg and 3% annualized short-borrowing costs. They are not annualized and exclude cash dividends. Step 5 Preview has only three usable forecasts and is omitted from the portfolio comparison; its return is not reported as zero.*
 
 Hunyuan leads this sample, while Kimi’s 7.15% exceeds Opus’s 6.39% despite its lower overall research score. **Overall scores, realized forecast scores, and simulated returns capture different strengths.** These are limited-sample retrospective results, not live trading performance or evidence of persistent future returns.
@@ -144,8 +160,10 @@ See the [simulation specification](docs/evaluation.md#forecast-driven-investment
 
 This repository currently provides the project overview, evaluation documentation, and machine-readable tables transcribed from the supplied paper revision (October 27, 2026).
 
+<div align="center">
+
 | Resource | Availability in this repository |
-|---|---|
+|:---:|:---:|
 | Paper PDF | [docs/paper/Investors-Last-Exam.pdf](docs/paper/Investors-Last-Exam.pdf) |
 | English / Chinese overview | [README.md](README.md) / [README.zh-CN.md](README.zh-CN.md) |
 | Evaluation and simulation protocol | [docs/evaluation.md](docs/evaluation.md) |
@@ -154,6 +172,8 @@ This repository currently provides the project overview, evaluation documentatio
 | Executable task suite and data-access service | Not included |
 | Full versioned financial corpus | Not distributed here |
 | Private references and scoring rubrics | Not distributed here |
+
+</div>
 
 The CSV files reproduce reported results; they are not a replacement for running the evaluation. There is no runnable benchmark installation in this initial repository. Visit the [project page](https://prophet-lab.cn/benchmarks/investor-last-exam-v1/) for project information, or [open an issue](https://github.com/Prophetlab/Investor-s-Last-Exam/issues) with questions about access or reproduction.
 
