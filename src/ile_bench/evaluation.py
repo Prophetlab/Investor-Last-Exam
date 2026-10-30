@@ -20,6 +20,7 @@ from .answer_spans import answer_spans
 from .author_checks import numeric as author_numeric
 from .checks import CHECKERS_V11, decision_fraction_v14, execute_future_truth_rubrics_v11
 from .corrected_checks import custom_decision
+from .judge_references import with_reference_materials
 from .market import score_answer
 from .models import model
 from .records import Record
@@ -159,6 +160,7 @@ def judge_packet(task, payload):
     if task["judge_kind"] == "structured":
         packet["anonymous_answer"] = payload
     else:
+        packet = with_reference_materials(packet, task["rubrics"])
         text = payload.get("answer") if isinstance(payload, dict) else payload
         if not isinstance(text, str):
             text = json.dumps(payload, ensure_ascii=False)

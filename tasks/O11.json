@@ -84,7 +84,7 @@
       "category": "result",
       "title": "Listed counterparty edge coverage",
       "criterion": "The exposure map identifies at least five listed AI-infrastructure counterparties that receive Amazon's FY2026 AI and AWS capital spending.",
-      "pass_condition": "The edges array contains at least five counterparty records.",
+      "pass_condition": "The edges array contains at least five distinct listed counterparties, counted by their ticker symbols.",
       "financial_subject": "Amazon.com, Inc. and listed counterparties",
       "period": "FY2026 program",
       "public_concept_id": "exposure_edge",
@@ -103,7 +103,8 @@
         "checker_id": "minimum_item_count",
         "parameters": {
           "path": "$.structured_output.edges",
-          "minimum": 5
+          "minimum": 5,
+          "distinct_by": "ticker"
         }
       },
       "judge": null,

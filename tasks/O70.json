@@ -20,7 +20,7 @@
       "category": "result",
       "title": "Supported fiscal-year rows",
       "criterion": "Tesla, Inc.'s reconstructed automotive revenue series covers the supported fiscal years 2019 through 2025 inside the requested FY2016-FY2025 window.",
-      "pass_condition": "Every fiscal year reported in the Supported fiscal-year window series is 2019, 2020, 2021, 2022, 2023, 2024, or 2025.",
+      "pass_condition": "The fiscal-year values contain each of 2019, 2020, 2021, 2022, 2023, 2024, 2025 exactly once, with no missing or additional years.",
       "financial_subject": "Tesla, Inc.",
       "period": "FY2016-FY2025",
       "public_concept_id": "supported_window",
@@ -46,7 +46,9 @@
             2024,
             2025
           ],
-          "path": "$.structured_output.series[].fiscal_year"
+          "path": "$.structured_output.series[].fiscal_year",
+          "require_all": true,
+          "unique": true
         }
       },
       "judge": null,
@@ -379,7 +381,7 @@
       "category": "reconciliation",
       "title": "Reconciliation year coverage",
       "criterion": "For Tesla, Inc., the income-statement-to-segment reconciliation spans the supported fiscal years inside the requested FY2016-FY2025 window.",
-      "pass_condition": "Every fiscal year in the reconciliation is 2019, 2020, 2021, 2022, 2023, 2024, or 2025, covering the Supported fiscal-year window.",
+      "pass_condition": "The fiscal-year values contain each of 2019, 2020, 2021, 2022, 2023, 2024, 2025 exactly once, with no missing or additional years.",
       "financial_subject": "Tesla, Inc.",
       "period": "FY2016-FY2025",
       "public_concept_id": "supported_window",
@@ -404,7 +406,9 @@
             2024,
             2025
           ],
-          "path": "$.structured_output.segment_reconciliation[].fiscal_year"
+          "path": "$.structured_output.segment_reconciliation[].fiscal_year",
+          "require_all": true,
+          "unique": true
         }
       },
       "judge": null,
@@ -542,7 +546,7 @@
       "category": "result",
       "title": "Unsupported fiscal years identified",
       "criterion": "Tesla, Inc.'s reconstruction marks fiscal years 2016, 2017 and 2018 within the requested FY2016-FY2025 window as unsupported by cutoff-valid filings rather than estimating them.",
-      "pass_condition": "Every fiscal year listed as unavailable in the Supported fiscal-year window is 2016, 2017, or 2018.",
+      "pass_condition": "The fiscal-year values contain each of 2016, 2017, 2018 exactly once, with no missing or additional years.",
       "financial_subject": "Tesla, Inc.",
       "period": "FY2016-FY2025",
       "public_concept_id": "supported_window",
@@ -563,7 +567,9 @@
             2017,
             2018
           ],
-          "path": "$.structured_output.unavailable_years[]"
+          "path": "$.structured_output.unavailable_years[]",
+          "require_all": true,
+          "unique": true
         }
       },
       "judge": null,

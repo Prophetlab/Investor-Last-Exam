@@ -198,11 +198,18 @@ def _all_values_in_set(
         raise ValueError(f"{path} must resolve to at least one value")
     allowed = list(params["allowed"])
     unexpected = [value for value in observed if value not in allowed]
+    missing = [value for value in allowed if value not in observed] if params.get("require_all") else []
+    duplicates = (
+        [value for i, value in enumerate(observed) if value in observed[:i]]
+        if params.get("unique")
+        else []
+    )
     return (
-        not unexpected,
+        not (unexpected or missing or duplicates),
         observed,
         allowed,
-        f"all {len(observed)} values must belong to the allowed set; unexpected={unexpected!r}",
+        f"allowed-set check: unexpected={unexpected!r}; missing={missing!r}; "
+        f"duplicates={duplicates!r}",
     )
 
 
@@ -214,11 +221,20 @@ def _minimum_item_count(
     if not isinstance(observed, list):
         raise TypeError(f"{path} must resolve to an array")
     minimum = int(params["minimum"])
+    count = len(observed)
+    if field := params.get("distinct_by"):
+        identities = []
+        for record in observed:
+            identity = record.get(field) if isinstance(record, dict) else None
+            if not isinstance(identity, str) or not identity.strip():
+                raise ValueError(f"every record must have a non-empty {field}")
+            identities.append(identity.strip().casefold())
+        count = len(set(identities))
     return (
-        len(observed) >= minimum,
-        len(observed),
+        count >= minimum,
+        count,
         minimum,
-        f"item count {len(observed)} >= {minimum}",
+        f"{'distinct ' + field + ' ' if field else ''}item count {count} >= {minimum}",
     )
 
 
