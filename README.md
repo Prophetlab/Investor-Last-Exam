@@ -177,17 +177,6 @@ This repository currently provides the project overview, evaluation documentatio
 
 The CSV files reproduce reported results; they are not a replacement for running the evaluation. There is no runnable benchmark installation in this initial repository. Visit the [project page](https://prophet-lab.cn/benchmarks/investor-last-exam-v1/) for project information, or [open an issue](https://github.com/Prophetlab/Investor-s-Last-Exam/issues) with questions about access or reproduction.
 
-## Citation
-
-```bibtex
-@misc{jiang2026investorslastexam,
-  title        = {Investor's Last Exam: Can AI Agents Do Equity Investment Without Seeing the Future?},
-  author       = {Huangfei Jiang and Anning Hu and Kai Sheng and Yuchen Cai and Rui Ge and Xiangyu Kong and Jianghao Lin and Shuzi Chen and Jiyi Weng and Junchi Yan},
-  year         = {2026},
-  howpublished = {Project manuscript},
-  url          = {https://prophet-lab.cn/benchmarks/investor-last-exam-v1/}
-}
-```
 
 ## Acknowledgments
 
@@ -201,3 +190,15 @@ Led by **Prophetlab**, with investment and academic partners:
 ## Licensing
 
 No open-source license is specified in this initial repository. The paper, financial source materials, future code releases, and datasets may have different terms; this repository does not grant redistribution rights to the underlying financial corpus.
+
+## Citation
+
+```bibtex
+@misc{jiang2026investorslastexam,
+  title        = {Investor's Last Exam: Can AI Agents Do Equity Investment Without Seeing the Future?},
+  author       = {Huangfei Jiang and Anning Hu and Kai Sheng and Yuchen Cai and Rui Ge and Xiangyu Kong and Jianghao Lin and Shuzi Chen and Jiyi Weng and Junchi Yan},
+  year         = {2026},
+  howpublished = {Project manuscript},
+  url          = {https://prophet-lab.cn/benchmarks/investor-last-exam-v1/}
+}
+```
