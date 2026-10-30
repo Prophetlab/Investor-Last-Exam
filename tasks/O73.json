@@ -1,6 +1,6 @@
 {
   "id": "O73",
-  "task_id": "task-author-v13-tsla-3-2-de8ed0ac29",
+  "task_id": "O73",
   "company": "Tesla, Inc.",
   "ticker": "TSLA",
   "category_id": "3.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "6dc445ae81924ada48c7afb55d9b649e5271385314c5ac3430b8431e1d94d628",
+  "source_sha256": "6ed9ac975787861cf7b3fbaa33190745c139495c39231ef7f7199154e6bd1e81",
   "rubrics": [
     {
       "rubric_id": "core_revenue_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tsla_q2_2026_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Tesla, Inc.",
         "metric": "Total revenues (GAAP)",
@@ -95,7 +94,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tsla_q2_2026_auto_gm",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Tesla, Inc.",
         "metric": "Automotive gross margin (GAAP)",
@@ -154,7 +152,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tsla_q2_2026_energy_gm",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Tesla, Inc.",
         "metric": "Energy generation and storage gross margin (GAAP)",
@@ -213,7 +210,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tsla_q2_2026_gaap_eps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Tesla, Inc.",
         "metric": "GAAP diluted EPS",
@@ -1903,7 +1899,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-tsla-3-2-de8ed0ac29"
+                "O73"
               ]
             },
             "decisions": {
@@ -1933,7 +1929,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-tsla-3-2-de8ed0ac29",
+    "task_id": "O73",
     "public_question": "Strict information cutoff: 2026-05-22T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAct as an equity research analyst covering Tesla, Inc. (TSLA). Using only information available as of the market close on Friday, May 22, 2026 at 4:00 p.m. ET — before any Q2 2026 results are reported — forecast Tesla's GAAP results for Q2 2026 (April 1 to June 30, 2026) and test this proposition: \"Tesla's Q2 2026 total revenues, automotive gross margin, energy generation and storage gross margin, and GAAP diluted EPS will each differ materially from the levels implied by an unchanged continuation of its most recently reported quarterly performance.\"\n\nDeliver point forecasts for Q2 2026 on a GAAP basis: total revenues in USD millions; automotive gross margin, defined as automotive gross profit divided by automotive revenues, in percent (not a fraction); energy generation and storage gross margin in percent; and diluted EPS attributable to common stockholders in USD per share.\n\nSupport the forecasts with a driver-to-financials bridge and an internal reconciliation showing how your operating and financial assumptions produce each figure, plus an uncertainty and sensitivity assessment covering key sensitivities, plausible forecast ranges, and the main ways the forecast could be wrong. Do not use information dated after the cutoff.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.revenue_usd_mn: Forecast Q2 2026 total revenues in USD millions.\n- $.automotive_gross_margin_pct: Forecast Q2 2026 automotive gross margin in percent (not a fraction).\n- $.energy_gross_margin_pct: Forecast Q2 2026 energy generation and storage gross margin in percent.\n- $.gaap_diluted_eps_usd: Forecast Q2 2026 GAAP diluted EPS in USD per share.\nCite at least 4 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2484,7 +2480,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-tsla-3-2-de8ed0ac29"
+          "O73"
         ]
       },
       "decisions": {
@@ -2512,7 +2508,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "tsla_q2_2026_forecast",
+    "question_id": "O73",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2529,8 +2525,7 @@
         "excerpt": "Total revenues 28,236 22,496 50,623 41,831",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_q2_2026_auto_gm",
@@ -2546,8 +2541,7 @@
         "excerpt": "Gross margin for total automotive decreased from 17.2% to 16.9% in the three months ended June 30, 2026 as compared to the three months ended June 30, 2025.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_q2_2026_energy_gm",
@@ -2563,8 +2557,7 @@
         "excerpt": "Gross margin for energy generation and storage decreased from 30.3% to 20.4% in the three months ended June 30, 2026 as compared to the three months ended June 30, 2025.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_q2_2026_gaap_eps",
@@ -2580,14 +2573,11 @@
         "excerpt": "Diluted $ 0.32 $ 0.33 $ 0.45 $ 0.45",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Read the authoritative source for all four targets: Tesla, Inc. Form 10-Q for the quarter ended 2026-06-30, document_version_id 7fd9d947-5721-451c-a3cc-93ea9e9a044f (SEC EDGAR, public_available_at 2026-07-23T01:02:32+00:00; both chunks successfully read). Chunk 1 (Consolidated Statements of Operations): 'Total revenues 28,236 22,496 50,623 41,831' and 'Diluted $ 0.32 $ 0.33 $ 0.45 $ 0.45' for the three months ended June 30, 2026 vs 2025. Chunk 2 (MD&A Results of Operations): 'Gross margin total automotive 16.9 % 17.2 % 18.7 % 16.8 %' and 'Gross margin energy generation and storage segment 20.4 % 30.3 % 28.7 % 29.6 %' with the matching sentences for the three months ended June 30, 2026. Cross-checks: Q2 2026 Tesla earnings call transcript (document 41ba596c-210e-4a70-bd39-15cc8112b889, LSEG Workspace, 2026-07-23T03:45:50Z) states 'energy gross margins declined from 39.5% to 20.4%' and automotive margins excluding regulatory credits of 16.3% (the ex-credit variant; GAAP margin including credits as reported in the 10-Q is 16.9%); EODHD news articles (2026-07-22/23) confirm revenue of $28.24 billion and GAAP net income of $1.11 billion, or $0.32 per share. All four figures are issuer-reported GAAP actuals for Q2 2026 that first became public on 2026-07-22/23, after the 2026-05-22 solver cutoff, and none are consensus, guidance, or analyst estimates."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

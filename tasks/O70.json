@@ -1,6 +1,6 @@
 {
   "id": "O70",
-  "task_id": "task-author-v13-tsla-2-2-d5cd7eb6ba",
+  "task_id": "O70",
   "company": "Tesla, Inc.",
   "ticker": "TSLA",
   "category_id": "2.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "6f2962d0738f09021133eefe4e6442d15304a85cdc450f7cdaa9990c96b741d0",
+  "source_sha256": "6b03ebe248ceee677c70ffb3841b881117ad4c2b7c4337ee53a965c5ceed89f0",
   "rubrics": [
     {
       "rubric_id": "core_series_years",
@@ -1734,7 +1734,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-tsla-2-2-d5cd7eb6ba"
+                "O70"
               ]
             },
             "decisions": {
@@ -1764,7 +1764,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-tsla-2-2-d5cd7eb6ba",
+    "task_id": "O70",
     "public_question": "Strict information cutoff: 2026-05-22T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nTesla, Inc. (TSLA) — annual automotive revenue series.\n\nUsing only information available as of the market close on May 22, 2026, reconstruct Tesla's annual automotive revenue for fiscal years 2016 through 2025, in USD millions, on a basis that is comparable across the years covered.\n\nFor each fiscal year, report automotive sales revenue; separately stated automotive regulatory credits revenue; automotive leasing revenue; and total automotive revenue as presented in the income statement.\n\nAlso provide a year-by-year reconciliation bridging income-statement automotive revenue to automotive segment revenue as disclosed in the segment note, showing services and other revenue as the bridging item.\n\nWhere Tesla's disclosure definitions or presentation change from one filing to another, document each normalization treatment you apply, explain why it is needed, and state its effect on comparability.\n\nIdentify any requested fiscal years that disclosures valid as of the cutoff cannot support, and state the first and last fiscal years your reconstructed series covers.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.series[].fiscal_year: Fiscal year of each reconstructed series row.\n- $.series[].automotive_sales_musd: Tesla automotive sales revenue for the fiscal year in USD millions.\n- $.series[].automotive_regulatory_credits_musd: Tesla automotive regulatory credits revenue for the fiscal year in USD millions.\n- $.series[].automotive_leasing_musd: Tesla automotive leasing revenue for the fiscal year in USD millions.\n- $.series[].total_automotive_revenue_musd: Tesla income-statement total automotive revenue for the fiscal year in USD millions.\n- $.segment_reconciliation[].automotive_segment_revenue_musd: Tesla automotive segment revenue for the fiscal year in USD millions.\n- $.segment_reconciliation[].services_and_other_musd: Services and other revenue bridging the income-statement automotive total to segment revenue.\n- $.normalization_notes[].treatment: Documented treatment of each definitional or presentation difference across filings.\n- $.unavailable_years: Requested fiscal years that cutoff-valid filings cannot support.\n- $.coverage_statement: Statement of the first and last fiscal years the reconstructed series covers.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2133,7 +2133,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-tsla-2-2-d5cd7eb6ba"
+          "O70"
         ]
       },
       "decisions": {
@@ -2161,7 +2161,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "tsla_auto_revenue_series_2016_2025",
+    "question_id": "O70",
     "truth_mode": "cutoff_known",
     "targets": [
       {
@@ -2178,8 +2178,7 @@
         "excerpt": "Automotive sales $ 44,125 $ 24,604 $ 19,358",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_sales_2020",
@@ -2195,8 +2194,7 @@
         "excerpt": "Automotive sales $ 44,125 $ 24,604 $ 19,358",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_sales_2021",
@@ -2212,8 +2210,7 @@
         "excerpt": "Automotive sales $ 44,125 $ 24,604 $ 19,358",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_sales_2022",
@@ -2229,8 +2226,7 @@
         "excerpt": "Automotive sales $ 67,210 $ 44,125 $ 24,604",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_sales_2023",
@@ -2246,8 +2242,7 @@
         "excerpt": "Automotive sales $ 78,509 $ 67,210 $ 44,125",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_sales_2024",
@@ -2263,8 +2258,7 @@
         "excerpt": "Automotive sales $ 72,480 $ 78,509 $ 67,210",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_sales_2025",
@@ -2280,8 +2274,7 @@
         "excerpt": "Automotive sales $ 65,821 $ 72,480 $ 78,509",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_credits_2019",
@@ -2297,8 +2290,7 @@
         "excerpt": "Automotive regulatory credits 1,465 1,580 594",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_credits_2020",
@@ -2314,8 +2306,7 @@
         "excerpt": "Automotive regulatory credits 1,465 1,580 594",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_credits_2021",
@@ -2331,8 +2322,7 @@
         "excerpt": "Automotive regulatory credits 1,465 1,580 594",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_credits_2022",
@@ -2348,8 +2338,7 @@
         "excerpt": "Automotive regulatory credits 1,776 1,465 1,580",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_credits_2023",
@@ -2365,8 +2354,7 @@
         "excerpt": "Automotive regulatory credits 1,790 1,776 1,465",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_credits_2024",
@@ -2382,8 +2370,7 @@
         "excerpt": "Automotive regulatory credits 2,763 1,790 1,776",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_credits_2025",
@@ -2399,8 +2386,7 @@
         "excerpt": "Automotive regulatory credits 1,993 2,763 1,790",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_leasing_2019",
@@ -2416,8 +2402,7 @@
         "excerpt": "Automotive leasing 1,642 1,052 869",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_leasing_2020",
@@ -2433,8 +2418,7 @@
         "excerpt": "Automotive leasing 1,642 1,052 869",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_leasing_2021",
@@ -2450,8 +2434,7 @@
         "excerpt": "Automotive leasing 1,642 1,052 869",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_leasing_2022",
@@ -2467,8 +2450,7 @@
         "excerpt": "Automotive leasing 2,476 1,642 1,052",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_leasing_2023",
@@ -2484,8 +2466,7 @@
         "excerpt": "Automotive leasing 2,120 2,476 1,642",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_leasing_2024",
@@ -2501,8 +2482,7 @@
         "excerpt": "Automotive leasing 1,827 2,120 2,476",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_leasing_2025",
@@ -2518,8 +2498,7 @@
         "excerpt": "Automotive leasing 1,712 1,827 2,120",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_segment_2019",
@@ -2535,8 +2514,7 @@
         "excerpt": "Automotive segment Revenues $ 51,034 $ 29,542 $ 23,047",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_segment_2020",
@@ -2552,8 +2530,7 @@
         "excerpt": "Automotive segment Revenues $ 51,034 $ 29,542 $ 23,047",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_segment_2021",
@@ -2569,8 +2546,7 @@
         "excerpt": "Automotive segment Revenues $ 51,034 $ 29,542 $ 23,047",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_segment_2022",
@@ -2586,8 +2562,7 @@
         "excerpt": "Automotive segment Revenues $ 77,553 $ 51,034 $ 29,542",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_segment_2023",
@@ -2603,8 +2578,7 @@
         "excerpt": "Automotive segment Revenues $ 90,738 $ 77,553 $ 51,034",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_segment_2024",
@@ -2620,8 +2594,7 @@
         "excerpt": "Automotive segment Revenues $ 87,604 $ 90,738 $ 77,553",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_segment_2025",
@@ -2637,8 +2610,7 @@
         "excerpt": "Automotive segment Revenues $ 82,056 $ 87,604 $ 90,738",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_services_2019",
@@ -2654,8 +2626,7 @@
         "excerpt": "Services and other 3,802 2,306 2,226",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_services_2020",
@@ -2671,8 +2642,7 @@
         "excerpt": "Services and other 3,802 2,306 2,226",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_services_2021",
@@ -2688,8 +2658,7 @@
         "excerpt": "Services and other 3,802 2,306 2,226",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_services_2022",
@@ -2705,8 +2674,7 @@
         "excerpt": "Services and other 6,091 3,802 2,306",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_services_2023",
@@ -2722,8 +2690,7 @@
         "excerpt": "Services and other 8,319 6,091 3,802",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_services_2024",
@@ -2739,8 +2706,7 @@
         "excerpt": "Services and other 10,534 8,319 6,091",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_services_2025",
@@ -2756,14 +2722,11 @@
         "excerpt": "Services and other 12,530 10,534 8,319",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All 35 targets resolved by direct Read of Tesla's cutoff-valid Forms 10-K in the private database. FY2019-FY2021 values come from the FY2021 10-K (2605d7cd-05ce-4d37-8839-231b99896ac2, public 2022-02-05T01:11:28Z): income-statement Automotive sales / Automotive regulatory credits / Automotive leasing and Services and other lines plus Note 18 automotive segment revenues; FY2019 and FY2020 exist only as comparative columns. FY2022 (5dff2e8c-60b4-446f-a7ff-41681412b436, 2023-01-31T02:29:16Z), FY2023 (8df605cb-887a-4405-a2c3-4fdfe3675260, 2024-01-27T02:00:21Z), FY2024 (3b5f88ee-d8c2-49fc-9786-e02ac3dadaa0, 2025-01-30T01:42:34Z) and FY2025 (52f3ff1d-1023-416a-ba59-626696f90249, 2026-01-29T01:55:04Z) supply their respective current-year figures. Arithmetic cross-checks hold every year: income-statement total automotive revenues equals automotive sales plus regulatory credits plus leasing (FY2019 19,358+594+869=20,821; FY2020 24,604+1,580+1,052=27,236; FY2021 44,125+1,465+1,642=47,232; FY2022 67,210+1,776+2,476=71,462; FY2023 78,509+1,790+2,120=82,419; FY2024 72,480+2,763+1,827=77,070; FY2025 65,821+1,993+1,712=69,526), and automotive segment revenue equals income-statement automotive total plus services and other (20,821+2,226=23,047; 27,236+2,306=29,542; 47,232+3,802=51,034; 71,462+6,091=77,553; 82,419+8,319=90,738; 77,070+10,534=87,604; 69,526+12,530=82,056). The FY2021 10-K Note 2 disaggregates FY2019-FY2021 automotive sales between without and with resale value guarantee (43,186+939=44,125 for FY2021), while FY2022-and-later filings present a single automotive sales line; FY2024 adopted ASU 2023-07 retrospectively with no change to automotive amounts. Every excerpt is a verbatim span from a successfully Read chunk; official period headings are carried in the locators because the value lines do not repeat the fiscal year."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

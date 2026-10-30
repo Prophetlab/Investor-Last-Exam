@@ -1,6 +1,6 @@
 {
   "id": "O29",
-  "task_id": "task-author-v13-jpm-4-4-966459ca25",
+  "task_id": "O29",
   "company": "JPMorgan Chase & Co.",
   "ticker": "JPM",
   "category_id": "4.4",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "94fb047948e7855d5a6e131b3efe1e09ca395d4b28fffa379ae602e33a322f58",
+  "source_sha256": "9f087131786405f6269815ba7ce5b8f5387d48991696cb1483db07be0764ecbe",
   "rubrics": [
     {
       "rubric_id": "core_realized_brier_score",
@@ -38,7 +38,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "q2_2026_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "JPMorgan Chase & Co.",
         "metric": "Total net revenue (reported basis)",
@@ -1381,7 +1380,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-jpm-4-4-966459ca25"
+                "O29"
               ]
             },
             "decisions": {
@@ -1411,7 +1410,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-jpm-4-4-966459ca25",
+    "task_id": "O29",
     "public_question": "Strict information cutoff: 2026-06-30T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nObjective: as of the cutoff 2026-06-30T07:00:00-04:00, price a contract on JPMorgan Chase & Co. (JPM) that settles on JPM's reported Q2 2026 total net revenue — GAAP reported basis for the quarter ending 2026-06-30, managed-basis presentations excluded — with results scheduled for release on 2026-07-14.\n\nFrozen contract terms (exogenous; do not alter): three revenue bands with stipulated net returns — below $48.5B: -12.0% of notional; $48.5B to below $50.5B: +2.0%; at or above $50.5B: +16.0%. Downside is defined as the probability-weighted net return across loss-making bands only, at or below zero.\n\nProduce: probabilities for the three bands (0-1, summing to 1.0); the probability-weighted expected net return in percent; the probability-weighted downside in percent; and the mandated action from the rule — Buy if expected net return is at least +4.0% and downside is at least -6.0%; otherwise Hold if expected net return is at least 0%; otherwise Sell.\n\nSupport the probabilities with a brief rationale and the specific cutoff-valid evidence relied on, drawing only on information available at the cutoff.\n\nOutcome partition for JPMorgan Chase & Co., Total net revenue (reported basis), Q2 2026 (three months ended June 30, 2026) (USD millions): below: [-infinity, 48500); in_range: [48500, 50500); at_or_above: [50500, +infinity). At a cutpoint, use the interval to its right.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.prob_below: Probability assigned to the below-$48.5B revenue band (0-1)\n- $.prob_in_range: Probability assigned to the $48.5B to below-$50.5B revenue band (0-1)\n- $.prob_at_or_above: Probability assigned to the at-or-above-$50.5B revenue band (0-1)\n- $.expected_return_pct: Probability-weighted expected net return in percent of notional\n- $.downside_pct: Probability-weighted loss contribution in percent (at or below zero)\n- $.action: Mandated action: Buy, Hold, or Sell\n- $.rationale: Brief justification of the probabilities and action\n- $.evidence_basis: Specific cutoff-valid evidence relied on\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1660,7 +1659,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-jpm-4-4-966459ca25"
+          "O29"
         ]
       },
       "decisions": {
@@ -1688,7 +1687,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "jpm_q2_2026_revenue_decision",
+    "question_id": "O29",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -1705,15 +1704,12 @@
         "excerpt": "Total net revenue 57,347 44,912 107,183 90,222",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Q2 2026 reported total net revenue resolved directly from JPMORGAN CHASE & CO's Form 10-Q for the quarter ended 2026-06-30 (SEC EDGAR; document_version_id 21ed8ba4-f72e-44d6-ad25-850e1d826f53; public_available_at 2026-08-06T16:19:04+00:00). Consolidated statements of income (unaudited), 'Total net revenue' line reads exactly: 57,347 / 44,912 / 107,183 / 90,222 (three months 2026 / 2025; six months 2026 / 2025), i.e., $57,347 million for the three months ended June 30, 2026 on a reported GAAP basis. The same $57,347 million is confirmed in the MD&A 'Consolidated results of operations — Revenue' table ('Total net revenue $ 57,347 $ 44,912 28 % $ 107,183 $ 90,222 19 %') and in Note 25 segment results/reconciliation (Total net revenue $57,347M after reconciling items). Arithmetic consistency: 6M26 107,183 less Q1 2026 49,836 = 57,347; 6M25 90,222 less Q1 2025 45,310 = 44,912. Managed-basis presentations excluded per the contract: the ~$58.0B managed revenue headlines in the 2026-07-14 earnings-call transcript/news were not used. Corroborating post-cutoff news (2026-07-14, EODHD): 'Reported net revenue came in at $57.3 billion.' The outcome became public after the Solver cutoff (2026-06-30T07:00:00-04:00) and is a company reported actual (record beat); it lands in the at-or-above $50.5B band (private context only)."
+    ]
   },
   "evaluation_policy": {
     "forecast_score_policy": {
-      "version": "forecast-20261004-v1",
       "kind": "probability",
       "budgets": {
         "probability": 80,
@@ -1828,12 +1824,10 @@
           "denominator": 1
         }
       },
-      "removed_rubrics": [],
       "interval": null,
       "aggregation": "sum(group_budget * sum(relative_weight * credit)/sum(relative_weight)); final ROUND_HALF_UP to 0.1",
       "raw_rubric_weight_semantics": "within-group relative weight; effective maximum comes from allocation"
     },
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

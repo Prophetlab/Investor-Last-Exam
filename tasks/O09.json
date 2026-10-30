@@ -1,6 +1,6 @@
 {
   "id": "O09",
-  "task_id": "task-author-v13-aapl-6-1-54f8727639",
+  "task_id": "O09",
   "company": "Apple Inc.",
   "ticker": "AAPL",
   "category_id": "6.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "607a1cb9a561034b44d0039f8845cf0eabfdd0fb88e629a120a3f6ae74da314b",
+  "source_sha256": "1c9d99dceb0881b8e386bbfc35912cec5bb5051657095669b669d04057438024",
   "rubrics": [
     {
       "rubric_id": "core_total_revenue_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_q3fy26_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Apple Inc.",
         "metric": "Total net sales (quarterly revenue)",
@@ -95,7 +94,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_q3fy26_iphone",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Apple Inc.",
         "metric": "iPhone net sales",
@@ -154,7 +152,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_q3fy26_gm",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Apple Inc.",
         "metric": "Gross margin (percentage of net sales)",
@@ -213,7 +210,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_q3fy26_eps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Apple Inc.",
         "metric": "Diluted earnings per share (GAAP)",
@@ -1604,7 +1600,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-aapl-6-1-54f8727639"
+                "O09"
               ]
             },
             "decisions": {
@@ -1634,7 +1630,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-aapl-6-1-54f8727639",
+    "task_id": "O09",
     "public_question": "Strict information cutoff: 2026-04-30T16:30:00-04:00. Use only information publicly available on or before this timestamp.\n\nApple Inc. (AAPL) — fiscal Q3 2026 outlook and equity stance\n\nInformation cutoff: April 30, 2026, 4:30 p.m. Eastern Time. Use only information available at or before that cutoff.\n\nApple's next scheduled results release is July 30, 2026, covering fiscal Q3 2026, the thirteen-week period ending June 27, 2026. Acting as an equity analyst, provide:\n\n- Forecasts for fiscal Q3 2026: total net sales (USD billions, one decimal), iPhone net sales (USD billions, one decimal), company gross margin (percent of net sales, one decimal), and US GAAP diluted EPS (USD per share, nearest cent).\n- A recommended investment stance on Apple common stock through the July 30, 2026 release, limited to Overweight, Neutral, or Underweight.\n- The two to four factors most capable of moving the June-quarter outcome and the stance away from your central case, together with the material uncertainties.\n\nThesis to test: The investment stance taken on Apple through the July 30, 2026 release will be justified by the fiscal Q3 2026 total net sales, iPhone net sales, gross margin and US GAAP diluted EPS that the company reports.\n\nSupport your forecasts with reproducible calculations, state your key assumptions, and weigh evidence that cuts against your conclusion.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.q3_total_revenue_busd: Forecast of fiscal Q3 2026 total net sales in USD billions.\n- $.q3_iphone_revenue_busd: Forecast of fiscal Q3 2026 iPhone net sales in USD billions.\n- $.q3_gross_margin_pct: Forecast of fiscal Q3 2026 company gross margin as a percent of net sales.\n- $.q3_diluted_eps_usd: Forecast of fiscal Q3 2026 GAAP diluted EPS in USD per share.\n- $.investment_stance: Recommended stance (Overweight, Neutral or Underweight) through the July 30, 2026 release.\n- $.key_swing_factors: The two to four most material swing factors for the quarter and the stance.\nCite at least 4 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1990,7 +1986,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-aapl-6-1-54f8727639"
+          "O09"
         ]
       },
       "decisions": {
@@ -2018,7 +2014,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "apple_fq3fy26_forecast_stance",
+    "question_id": "O09",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2035,8 +2031,7 @@
         "excerpt": "The Company posted quarterly revenue of $109.4 billion, up 16 percent year over year.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "aapl_q3fy26_eps",
@@ -2052,8 +2047,7 @@
         "excerpt": "Diluted $ 2.02 $ 1.57 $ 6.88 $ 5.62",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "aapl_q3fy26_iphone",
@@ -2069,8 +2063,7 @@
         "excerpt": "iPhone revenue surged 22% year-over-year to $54.3 billion",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "aapl_q3fy26_gm",
@@ -2086,14 +2079,11 @@
         "excerpt": "Total gross margin percentage 50.1 % 46.5 % 49.1 % 46.8 %",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       }
-    ],
-    "verification_notes": "FQ3 2026 (quarter ended June 27, 2026) realized outcomes, each verified from a successfully read private-database source in the same scale as the requested unit: total net sales $109.4 billion from Apple's July 30, 2026 results release, first paragraph ('The Company posted quarterly revenue of $109.4 billion') — doc ad63d019-422e-44d5-8068-a5659a01cc9a, public 2026-07-30T20:30:01Z; iPhone net sales $54.3 billion from same-day earnings-call coverage ('iPhone revenue surged 22% year-over-year to $54.3 billion') — doc 337cd59e-f28f-472e-a8f0-44f85a464833, public 2026-07-30T22:08:01Z; GAAP diluted EPS $2.02 and total gross margin 50.1% from Apple's Form 10-Q for the quarter ended June 27, 2026 — doc 35bd552d-2c9f-409f-9d3a-a6ffe629460f, public 2026-07-31T06:01:03Z (the Form 10-Q reports the same revenue and iPhone figures in USD millions: 109,417 and 54,252). All four facts became public after the 2026-04-30 Solver cutoff; no consensus, estimates or guidance used."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

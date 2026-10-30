@@ -1,6 +1,6 @@
 {
   "id": "O43",
-  "task_id": "task-author-v13-mcd-4-2-0968907247",
+  "task_id": "O43",
   "company": "McDonald's Corporation",
   "ticker": "MCD",
   "category_id": "4.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "0817f1f84f87da7a3e25e0167e2c878cab6296d8e6851a6a3d4db9b7dcf04e64",
+  "source_sha256": "5676ff24725d9c8b2a5155a355cb8061d62f809c3532de0953204d332daca438",
   "rubrics": [
     {
       "rubric_id": "core_implied_revenue_cagr_solve",
@@ -100,7 +100,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "mcd_h1_2026_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "McDonald's Corporation",
         "metric": "Total revenues (GAAP, as reported)",
@@ -1708,7 +1707,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-mcd-4-2-0968907247"
+                "O43"
               ]
             },
             "decisions": {
@@ -1738,7 +1737,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-mcd-4-2-0968907247",
+    "task_id": "O43",
     "public_question": "Strict information cutoff: 2026-02-28T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAs of the cutoff on February 28, 2026, McDonald's Corporation (MCD) shares trade at USD 334.56. Treating that price as fixed, determine what constant annual growth rate of total revenues over FY2026–FY2035 the market price implies.\n\nResearch McDonald's reported FY2025 total revenues, adjusted operating margin, depreciation and amortization, capital expenditures, total debt obligations, cash and equivalents, and common shares outstanding at December 31, 2025. Hold these assumptions fixed: a ten-year explicit horizon (FY2026–FY2035); cash taxes at 21% of EBIT; no net working-capital change; WACC of 7.5%; terminal growth of 2.5%, with terminal value = FY2036 free cash flow / 5.0%; year-end discounting of annual cash flows; net debt = total debt less cash; and equity value = enterprise value less net debt, which must reconcile to the reference price times shares outstanding at December 31, 2025.\n\nDeliver the implied revenue CAGR, implied FY2026 revenues, market capitalization, net debt, implied enterprise value, the present value of explicit-horizon FCFF, the present value of the terminal value, a year-by-year FY2026–FY2035 DCF schedule (revenue, EBIT, FCFF, discount factor, present value), a point forecast of total revenues for the six months ending June 30, 2026 (3% maximum tolerable error versus reported results), and a reasoned verdict on whether the implied growth path is supported by FY2025 performance and the 2026 outlook.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.implied_revenue_cagr_pct: Solved constant FY2026-FY2035 revenue growth rate equating DCF equity value to the reference market capitalization.\n- $.implied_fy2026_revenue_usd_m: FY2025 total revenues grown at the implied rate; first forecast-year revenue.\n- $.market_cap_usd_m: Reference share price times shares outstanding at December 31, 2025.\n- $.net_debt_usd_m: FY2025 total debt obligations less cash and equivalents.\n- $.implied_enterprise_value_usd_m: Market capitalization plus net debt; the DCF value target.\n- $.pv_explicit_fcff_usd_m: Sum of present values of FY2026-FY2035 free cash flows to the firm.\n- $.terminal_value_pv_usd_m: Present value of the terminal value at the solved growth rate.\n- $.dcf_rows: Year-by-year revenue, EBIT, FCFF, discount factor and present value for FY2026-FY2035.\n- $.h1_2026_revenue_forecast_usd_m: Point estimate of total revenues for the six months ending June 30, 2026.\n- $.implied_growth_verdict: Verdict on whether the implied growth path is supported by FY2025 performance and the 2026 outlook.\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1997,7 +1996,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-mcd-4-2-0968907247"
+          "O43"
         ]
       },
       "decisions": {
@@ -2025,7 +2024,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "mcd_reverse_valuation_implied_growth_2026",
+    "question_id": "O43",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2042,8 +2041,7 @@
         "excerpt": "Total revenues 26,885 4 25,920 2 25,494",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_fy2025_operating_income",
@@ -2059,8 +2057,7 @@
         "excerpt": "Operating income 12,393 6 11,712 1 11,647",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_fy2025_adjusted_operating_margin",
@@ -2076,8 +2073,7 @@
         "excerpt": "Our total adjusted operating margin for the full year was 46.9% and in line with our expectations and reflecting the strength of our business model and the resilience of our system.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "mcd_fy2025_da",
@@ -2093,8 +2089,7 @@
         "excerpt": "Charges and credits: Depreciation and amortization 2,199 2,097 1,978",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_fy2025_capex",
@@ -2110,8 +2105,7 @@
         "excerpt": "Investing activities Capital expenditures ( 3,365 ) ( 2,775 ) ( 2,357 )",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_fy2025_total_debt",
@@ -2127,8 +2121,7 @@
         "excerpt": "Total debt obligations $ 39,973 $ 38,424",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_fy2025_cash",
@@ -2144,8 +2137,7 @@
         "excerpt": "As of December 31, 2025, Cash and equivalents was $774 million of which $228 million consisted of certificates of deposit.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_fy2025_shares_outstanding",
@@ -2161,8 +2153,7 @@
         "excerpt": "Shares outstanding at year end 711 715 723",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_fy2024_revenue",
@@ -2178,8 +2169,7 @@
         "excerpt": "Total revenues 26,885 4 25,920 2 25,494",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_h1_2025_revenue",
@@ -2195,8 +2185,7 @@
         "excerpt": "Total revenues 6,843 6,490 12,799 12,659",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_implied_revenue_cagr",
@@ -2212,8 +2201,7 @@
         "excerpt": "Our total adjusted operating margin for the full year was 46.9% and in line with our expectations and reflecting the strength of our business model and the resilience of our system.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "mcd_h1_2026_revenue",
@@ -2229,14 +2217,11 @@
         "excerpt": "TOTAL REVENUES 13,616",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Corrected the two rejected targets. mcd_fy2025_shares_outstanding now uses the reported year-end share count verbatim from the 10-K MD&A SHARE REPURCHASES AND DIVIDENDS table (p. 21): \"Shares outstanding at year end 711 715 723\" (in millions; 2025 = 711), which equals common stock issued 1,660.6 million shares less common stock in treasury 950.0 million shares (710.6 million; 10-K Consolidated Balance Sheet, p. 41). mcd_implied_revenue_cagr now cites the Q4 2025 earnings call transcript (doc 101b3634-fdfb-4a19-bd96-ac04c6c55c9f, public 2026-02-12T00:58:51.968Z) with the verbatim management-cited FY2025 adjusted operating margin sentence as the excerpt; the locator identifies all source inputs and the full deterministic computation. Recomputation with the disclosed inputs (FY2025 revenues 26,885; adjusted operating margin 46.9%; D&A 2,199; capex 3,365; total debt obligations 39,973; cash 774; shares 710.6M issued less treasury; price 334.56; cash tax 21%; no working-capital change; WACC 7.5%; terminal growth 2.5%; year-end discounting) gives market cap 237,738.3, net debt 39,199, EV target 276,937.3, and implied constant FY2026-FY2035 revenue growth of 7.9019% per year (PV explicit 89,780.7 + PV terminal 187,156.7), matching the author reference of ~7.9%. Sensitivity to the rounded 711M share count is 7.908%. All other targets unchanged and previously verified."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

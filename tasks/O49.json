@@ -1,6 +1,6 @@
 {
   "id": "O49",
-  "task_id": "task-author-v13-meta-1-3-4181906020",
+  "task_id": "O49",
   "company": "Meta Platforms, Inc.",
   "ticker": "META",
   "category_id": "1.3",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "1e31ac0790a613ffcdd497bf80e4f1a2f1ef2f6807ca9bf7bee112d6d60ae2b6",
+  "source_sha256": "d104c21f60f2f3219b6b6db2d17488023d31a2b0b03d7fdc4540a333cdd956c6",
   "rubrics": [
     {
       "rubric_id": "core_overall_verdict",
@@ -1917,7 +1917,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-meta-1-3-4181906020"
+                "O49"
               ]
             },
             "decisions": {
@@ -1947,7 +1947,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-meta-1-3-4181906020",
+    "task_id": "O49",
     "public_question": "Strict information cutoff: 2026-02-28T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nMap Meta's supplied 2026 thesis (at least 20% revenue growth and 2026 operating income above 2025 despite record AI infrastructure spending) to cutoff evidence. Reported 2025 results show accelerating advertising revenue and measurable AI ad-performance gains, while the Q4 2025 call's 2026 expense and capex guidance plus management's own deceleration caveats imply that the 20% threshold alone cannot hold operating income flat. Alphabet and Pinterest provide a cross-company demand check.\n\nUsing only information available as of the 2026-02-28T16:00:00-04:00 cutoff, assess Meta Platforms, Inc. (META) over FY2026 (four quarters ending December 31, 2026). Label each key assumption supports, weakens, or irrelevant. Address 2026 total revenue growth including Q1 2026 guidance; advertising revenue growth and its impression and price-per-ad components; FY2025 revenue trend and operating income; the 2025 cost base and 2026 expense outlook including Reality Labs; 2026 capital expenditures including finance-lease principal payments; disclosed AI ad-performance gains; and the digital advertising demand backdrop. Calculate the 2026 revenue growth rate required to hold operating income at the 2025 level given the guided 2026 expense range.\n\nDeliver an overall verdict (supported, weakened, or insufficient evidence) with confidence; per-assumption labels citing the specific cutoff figure and disclosure; at least three measurable break conditions with metric, period, numeric threshold, and trigger direction; the strongest counter-evidence; and monitoring priorities. Do not use post-cutoff information.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.verdict: Overall supported, weakened or insufficient-evidence verdict on the 2026 thesis.\n- $.confidence: Categorical confidence in the verdict.\n- $.assumption_labels: Per-assumption labels with the specific cited figure and source.\n- $.break_conditions: At least three measurable break conditions with metric, period, threshold and direction.\n- $.counterevidence: Strongest cutoff evidence against the thesis, typically the cost step-up versus the FY2025 base.\n- $.monitoring_priorities: Next disclosures and metrics to monitor for thesis confirmation or falsification.\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2573,7 +2573,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-meta-1-3-4181906020"
+          "O49"
         ]
       },
       "decisions": {
@@ -2601,7 +2601,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "meta_2026_thesis_evidence_map",
+    "question_id": "O49",
     "truth_mode": "cutoff_known",
     "targets": [
       {
@@ -2618,8 +2618,7 @@
         "excerpt": "Q4 total revenue was $59.9 billion, up 24% or 23% on a constant currency basis.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_meta_q4_2025_ad_revenue_growth",
@@ -2635,8 +2634,7 @@
         "excerpt": "Q4 Family of Apps ad revenue was $58.1 billion, up 24% or 23% on a constant currency basis.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_meta_fy2025_total_revenue",
@@ -2652,8 +2650,7 @@
         "excerpt": "Revenue $ 200,966 $ 164,501 $ 134,902",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_meta_fy2025_operating_income",
@@ -2669,8 +2666,7 @@
         "excerpt": "Income from operations 83,276 69,380 46,751",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_meta_fy2025_total_expenses",
@@ -2686,8 +2682,7 @@
         "excerpt": "Total costs and expenses 117,690 95,121 88,151",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_meta_fy2026_capex_guidance",
@@ -2703,8 +2698,7 @@
         "excerpt": "We anticipate 2026 capital expenditures, including principal payments on finance leases, to be in the range of $115-135 billion",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_meta_fy2026_total_expense_guidance",
@@ -2720,8 +2714,7 @@
         "excerpt": "We expect full year 2026 total expenses to be in the range of $162-169 billion",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_meta_q1_2026_revenue_guidance",
@@ -2737,8 +2730,7 @@
         "excerpt": "We expect first quarter 2026 total revenue to be in the range of $53.5-56.5 billion",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_alphabet_q4_2025_search_ad_growth",
@@ -2754,8 +2746,7 @@
         "excerpt": "Google Search and other advertising revenues increased by 17% to $63.1 billion, representing another strong quarter with continued growth across all major verticals with the largest contribution from retail.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_pinterest_q4_2025_revenue_growth",
@@ -2771,14 +2762,11 @@
         "excerpt": "In Q4, our global revenue was $1.319 billion, up 14% year over year or 13% on a constant currency basis.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All ten targets verified from cutoff-valid issuer disclosures via successful Reads. Meta Q4 2025 results: Q4 2025 earnings call transcript 9cf7a184-ed34-44c7-a727-12aa71f68fe5 (2026-01-29T00:35:20.387Z) states Q4 total revenue was $59.9 billion, up 24% YoY, and Q4 Family of Apps ad revenue was $58.1 billion, up 24% YoY. FY2025 base: Meta 2025 Form 10-K 7e2727cd-48e3-4195-bbe0-65c0fddb22ea (2026-01-29T00:13:47Z), Consolidated Statements of Income, Year Ended December 31, 2025 (in millions): Revenue $200,966; Total costs and expenses $117,690; Income from operations $83,276. Guidance: Meta's official Q4 2025 earnings press release 'Meta Reports Fourth Quarter and Full Year 2025 Results' 521b847c-eff3-4415-9aa2-6a93aecce378 (2026-01-28T21:01:01Z), CFO Outlook Commentary, discloses first quarter 2026 total revenue of $53.5-56.5 billion, full year 2026 total expenses of $162-169 billion, and 2026 capital expenditures including principal payments on finance leases of $115-135 billion; the same guidance figures were reiterated on the Q4 2025 earnings call. Peers: Alphabet Q4 2025 call cd202946-9296-4639-ba5f-be97ad711150 (2026-02-05T05:04:51.619Z) reports Google Search and other advertising revenues increased 17% to $63.1 billion; Pinterest Q4 2025 call 695de39e-7cc7-43b0-baae-29a1e617e31a (2026-02-13T01:06:09.990Z) reports Q4 global revenue of $1.319 billion, up 14% YoY. All sources are pre-cutoff (on or before 2026-02-28); no post-cutoff information and no derived calculations were submitted as reported actuals. The three guidance targets were re-verified against the issuer's press release text, where the range figures appear verbatim in hyphenated form matching the submitted values."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

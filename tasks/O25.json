@@ -1,6 +1,6 @@
 {
   "id": "O25",
-  "task_id": "task-author-v13-jpm-2-3-1ea5078b0f",
+  "task_id": "O25",
   "company": "JPMorgan Chase & Co.",
   "ticker": "JPM",
   "category_id": "2.3",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "507b21d06842493f1aae8377489cfa0a5e98c2a15d2cd8472144138534567a6f",
+  "source_sha256": "ad1b6ae818d88572838795a43718e8163b936c88fd0fc257f98d31f928537d4a",
   "rubrics": [
     {
       "rubric_id": "core_net_revenue_formula",
@@ -1766,7 +1766,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-jpm-2-3-1ea5078b0f"
+                "O25"
               ]
             },
             "decisions": {
@@ -1796,7 +1796,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-jpm-2-3-1ea5078b0f",
+    "task_id": "O25",
     "public_question": "Strict information cutoff: 2026-05-30T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nJPMorgan Chase reports its Card Services business within Consumer & Community Banking mainly as a net revenue rate, with dollar revenue folded into a combined Card Services & Auto line. Reconstruct the Card Services unit economics for fiscal years 2023, 2024 and 2025 and for the first quarters of 2025 and 2026 (through March 31, 2026), using information available at the cutoff.\n\nGive the fixed formula that converts the disclosed rate into Card Services net revenue for a period, including the part-year convention, and the formulas behind the per-card metrics. For each of the five periods, provide:\n\n- the loan balance base the rate applies to, on the basis the company's own rate definition requires (USD millions);\n- the net revenue rate (percent);\n- net revenue, both annualized and as the amount belonging to the period (USD millions);\n- card sales volume (USD billions);\n- implied Auto net revenue from the combined line (USD millions).\n\nFor the fiscal years only, also give cards in force (millions), net revenue per card and spend per card (USD per card).\n\nDecompose the change in annualized Card Services net revenue between Q1 2025 and Q1 2026 into balance-growth and rate effects, showing any residual, and set out the annualization, averaging, timing and scope adjustments behind your figures.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.formula.net_revenue: The fixed formula translating the disclosed rate and balances into Card Services net revenue, including the part-year convention.\n- $.formula.unit_metrics: The formulas behind the per-card unit metrics.\n- $.period_rows[].loan_balance_base_usd_m: The Card Services loan balance applied to the rate, USD millions, on the basis the rate definition requires.\n- $.period_rows[].net_revenue_rate_pct: The disclosed Card Services net revenue rate for each period, in percent.\n- $.period_rows[].net_revenue_annualized_usd_m: Reconstructed Card Services net revenue on the annualized rate basis, USD millions.\n- $.period_rows[].net_revenue_period_usd_m: Reconstructed Card Services net revenue belonging to the period itself, USD millions.\n- $.period_rows[].sales_volume_usd_b: Card Services card sales volume as disclosed, USD billions.\n- $.period_rows[].cards_in_force_m: Cards in force at period end, millions (fiscal years only; null for part-year rows).\n- $.period_rows[].revenue_per_card_usd: Annualized net revenue per card in force, USD per card (fiscal years only).\n- $.period_rows[].spend_per_card_usd: Card sales volume per card in force, USD per card (fiscal years only).\n- $.period_rows[].implied_auto_net_revenue_usd_m: Auto net revenue implied from the combined Card Services & Auto line, USD millions.\n- $.quarter_bridge.total_change_usd_m: Total Q1 2026 vs Q1 2025 change in annualized net revenue, USD millions.\n- $.quarter_bridge.balance_effect_usd_m: Balance-growth effect in the Q1 net revenue bridge, USD millions.\n- $.quarter_bridge.rate_effect_usd_m: Revenue-rate effect in the Q1 net revenue bridge, USD millions.\n- $.quarter_bridge.interaction_effect_usd_m: Residual cross term of the Q1 net revenue bridge, USD millions.\n- $.adjustments: Coverage, timing, annualization and scope adjustments applied in the reconstruction.\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2054,7 +2054,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-jpm-2-3-1ea5078b0f"
+          "O25"
         ]
       },
       "decisions": {
@@ -2082,7 +2082,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "jpm-card-services-unit-economics",
+    "question_id": "O25",
     "truth_mode": "cutoff_known",
     "targets": [
       {
@@ -2099,8 +2099,7 @@
         "excerpt": "Net revenue rate 10.08 % 10.03 % 9.72 %",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_rate_fy2024",
@@ -2116,8 +2115,7 @@
         "excerpt": "Net revenue rate 10.08 % 10.03 % 9.72 %",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_rate_fy2025",
@@ -2133,8 +2131,7 @@
         "excerpt": "Net revenue rate 10.08 % 10.03 % 9.72 %",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_rate_q12025",
@@ -2150,8 +2147,7 @@
         "excerpt": "Net revenue rate 10.38 % 10.09 %",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_rate_q12026",
@@ -2167,8 +2163,7 @@
         "excerpt": "Net revenue rate 10.78 % 10.38 %",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_loans_fy2023",
@@ -2184,8 +2179,7 @@
         "excerpt": "Selected metrics As of or for the year ended December 31, (in millions, except employees) 2025 2024 2023 Selected balance sheet data (period-end) Total assets $ 664,669 $ 650,268 $ 642,951 Loans: Banking & Wealth Management 33,005 33,221 31,142 Home Lending (a) 240,724 246,498 259,181 Card Services 247,753 233,016 211,175 Auto 70,585 73,619 77,705 Total loans 592,067 586,354 579,203 Deposits (b) 1,072,792 1,056,652 1,094,738 Equity 56,000 54,500 55,500 Selected balance sheet data (average) Total assets $ 646,820 $ 631,648 $ 584,367 Loans: Banking & Wealth Management 33,241 31,544 30,142 Home Lending (b) 242,595 252,542 232,115 Card Services 231,720 214,139 191,424",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_loans_fy2024",
@@ -2201,8 +2195,7 @@
         "excerpt": "Selected metrics As of or for the year ended December 31, (in millions, except employees) 2025 2024 2023 Selected balance sheet data (period-end) Total assets $ 664,669 $ 650,268 $ 642,951 Loans: Banking & Wealth Management 33,005 33,221 31,142 Home Lending (a) 240,724 246,498 259,181 Card Services 247,753 233,016 211,175 Auto 70,585 73,619 77,705 Total loans 592,067 586,354 579,203 Deposits (b) 1,072,792 1,056,652 1,094,738 Equity 56,000 54,500 55,500 Selected balance sheet data (average) Total assets $ 646,820 $ 631,648 $ 584,367 Loans: Banking & Wealth Management 33,241 31,544 30,142 Home Lending (b) 242,595 252,542 232,115 Card Services 231,720 214,139 191,424",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_loans_fy2025",
@@ -2218,8 +2211,7 @@
         "excerpt": "Selected metrics As of or for the year ended December 31, (in millions, except employees) 2025 2024 2023 Selected balance sheet data (period-end) Total assets $ 664,669 $ 650,268 $ 642,951 Loans: Banking & Wealth Management 33,005 33,221 31,142 Home Lending (a) 240,724 246,498 259,181 Card Services 247,753 233,016 211,175 Auto 70,585 73,619 77,705 Total loans 592,067 586,354 579,203 Deposits (b) 1,072,792 1,056,652 1,094,738 Equity 56,000 54,500 55,500 Selected balance sheet data (average) Total assets $ 646,820 $ 631,648 $ 584,367 Loans: Banking & Wealth Management 33,241 31,544 30,142 Home Lending (b) 242,595 252,542 232,115 Card Services 231,720 214,139 191,424",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_loans_q12025",
@@ -2235,8 +2227,7 @@
         "excerpt": "As of or for the three months ended March 31, (in millions, except employees) 2025 2024 Change Selected balance sheet data (period-end) Total assets $ 636,105 $ 629,122 1 % Loans: Banking & Wealth Management 33,098 31,266 6 Home Lending (a) 241,427 254,243 (5) Card Services 223,517 206,823 8 Auto 72,116 76,508 (6) Total loans 570,158 568,840 — Deposits 1,080,138 1,105,583 (2) Equity 56,000 54,500 3 Selected balance sheet data (average) Total assets $ 639,664 $ 627,862 2 Loans: Banking & Wealth Management 33,160 31,241 6 Home Lending (b) 244,282 257,866 (5) Card Services 224,493 204,701 10",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_loans_q12026",
@@ -2252,8 +2243,7 @@
         "excerpt": "As of or for the three months ended March 31, (in millions, except employees) 2026 2025 Change Selected balance sheet data (period-end) Total assets $ 656,051 $ 636,105 3 % Loans: Banking & Wealth Management 32,992 33,098 — Home Lending (a) 238,571 241,427 (1) Card Services 239,065 223,517 7 Auto 70,958 72,116 (2) Total loans 581,586 570,158 2 Deposits 1,112,078 1,080,138 3 Equity 61,500 56,000 10 Selected balance sheet data (average) Total assets $ 655,977 $ 639,664 3 Loans: Banking & Wealth Management 33,038 33,160 — Home Lending (b) 240,429 244,282 (2) Card Services 239,153 224,493 7",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_sales_fy2023",
@@ -2269,8 +2259,7 @@
         "excerpt": "(in billions, except ratios and where otherwise noted) 2025 2024 2023 Business Metrics CCB Consumer customers (in millions) 86.6 84.4 82.1 CCB Small business customers (in millions) 7.4 7.0 6.4 Number of branches 5,083 4,966 4,897 Active digital customers (in thousands) (a) 74,646 70,813 66,983 Active mobile customers (in thousands) (b) 61,736 57,821 53,828 Debit and credit card sales volume $ 1,940.7 $ 1,805.4 $ 1,678.6 Total payments transaction volume (in trillions) (c) 7.0 6.4 5.9 Banking & Wealth Management Average deposits $ 1,040.8 $ 1,049.3 $ 1,111.7 Deposit margin 2.74 % 2.66 % 2.84 % Business Banking average loans $ 19.1 $ 19.5 $ 19.6 Business Banking origination volume 3.2 4.5 4.8 Client investment assets (d) 1,269.9 1,087.6 951.1 Number of client advisors 6,049 5,755 5,456 Home Lending Mortgage origination volume by channel Retail $ 33.0 $ 25.5 $ 22.4 Correspondent 19.8 15.3 12.7 Total mortgage origination volume (e) $ 52.8 $ 40.8 $ 35.1 Third-party mortgage loans serviced (period-end) $ 661.9 $ 648.0 $ 631.2 MSR carrying value (period-end) 9.1 9.1 8.5 Card Services Sales volume, excluding commercial card $ 1,354.7 $ 1,259.3 $ 1,163.6",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_sales_fy2024",
@@ -2286,8 +2275,7 @@
         "excerpt": "(in billions, except ratios and where otherwise noted) 2025 2024 2023 Business Metrics CCB Consumer customers (in millions) 86.6 84.4 82.1 CCB Small business customers (in millions) 7.4 7.0 6.4 Number of branches 5,083 4,966 4,897 Active digital customers (in thousands) (a) 74,646 70,813 66,983 Active mobile customers (in thousands) (b) 61,736 57,821 53,828 Debit and credit card sales volume $ 1,940.7 $ 1,805.4 $ 1,678.6 Total payments transaction volume (in trillions) (c) 7.0 6.4 5.9 Banking & Wealth Management Average deposits $ 1,040.8 $ 1,049.3 $ 1,111.7 Deposit margin 2.74 % 2.66 % 2.84 % Business Banking average loans $ 19.1 $ 19.5 $ 19.6 Business Banking origination volume 3.2 4.5 4.8 Client investment assets (d) 1,269.9 1,087.6 951.1 Number of client advisors 6,049 5,755 5,456 Home Lending Mortgage origination volume by channel Retail $ 33.0 $ 25.5 $ 22.4 Correspondent 19.8 15.3 12.7 Total mortgage origination volume (e) $ 52.8 $ 40.8 $ 35.1 Third-party mortgage loans serviced (period-end) $ 661.9 $ 648.0 $ 631.2 MSR carrying value (period-end) 9.1 9.1 8.5 Card Services Sales volume, excluding commercial card $ 1,354.7 $ 1,259.3 $ 1,163.6",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_sales_fy2025",
@@ -2303,8 +2291,7 @@
         "excerpt": "(in billions, except ratios and where otherwise noted) 2025 2024 2023 Business Metrics CCB Consumer customers (in millions) 86.6 84.4 82.1 CCB Small business customers (in millions) 7.4 7.0 6.4 Number of branches 5,083 4,966 4,897 Active digital customers (in thousands) (a) 74,646 70,813 66,983 Active mobile customers (in thousands) (b) 61,736 57,821 53,828 Debit and credit card sales volume $ 1,940.7 $ 1,805.4 $ 1,678.6 Total payments transaction volume (in trillions) (c) 7.0 6.4 5.9 Banking & Wealth Management Average deposits $ 1,040.8 $ 1,049.3 $ 1,111.7 Deposit margin 2.74 % 2.66 % 2.84 % Business Banking average loans $ 19.1 $ 19.5 $ 19.6 Business Banking origination volume 3.2 4.5 4.8 Client investment assets (d) 1,269.9 1,087.6 951.1 Number of client advisors 6,049 5,755 5,456 Home Lending Mortgage origination volume by channel Retail $ 33.0 $ 25.5 $ 22.4 Correspondent 19.8 15.3 12.7 Total mortgage origination volume (e) $ 52.8 $ 40.8 $ 35.1 Third-party mortgage loans serviced (period-end) $ 661.9 $ 648.0 $ 631.2 MSR carrying value (period-end) 9.1 9.1 8.5 Card Services Sales volume, excluding commercial card $ 1,354.7 $ 1,259.3 $ 1,163.6",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_sales_q12025",
@@ -2320,8 +2307,7 @@
         "excerpt": "As of or for the three months ended March 31, (in billions, except ratios and where otherwise noted) 2025 2024 Change Business Metrics Number of branches 4,972 4,907 1 % Active digital customers (in thousands) (a) 72,480 68,496 6 Active mobile customers (in thousands) (b) 59,036 54,674 8 Debit and credit card sales volume $ 448.7 $ 420.7 7 Total payments transaction volume (in trillions) (c) 1.6 1.5 7 Banking & Wealth Management Average deposits $ 1,039.0 $ 1,065.6 (2) Deposit margin 2.69 % 2.71 % Business Banking average loans $ 19.5 $ 19.4 — Business banking origination volume 0.8 1.1 (28) Client investment assets (d) 1,079.8 1,010.3 7 Number of client advisors 5,860 5,571 5 Home Lending Mortgage origination volume by channel Retail $ 5.5 $ 4.4 25 Correspondent 3.9 2.2 77 Total mortgage origination volume (e) $ 9.4 $ 6.6 42 Third-party mortgage loans serviced (period-end) $ 661.6 $ 626.2 6 MSR carrying value (period-end) 9.1 8.6 6 Card Services Sales volume, excluding commercial card $ 310.6 $ 291.0 7",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_sales_q12026",
@@ -2337,8 +2323,7 @@
         "excerpt": "As of or for the three months ended March 31, (in billions, except ratios and where otherwise noted) 2026 2025 Change Business Metrics Number of branches 5,095 4,972 2 % Active digital customers (in thousands) 76,246 72,480 5 Active mobile customers (in thousands) 62,960 59,036 7 Debit and credit card sales volume $ 487.6 $ 448.7 9 Total payments transaction volume (in trillions) 1.8 1.6 13 Banking & Wealth Management Average deposits $ 1,059.5 $ 1,039.0 2 Deposit margin 2.63 % 2.69 % Business Banking average loans $ 18.6 $ 19.5 (5) Business banking origination volume 0.7 0.8 (10) Client investment assets (a) 1,272.2 1,079.8 18 Number of client advisors 6,243 5,860 7 Home Lending Mortgage origination volume by channel Retail $ 8.7 $ 5.5 58 Correspondent 5.0 3.9 28 Total mortgage origination volume (b) $ 13.7 $ 9.4 46 Third-party mortgage loans serviced (period-end) $ 656.4 $ 661.6 (1) MSR carrying value (period-end) 9.1 9.1 — Card Services Sales volume, excluding commercial card $ 337.6 $ 310.6 9",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_cards_fy2023",
@@ -2354,8 +2339,7 @@
         "excerpt": "Cards in force (in millions) (f) 116.5 111.7 106.8",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_cards_fy2024",
@@ -2371,8 +2355,7 @@
         "excerpt": "Cards in force (in millions) (f) 116.5 111.7 106.8",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_cards_fy2025",
@@ -2388,8 +2371,7 @@
         "excerpt": "Cards in force (in millions) (f) 116.5 111.7 106.8",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_combo_fy2023",
@@ -2405,8 +2387,7 @@
         "excerpt": "Selected income statement data Year ended December 31, (in millions, except ratios) 2025 2024 2023 Revenue Lending- and deposit-related fees $ 3,669 $ 3,387 $ 3,356 Asset management fees 4,669 4,014 3,282 Mortgage fees and related income 1,326 1,378 1,175 Card income 2,230 3,139 2,532 All other income (a) 5,901 4,731 4,773 Noninterest revenue 17,795 16,649 15,118 Net interest income 58,234 54,858 55,030 Total net revenue 76,029 71,507 70,148 Provision for credit losses 11,493 (d) 9,974 6,899 Noninterest expense Compensation expense 17,669 17,045 15,171 Noncompensation expense (b) 22,598 20,991 19,648 Total noninterest expense 40,267 38,036 34,819 Income before income tax expense 24,269 23,497 28,430 Income tax expense 6,024 5,894 7,198 Net income $ 18,245 $ 17,603 $ 21,232 Revenue by business Banking & Wealth Management $ 42,862 $ 40,943 $ 43,199 Home Lending 4,966 5,097 4,140 Card Services & Auto 28,201 25,467 22,809",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_combo_fy2024",
@@ -2422,8 +2403,7 @@
         "excerpt": "Selected income statement data Year ended December 31, (in millions, except ratios) 2025 2024 2023 Revenue Lending- and deposit-related fees $ 3,669 $ 3,387 $ 3,356 Asset management fees 4,669 4,014 3,282 Mortgage fees and related income 1,326 1,378 1,175 Card income 2,230 3,139 2,532 All other income (a) 5,901 4,731 4,773 Noninterest revenue 17,795 16,649 15,118 Net interest income 58,234 54,858 55,030 Total net revenue 76,029 71,507 70,148 Provision for credit losses 11,493 (d) 9,974 6,899 Noninterest expense Compensation expense 17,669 17,045 15,171 Noncompensation expense (b) 22,598 20,991 19,648 Total noninterest expense 40,267 38,036 34,819 Income before income tax expense 24,269 23,497 28,430 Income tax expense 6,024 5,894 7,198 Net income $ 18,245 $ 17,603 $ 21,232 Revenue by business Banking & Wealth Management $ 42,862 $ 40,943 $ 43,199 Home Lending 4,966 5,097 4,140 Card Services & Auto 28,201 25,467 22,809",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_combo_fy2025",
@@ -2439,8 +2419,7 @@
         "excerpt": "Selected income statement data Year ended December 31, (in millions, except ratios) 2025 2024 2023 Revenue Lending- and deposit-related fees $ 3,669 $ 3,387 $ 3,356 Asset management fees 4,669 4,014 3,282 Mortgage fees and related income 1,326 1,378 1,175 Card income 2,230 3,139 2,532 All other income (a) 5,901 4,731 4,773 Noninterest revenue 17,795 16,649 15,118 Net interest income 58,234 54,858 55,030 Total net revenue 76,029 71,507 70,148 Provision for credit losses 11,493 (d) 9,974 6,899 Noninterest expense Compensation expense 17,669 17,045 15,171 Noncompensation expense (b) 22,598 20,991 19,648 Total noninterest expense 40,267 38,036 34,819 Income before income tax expense 24,269 23,497 28,430 Income tax expense 6,024 5,894 7,198 Net income $ 18,245 $ 17,603 $ 21,232 Revenue by business Banking & Wealth Management $ 42,862 $ 40,943 $ 43,199 Home Lending 4,966 5,097 4,140 Card Services & Auto 28,201 25,467 22,809",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_combo_q12025",
@@ -2456,8 +2435,7 @@
         "excerpt": "Three months ended March 31, (in millions, except ratios) 2025 2024 Change Revenue Lending- and deposit-related fees $ 839 $ 822 2 % Asset management fees 1,093 947 15 Mortgage fees and related income 263 274 (4) Card income 653 682 (4) All other income (a) 1,323 1,220 8 Noninterest revenue 4,171 3,945 6 Net interest income 14,142 13,708 3 Total net revenue 18,313 17,653 4 Provision for credit losses 2,629 1,913 37 Noninterest expense Compensation expense 4,448 4,229 5 Noncompensation expense (b) 5,409 5,068 7 Total noninterest expense 9,857 9,297 6 Income before income tax expense 5,827 6,443 (10) Income tax expense 1,402 1,612 (13) Net income $ 4,425 $ 4,831 (8) Revenue by business Banking & Wealth Management $ 10,254 $ 10,324 (1) Home Lending 1,207 1,186 2 Card Services & Auto 6,852 6,143 12",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_combo_q12026",
@@ -2473,8 +2451,7 @@
         "excerpt": "Three months ended March 31, (in millions, except ratios) 2026 2025 Change Revenue Lending- and deposit-related fees $ 947 $ 839 13 % Asset management fees 1,303 1,093 19 Mortgage fees and related income 303 263 15 Card income 592 653 (9) All other income (a) 1,685 1,323 27 Noninterest revenue 4,830 4,171 16 Net interest income 14,738 14,142 4 Total net revenue 19,568 18,313 7 Provision for credit losses 2,050 2,629 (22) Noninterest expense Compensation expense 4,622 4,375 (e) 6 Noncompensation expense (b)(c) 6,357 5,482 (e) 16 Total noninterest expense 10,979 9,857 11 Income before income tax expense 6,539 5,827 12 Income tax expense 1,563 1,402 11 Net income $ 4,976 $ 4,425 12 Revenue by business Banking & Wealth Management $ 10,577 $ 10,254 3 Home Lending 1,232 1,207 2 Card Services & Auto 7,759 6,852 13",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_netrev_fy2025_ref",
@@ -2490,8 +2467,7 @@
         "excerpt": "Selected metrics As of or for the year ended December 31, (in millions, except employees) 2025 2024 2023 Selected balance sheet data (period-end) Total assets $ 664,669 $ 650,268 $ 642,951 Loans: Banking & Wealth Management 33,005 33,221 31,142 Home Lending (a) 240,724 246,498 259,181 Card Services 247,753 233,016 211,175 Auto 70,585 73,619 77,705 Total loans 592,067 586,354 579,203 Deposits (b) 1,072,792 1,056,652 1,094,738 Equity 56,000 54,500 55,500 Selected balance sheet data (average) Total assets $ 646,820 $ 631,648 $ 584,367 Loans: Banking & Wealth Management 33,241 31,544 30,142 Home Lending (b) 242,595 252,542 232,115 Card Services 231,720 214,139 191,424",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_netrev_q12026_ref",
@@ -2507,8 +2483,7 @@
         "excerpt": "As of or for the three months ended March 31, (in millions, except employees) 2026 2025 Change Selected balance sheet data (period-end) Total assets $ 656,051 $ 636,105 3 % Loans: Banking & Wealth Management 32,992 33,098 — Home Lending (a) 238,571 241,427 (1) Card Services 239,065 223,517 7 Auto 70,958 72,116 (2) Total loans 581,586 570,158 2 Deposits 1,112,078 1,080,138 3 Equity 61,500 56,000 10 Selected balance sheet data (average) Total assets $ 655,977 $ 639,664 3 Loans: Banking & Wealth Management 33,038 33,160 — Home Lending (b) 240,429 244,282 (2) Card Services 239,153 224,493 7",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_revperc_fy2025_ref",
@@ -2524,8 +2499,7 @@
         "excerpt": "Cards in force (in millions) (f) 116.5 111.7 106.8",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_impliedauto_fy2025_ref",
@@ -2541,8 +2515,7 @@
         "excerpt": "Selected income statement data Year ended December 31, (in millions, except ratios) 2025 2024 2023 Revenue Lending- and deposit-related fees $ 3,669 $ 3,387 $ 3,356 Asset management fees 4,669 4,014 3,282 Mortgage fees and related income 1,326 1,378 1,175 Card income 2,230 3,139 2,532 All other income (a) 5,901 4,731 4,773 Noninterest revenue 17,795 16,649 15,118 Net interest income 58,234 54,858 55,030 Total net revenue 76,029 71,507 70,148 Provision for credit losses 11,493 (d) 9,974 6,899 Noninterest expense Compensation expense 17,669 17,045 15,171 Noncompensation expense (b) 22,598 20,991 19,648 Total noninterest expense 40,267 38,036 34,819 Income before income tax expense 24,269 23,497 28,430 Income tax expense 6,024 5,894 7,198 Net income $ 18,245 $ 17,603 $ 21,232 Revenue by business Banking & Wealth Management $ 42,862 $ 40,943 $ 43,199 Home Lending 4,966 5,097 4,140 Card Services & Auto 28,201 25,467 22,809",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_cs_bridge_q12026_ref",
@@ -2558,14 +2531,11 @@
         "excerpt": "As of or for the three months ended March 31, (in millions, except employees) 2026 2025 Change Selected balance sheet data (period-end) Total assets $ 656,051 $ 636,105 3 % Loans: Banking & Wealth Management 32,992 33,098 — Home Lending (a) 238,571 241,427 (1) Card Services 239,065 223,517 7 Auto 70,958 72,116 (2) Total loans 581,586 570,158 2 Deposits 1,112,078 1,080,138 3 Equity 61,500 56,000 10 Selected balance sheet data (average) Total assets $ 655,977 $ 639,664 3 Loans: Banking & Wealth Management 33,038 33,160 — Home Lending (b) 240,429 244,282 (2) Card Services 239,153 224,493 7",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Resolved directly from the private database view authorized through 2026-05-30T07:00:00-04:00. Documents used (immutable ids): JPMorgan Chase & Co. 2025 Form 10-K, filed 2026-02-13, id 33c53e56-0441-4251-a700-597f98757ff7 (chunks 5/15 and 6/15) for the FY2023, FY2024 and FY2025 rows and the FY reference computations; JPMorgan Chase & Co. Q1 2025 Form 10-Q, filed 2025-05-01, id 181c715b-21db-4c39-ba03-ce784cbfc78f (chunk 3/8) for the Q1 2025 rows; JPMorgan Chase & Co. Q1 2026 Form 10-Q, filed 2026-05-01, id ba752a67-a3fd-4f09-9e20-ee6c8ae7e6ce (chunk 3/8) for the Q1 2026 rows and the Q1 reference computations. Fiscal-year values are the three-year columns (2025, 2024, 2023) of the 2025 Form 10-K; quarterly values are the first (current-period) columns of the respective 10-Q tables, matching the expected availability timestamps. All excerpts are single contiguous verbatim spans copied from successful Reads (no labels, ellipses or paraphrase); for monetary rows the source unit captions are included in the span where they fit within the 1,200-character limit (loans and combined-line excerpts carry '(in millions ...)'; card sales volume excerpts carry '(in billions ...)'; 'Cards in force (in millions)' and 'Net revenue rate' rows carry their units inline). Deterministic references were computed only from disclosed components: annualized net revenue = average Card Services loans x net revenue rate; quarter amount = annualized / 4; net revenue per card = annualized net revenue / cards in force; implied Auto = combined 'Card Services & Auto' revenue - reconstructed Card Services net revenue; the Q1 2026 vs Q1 2025 bridge decomposes the annualized change into balance, rate and interaction (residual) effects. Neither filing attaches a footnote defining the 'Net revenue rate' row; the reconstruction uses the average-balance basis ('Selected balance sheet data (average)') and the annualized-rate convention evident from the rate levels and part-year rows. No post-cutoff information was used."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

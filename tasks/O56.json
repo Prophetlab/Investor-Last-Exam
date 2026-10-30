@@ -1,6 +1,6 @@
 {
   "id": "O56",
-  "task_id": "task-author-v13-msft-1-2-bdd0667380",
+  "task_id": "O56",
   "company": "Microsoft Corporation",
   "ticker": "MSFT",
   "category_id": "1.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "5959fc868d6d7d595d55667c3325617f2c4dfabb12addd1478f2ed3c4a842bb2",
+  "source_sha256": "a6228c95d6f01707a8dad666faf4fcd515715e30002f8456827be89564fcf765",
   "rubrics": [
     {
       "rubric_id": "core_q4fy26_earnings_coverage",
@@ -1551,7 +1551,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-msft-1-2-bdd0667380"
+                "O56"
               ]
             },
             "decisions": {
@@ -1581,7 +1581,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-msft-1-2-bdd0667380",
+    "task_id": "O56",
     "public_question": "Strict information cutoff: 2026-05-29T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAs of 4:00 p.m. ET on May 29, 2026, build a six-month catalyst calendar for Microsoft Corporation (MSFT) covering June 1 through November 30, 2026. Identify scheduled or highly likely Microsoft-specific events that investors should track for their potential effect on valuation. For each event, provide: the best-estimate calendar date (YYYY-MM-DD) and whether that date is officially announced or estimated from the company's historical cadence; a short event description; an event type; a materiality label under this rule—material if the outcome could plausibly move MSFT market value by at least 2% or change consensus FY2027 revenue or EPS by at least 1%, otherwise non-material; the expected impact direction if the event resolves as expected (positive, negative, or two-sided); one or two sentences on how it transmits to Microsoft's revenue, margins, or valuation; and a brief source note on the cutoff-available basis for the event and its date. Rank all events from 1 (most likely to change market expectations) to least. Conclude with a two-to-three-sentence key takeaway naming the single catalyst most likely to change market expectations. Use only information available as of the cutoff; do not use post-cutoff information.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.catalysts[].rank: Rank of the catalyst, 1 = most likely to change market expectations.\n- $.catalysts[].expected_date: Best-estimate ISO date on which the catalyst occurs.\n- $.catalysts[].date_basis: Whether the date is officially announced or estimated from company history.\n- $.catalysts[].event: Short description of the Microsoft-specific catalyst.\n- $.catalysts[].event_type: Category of the catalyst, such as earnings, dividend, conference, product_pricing, or regulatory.\n- $.catalysts[].materiality: Materiality label under the stated 2% market-value or 1% FY2027 estimate-revision rule.\n- $.catalysts[].impact_direction: Expected direction of impact on investor expectations: positive, negative, or two-sided.\n- $.catalysts[].why_it_matters: One or two sentences on how the event transmits to Microsoft's revenue, margins, or valuation.\n- $.catalysts[].source_note: Brief note on the cutoff-available evidence supporting the event and its date.\n- $.key_takeaway: Two-to-three-sentence takeaway naming the single catalyst most likely to change market expectations.\nCite at least 5 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2044,7 +2044,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-msft-1-2-bdd0667380"
+          "O56"
         ]
       },
       "decisions": {
@@ -2072,7 +2072,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "msft_catalyst_calendar_2026h2",
+    "question_id": "O56",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2089,8 +2089,7 @@
         "excerpt": "Microsoft is scheduled to report its fourth quarter fiscal 2026 results post-market on July 29.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_q4fy26_revenue",
@@ -2106,8 +2105,7 @@
         "excerpt": "Microsoft posted adjusted earnings of $4.74 per share on revenue of $90.01 billion for the quarter ended June 30",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_q4fy26_diluted_eps",
@@ -2123,8 +2121,7 @@
         "excerpt": "Diluted earnings came to $4.81 a share, up 32%, or $4.74 excluding the effect of Microsoft's OpenAI investment.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_jun2026_dividend",
@@ -2140,8 +2137,7 @@
         "excerpt": "June 10, 2026 August 20, 2026 September 10, 2026 $ 0.91 $ 6,759",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_jun2026_dividend_date",
@@ -2157,14 +2153,11 @@
         "excerpt": "The dividend declared on June 10, 2026 was included in other current liabilities as of June 30, 2026.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Corrected package. Four targets are accepted and unchanged: msft_q4fy26_earnings_date = July 29 (2026-07-29; c319c069-af9c-48b4-8b60-174d61084e7b, public 2026-07-18T12:00:18Z); msft_q4fy26_revenue = $90.01 billion (e5f0af3e-637c-4f4f-9c43-804503097b68, public 2026-07-30T16:24:19Z); msft_q4fy26_diluted_eps = $4.81 (ecf375fa-af70-44d2-98eb-996542ec0566, public 2026-07-30T12:30:29Z); msft_jun2026_dividend = $0.91 (82a271f0-9b10-4af5-ab50-ffb897e76c50, public 2026-07-29T16:08:02Z).\n\nFor msft_jun2026_dividend_date: FY2026 Form 10-K (82a271f0-9b10-4af5-ab50-ffb897e76c50, public 2026-07-29T16:08:02Z, issuer MICROSOFT CORP). Note 15 - Stockholders' Equity, Dividends, states verbatim: 'The dividend declared on June 10, 2026 was included in other current liabilities as of June 30, 2026.' The declaration date is expressed in the source-text form 'June 10' (year 2026 per the fiscal year 2026 context and the same Note's dividends table row 'June 10, 2026 August 20, 2026 September 10, 2026 $ 0.91 $ 6,759'). This is the June 2026 quarterly dividend declaration date; the declaration was announced June 10, 2026 and reported the same day by the database bulletin 61540064-d849-4af4-9ec4-9d72d011e32a ('Microsoft declares $0.91 dividend', public 2026-06-10T20:08:22Z: 'Microsoft (MSFT) declares $0.91/share quarterly dividend, in line with previous. ... Payable Sept. 10; for shareholders of record Aug. 20'). All values are issuer-reported actuals disclosed after the 2026-05-29T16:00:00-04:00 Solver cutoff."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

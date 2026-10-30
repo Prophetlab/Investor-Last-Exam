@@ -1,6 +1,6 @@
 {
   "id": "O37",
-  "task_id": "task-author-v13-ko-4-4-1fe7d31b95",
+  "task_id": "O37",
   "company": "The Coca-Cola Company",
   "ticker": "KO",
   "category_id": "4.4",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "6612a134577590de214f29e16a053f04d974525f9594a5b6ed2ca5c46c67b222",
+  "source_sha256": "b62b76ae40213cf4685e34e0a2049ba0ecb121e6337dd8cae61cc82097b8db51",
   "rubrics": [
     {
       "rubric_id": "core_q2_organic_forecast_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "q2_2026_organic_revenue_growth",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "The Coca-Cola Company",
         "metric": "Organic revenue growth, year over year",
@@ -98,7 +97,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "q2_2026_organic_revenue_growth",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "The Coca-Cola Company",
         "metric": "Organic revenue growth, year over year",
@@ -1405,7 +1403,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-ko-4-4-1fe7d31b95"
+                "O37"
               ]
             },
             "decisions": {
@@ -1435,7 +1433,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-ko-4-4-1fe7d31b95",
+    "task_id": "O37",
     "public_question": "Strict information cutoff: 2026-06-30T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAs of 2026-06-30 07:00 ET, and using only information available by then, forecast The Coca-Cola Company's (KO) reported organic revenue growth, year over year in percent, for the second quarter of fiscal 2026 (quarter ending 2026-07-03), scheduled for disclosure on July 28, 2026.\n\nAssume a hypothetical instrument, the \"KO Q2 2026 Organic Growth Note\", which settles on that reported figure with these stipulated net returns: below 4.0% -> -8.0%; 4.0% up to but not including 6.0% -> +4.0%; 6.0% or higher -> +14.0%.\n\nApply this external mandate rule: Buy if expected net return is at least +5.0% and downside probability is at most 30%; otherwise Hold if expected net return is at least 0.0%; otherwise Sell.\n\nDeliver: (1) a point forecast of Q2 fiscal 2026 organic revenue growth in percent year over year; (2) three scenario probabilities as fractions of 1 that sum to 1 — below 4.0%, 4.0% to under 6.0%, and 6.0% or higher; (3) the probability-weighted expected net return in percent; (4) the downside probability (probability of a negative net return) as a fraction of 1; (5) a Buy/Hold/Sell decision from the mandate rule, a brief decision rationale, and one to five claim-and-source notes identifying the cutoff evidence that most drove your distribution.\n\nOutcome partition for The Coca-Cola Company, Organic revenue growth, year over year, Q2 2026 (percent): below_4pct: [-infinity, 4); from_4_to_under_6pct: [4, 6); at_or_above_6pct: [6, +infinity). At a cutpoint, use the interval to its right.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.q2_2026_organic_growth_forecast_pct: Point forecast of KO Q2 fiscal 2026 organic revenue growth, year over year, in percent.\n- $.scenario_probabilities.below_4pct: Probability (fraction of 1) assigned to reported organic growth below 4.0%.\n- $.scenario_probabilities.from_4_to_under_6pct: Probability (fraction of 1) assigned to reported organic growth of at least 4.0% and below 6.0%.\n- $.scenario_probabilities.at_or_above_6pct: Probability (fraction of 1) assigned to reported organic growth of 6.0% or higher.\n- $.expected_net_return_pct: Probability-weighted net return of the note across the stipulated payoffs, in percent.\n- $.downside_probability: Probability (fraction of 1) that the note's net return is negative.\n- $.decision: Buy/Hold/Sell decision produced by the mandate rule.\n- $.decision_rationale: Brief written rationale for the decision.\n- $.key_evidence: Up to five claim-and-source notes on the evidence supporting the distribution.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1718,7 +1716,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-ko-4-4-1fe7d31b95"
+          "O37"
         ]
       },
       "decisions": {
@@ -1746,7 +1744,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "ko_q2_2026_organic_growth_note_decision",
+    "question_id": "O37",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -1763,15 +1761,12 @@
         "excerpt": "Organic Revenue rose 6% year on year (beat)",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Verified value for the realized second-quarter 2026 organic revenue growth of The Coca-Cola Company: 6%. Primary source: EODHD Financial News item dated 2026-07-28 (document 5376fb4d-5340-4f2d-9dff-2946f1348a16, public 2026-07-28T11:32:25Z, read successfully for this run), 'Coca-Cola (KO) Q2 CY2026 Highlights' list: 'Organic Revenue rose 6% year on year (beat)'; the item reports results for Q2 2026, the second quarter of fiscal 2026. Cross-checked in post-cutoff records: b85d6d2d-f323-423d-ae36-69a0c74ce863 ('Organic revenues grew 6%') and the issuer's results release 9139561c-4ae0-409e-958c-6b80bfda24c4 (organic revenues grew 6%, with net revenues +7% to $13.4 billion; three months ended July 3, 2026). The 6% figure is the reported actual for the completed quarter and became public on 2026-07-28, after the 2026-06-30 solver cutoff."
+    ]
   },
   "evaluation_policy": {
     "forecast_score_policy": {
-      "version": "forecast-20261004-v1",
       "kind": "probability",
       "budgets": {
         "point": 40,
@@ -1888,12 +1883,10 @@
           "denominator": 7
         }
       },
-      "removed_rubrics": [],
       "interval": null,
       "aggregation": "sum(group_budget * sum(relative_weight * credit)/sum(relative_weight)); final ROUND_HALF_UP to 0.1",
       "raw_rubric_weight_semantics": "within-group relative weight; effective maximum comes from allocation"
     },
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

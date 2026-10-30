@@ -1,6 +1,6 @@
 {
   "id": "O44",
-  "task_id": "task-author-v13-mcd-4-3-a8d1a0edef",
+  "task_id": "O44",
   "company": "McDonald's Corporation",
   "ticker": "MCD",
   "category_id": "4.3",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "05c5cdf1578c060569dcfbe9ce71ad48f8436e735d5bbae9c984abd00600e7de",
+  "source_sha256": "9b0f7988e43d75fdb540619ef770d7aa05cb2b6a6ffb5e3c0ba829c24db46fe0",
   "rubrics": [
     {
       "rubric_id": "core_revenue_estimate_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "reported_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "Total revenues (consolidated, as reported)",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "reported_adjusted_eps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "McDonald's Corporation",
         "metric": "Adjusted diluted earnings per share (non-GAAP)",
@@ -338,7 +336,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "reported_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "Total revenues (consolidated, as reported)",
@@ -410,7 +407,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "reported_adjusted_eps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "McDonald's Corporation",
         "metric": "Adjusted diluted earnings per share (non-GAAP)",
@@ -1696,7 +1692,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-mcd-4-3-a8d1a0edef"
+                "O44"
               ]
             },
             "decisions": {
@@ -1726,7 +1722,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-mcd-4-3-a8d1a0edef",
+    "task_id": "O44",
     "public_question": "Strict information cutoff: 2026-07-22T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nWorking only from information available as of the 07:00 ET cutoff on July 22, 2026, form an independent analyst view of McDonald's Corporation (MCD) Q2 2026 results (quarter ended June 30, 2026) before they are released, and quantify the surprise versus the frozen consensus benchmarks: Q2 2026 total revenues of $7,150 million and Q2 2026 adjusted diluted EPS of $3.33.\n\nDeliver:\n(1) your own estimate of McDonald's Q2 2026 consolidated total revenues in USD millions, together with its arithmetic difference versus the $7,150 million benchmark;\n(2) your own estimate of Q2 2026 adjusted diluted EPS in USD per share — the non-GAAP basis that excludes non-recurring items and is the basis for the consensus comparison, distinct from GAAP diluted EPS — together with its difference versus the $3.33 benchmark;\n(3) calibrated probabilities between 0 and 1 that reported Q2 2026 total revenues land at or above $7,150 million, and that reported Q2 2026 adjusted diluted EPS lands at or above $3.33; and\n(4) the assumptions, risks and surprise rationale supporting your estimates and probabilities.\n\nThe two consensus figures above are fixed inputs and are not to be revised.\n\nAlso submit each complementary miss probability (reported value strictly below the frozen benchmark). Equality belongs to meet-or-beat. Each probability pair must sum to 1.\n\nOutcome partition for McDonald's Corporation, Total revenues (consolidated, as reported), Q2 2026 (quarter ended June 30, 2026) (USD millions): below: [-infinity, 7150); at_or_above: [7150, +infinity). At a cutpoint, use the interval to its right.\n\nOutcome partition for McDonald's Corporation, Adjusted diluted earnings per share (non-GAAP), Q2 2026 (quarter ended June 30, 2026) (USD per share): below: [-infinity, 3.33); at_or_above: [3.33, +infinity). At a cutpoint, use the interval to its right.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.revenue_estimate_usd_millions: Independent Q2 2026 total revenue estimate in USD millions.\n- $.revenue_gap_usd_millions: Revenue estimate minus the $7,150 million frozen benchmark, in USD millions.\n- $.revenue_beat_probability: Probability that reported Q2 2026 total revenues are at or above the $7,150 million benchmark.\n- $.adjusted_eps_estimate_usd: Independent Q2 2026 adjusted diluted EPS estimate in USD per share.\n- $.adjusted_eps_gap_usd: Adjusted EPS estimate minus the $3.33 per share frozen benchmark.\n- $.adjusted_eps_beat_probability: Probability that reported Q2 2026 adjusted diluted EPS is at or above the $3.33 benchmark.\n- $.revenue_miss_probability: Complementary miss probability; sum with revenue_beat_probability must equal 1.\n- $.adjusted_eps_miss_probability: Complementary miss probability; sum with adjusted_eps_beat_probability must equal 1.\nCite at least 6 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2116,7 +2112,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-mcd-4-3-a8d1a0edef"
+          "O44"
         ]
       },
       "decisions": {
@@ -2144,7 +2140,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "mcd_q2_2026_consensus_surprise_extension_r2",
+    "question_id": "O44",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2161,8 +2157,7 @@
         "excerpt": "Total revenues 7,099 6,843 13,616 12,799",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "reported_adjusted_eps",
@@ -2178,8 +2173,7 @@
         "excerpt": "Excluding the current year charges described above of $0.06 per share, diluted earnings per share was $3.38, an increase of 6% (5% in constant currencies) when also excluding prior year charges.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "reported_gaap_eps",
@@ -2195,8 +2189,7 @@
         "excerpt": "Earnings per common share-diluted $ 3.32 $ 3.14 $ 6.10 $ 5.74",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "consensus_revenue_benchmark",
@@ -2212,8 +2205,7 @@
         "excerpt": "For McDonald's, the consensus sales estimate for the current quarter of $7.15 billion indicates a year-over-year change of +4.5%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "official_operator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "official_operator"
       },
       {
         "truth_id": "consensus_adjusted_eps_benchmark",
@@ -2229,15 +2221,12 @@
         "excerpt": "McDonald's is expected to post earnings of $3.33 per share for the current quarter, representing a year-over-year change of +4.4%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "official_operator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "official_operator"
       }
-    ],
-    "verification_notes": "All five targets verified from successfully Read private-database chunks; consensus_revenue_benchmark now records the source's stated figure exactly as quoted. (1) Reported revenue and GAAP EPS: MCDONALDS CORP Form 10-Q for 2026-06-30 (doc 333fceeb-786f-4a39-90f1-86655e3b44d1, public 2026-08-07T12:52:33+00:00); Condensed Consolidated Statement of Income (Unaudited): 'Total revenues 7,099 6,843 13,616 12,799' and 'Earnings per common share-diluted $ 3.32 $ 3.14 $ 6.10 $ 5.74' → Q2 2026 revenues $7,099M; GAAP diluted EPS $3.32. (2) Adjusted EPS: Q2 2026 earnings release (doc 493f93ec-583c-4a59-8d38-79ea669524df, public 2026-08-04T11:00:01+00:00): non-GAAP diluted EPS $3.38 excluding $0.06 per share current-year charges (reconciliation: Non-GAAP $3.38 vs GAAP $3.32). (3) Consensus revenue benchmark: pre-cutoff Zacks article (doc 32579a48-4fa0-4d24-aa4b-f2adbb737746, public 2026-07-16T13:00:06+00:00, identical to the host expected availability): 'the consensus sales estimate for the current quarter of $7.15 billion' — the frozen benchmark of $7,150 million corresponds to this stated $7.15 billion; the target quantity is recorded as 7.15 (USD millions scale of the source's stated number), excerpt quoted verbatim. (4) Consensus adjusted EPS benchmark: same article: 'expected to post earnings of $3.33 per share for the current quarter' (+4.4% YoY vs the $3.19 Q2 2025 adjusted base) = $3.33 per share; strictly pre-cutoff (2026-07-16 < 2026-07-22). (5) Outcome checks vs benchmarks: reported revenue $7,099M vs $7,150M benchmark; reported adjusted EPS $3.38 vs $3.33 benchmark. All realized-outcome values became public after the 2026-07-22T07:00:00-04:00 solver cutoff.\nRestored database $7.15 billion consensus as 7150 USD millions; frozen public benchmark unchanged. Adjusted EPS truth 3.38 remains distinct from GAAP 3.32."
+    ]
   },
   "evaluation_policy": {
     "forecast_score_policy": {
-      "version": "forecast-20261004-v1",
       "kind": "probability",
       "budgets": {
         "point": 40,
@@ -2408,12 +2397,10 @@
           "denominator": 17
         }
       },
-      "removed_rubrics": [],
       "interval": null,
       "aggregation": "sum(group_budget * sum(relative_weight * credit)/sum(relative_weight)); final ROUND_HALF_UP to 0.1",
       "raw_rubric_weight_semantics": "within-group relative weight; effective maximum comes from allocation"
     },
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

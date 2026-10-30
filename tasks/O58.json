@@ -1,6 +1,6 @@
 {
   "id": "O58",
-  "task_id": "task-author-v13-msft-3-1-4ddeb11143",
+  "task_id": "O58",
   "company": "Microsoft Corporation",
   "ticker": "MSFT",
   "category_id": "3.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "a2df94c182722828aad797e5314075a3cdadb325fac046c2aa1f5396bd677f8d",
+  "source_sha256": "d1bec1f23363181590bb3ee3c1a694dab2d2ceba1dd81178ef17016ef353fa0d",
   "rubrics": [
     {
       "rubric_id": "core_total_revenue_point_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_fy26q4_total_revenue_actual",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corporation",
         "metric": "Total revenue",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_fy26q4_microsoft_cloud_actual",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corporation",
         "metric": "Microsoft Cloud revenue",
@@ -192,7 +190,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_fy26q4_pbp_revenue_actual",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corporation",
         "metric": "Productivity and Business Processes segment revenue",
@@ -250,7 +247,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_fy26q4_ic_revenue_actual",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corporation",
         "metric": "Intelligent Cloud segment revenue",
@@ -308,7 +304,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_fy26q4_mpc_revenue_actual",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corporation",
         "metric": "More Personal Computing segment revenue",
@@ -367,7 +362,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_fy26q4_total_revenue_actual",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corporation",
         "metric": "Total revenue",
@@ -1702,7 +1696,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-msft-3-1-4ddeb11143"
+                "O58"
               ]
             },
             "decisions": {
@@ -1732,7 +1726,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-msft-3-1-4ddeb11143",
+    "task_id": "O58",
     "public_question": "Strict information cutoff: 2026-04-29T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAs of the market close on April 29, 2026 (cutoff 2026-04-29T16:00:00-04:00), forecast Microsoft Corporation's (MSFT) fiscal 2026 fourth-quarter revenue for the quarter ending June 30, 2026. Using only information available up to that cutoff, provide a point forecast for consolidated GAAP total revenue in USD millions and an 80% prediction interval around that total, stating the interval's lower and upper bounds in USD millions.\n\nAlso provide point forecasts, in USD millions, for each of Microsoft's three reporting segments — Productivity and Business Processes, Intelligent Cloud, and More Personal Computing — and for Microsoft Cloud revenue for the same quarter. Present the segment-to-total bridge, showing the sum of the three segment forecasts and its difference from the total-revenue point forecast, so the reconciliation is explicit.\n\nFinally, briefly state the key assumptions and drivers behind the forecasts and explain the reasoning for the width of the 80% interval. Keep all figures in USD millions and identify the fiscal period to which each forecast applies.\n\nInterpret the 80% prediction interval as a central predictive interval for the realized consolidated GAAP revenue: its lower and upper endpoints represent your 10th and 90th percentiles. Report both endpoints and all point forecasts in USD millions (not billions, percentages or growth rates). Explain the uncertainties that support the two endpoints. The three reporting segments sum to consolidated revenue; Microsoft Cloud is an overlapping company-defined measure, not a fourth segment to add to that sum.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.total_revenue.point: Point forecast of Microsoft's FY2026 Q4 total revenue in USD millions.\n- $.total_revenue.interval_low: Lower bound of the analyst's 80% prediction interval for FY2026 Q4 total revenue, USD millions.\n- $.total_revenue.interval_high: Upper bound of the analyst's 80% prediction interval for FY2026 Q4 total revenue, USD millions.\n- $.segments.productivity_and_business_processes: Point forecast of FY2026 Q4 Productivity and Business Processes segment revenue, USD millions.\n- $.segments.intelligent_cloud: Point forecast of FY2026 Q4 Intelligent Cloud segment revenue, USD millions.\n- $.segments.more_personal_computing: Point forecast of FY2026 Q4 More Personal Computing segment revenue, USD millions.\n- $.microsoft_cloud_revenue: Point forecast of FY2026 Q4 Microsoft Cloud revenue, USD millions.\nCite at least 5 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2049,7 +2043,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-msft-3-1-4ddeb11143"
+          "O58"
         ]
       },
       "decisions": {
@@ -2077,7 +2071,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "msft_fy26q4_revenue_forecast",
+    "question_id": "O58",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2094,9 +2088,7 @@
         "excerpt": "Revenue: $90 billion for the quarter, up 18% year-over-year",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2",
-        "verification_notes": "Host unit correction release-unit-repair-20260914-v1: the preserved excerpt explicitly states $90 billion; stored value is normalized to 90000.0 USD millions. No new database retrieval; previous value and notes preserved in private_before.json."
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_fy26q4_pbp_revenue_actual",
@@ -2112,9 +2104,7 @@
         "excerpt": "Productivity and Business Processes Revenue: $37.8 billion, up 14%",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2",
-        "verification_notes": "Host unit correction release-unit-repair-20260914-v1: the preserved excerpt explicitly states $37.8 billion; stored value is normalized to 37800.0 USD millions. No new database retrieval; previous value and notes preserved in private_before.json."
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_fy26q4_ic_revenue_actual",
@@ -2130,9 +2120,7 @@
         "excerpt": "Intelligent Cloud Revenue: $39.3 billion, up 32%",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2",
-        "verification_notes": "Host unit correction release-unit-repair-20260914-v1: the preserved excerpt explicitly states $39.3 billion; stored value is normalized to 39300.0 USD millions. No new database retrieval; previous value and notes preserved in private_before.json."
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_fy26q4_mpc_revenue_actual",
@@ -2148,9 +2136,7 @@
         "excerpt": "More Personal Computing Revenue: $12.9 billion",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2",
-        "verification_notes": "Host unit correction release-unit-repair-20260914-v1: the preserved excerpt explicitly states $12.9 billion; stored value is normalized to 12900.0 USD millions. No new database retrieval; previous value and notes preserved in private_before.json."
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_fy26q4_microsoft_cloud_actual",
@@ -2166,16 +2152,12 @@
         "excerpt": "Microsoft Cloud Revenue: $59.3 billion for the quarter, up 27%",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2",
-        "verification_notes": "Host unit correction release-unit-repair-20260914-v1: the preserved excerpt explicitly states $59.3 billion; stored value is normalized to 59300.0 USD millions. No new database retrieval; previous value and notes preserved in private_before.json."
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Values are now the exact figures as disclosed in the cited source text (e.g., 90 for '$90 billion', 37.8 for '$37.8 billion'), with the unit field kept as the requested USD millions so the host's quantity-scale normalization applies; the host's scale-normalization flag is expected and will convert these to USD millions equivalents (90,000; 37,800; 39,300; 12,900; 59,300). All five targets cite one post-cutoff document whose title and text identify the period: 'Microsoft Corp (MSFT) (Q4 2026) Earnings Call Highlights: Record Revenue Surpasses $331 ...', release date July 29, 2026 (FY2026 fourth quarter, quarter ended June 30, 2026), public 2026-07-30. Excerpts are verbatim spans from that chunk's opening financial-summary bullets and contain the reported figure exactly; none contain forecast, guidance, consensus or analyst-estimate wording. Cross-check with issuer filings: FY2026 10-K (82a271f0-9b10-4af5-ab50-ffb897e76c50) less FY2026 Q3 10-Q nine-month figures (9c70566c-d773-4467-ad0d-435216ef5ef4) implies Q4 total 90,007M; PBP 37,847M; IC 39,306M; MPC 12,854M; Microsoft Cloud ~59,300M, matching the cited reported figures. All figures became public after the 2026-04-29 Solver cutoff."
+    ]
   },
   "evaluation_policy": {
     "forecast_score_policy": {
-      "version": "forecast-20261004-v1",
       "kind": "interval80",
       "budgets": {
         "point": 70,
@@ -2337,9 +2319,6 @@
           "denominator": 4
         }
       },
-      "removed_rubrics": [
-        "support_interval_sharpness_80"
-      ],
       "interval": {
         "rubric_id": "support_interval_coverage_80",
         "point_rubric_id": "core_total_revenue_point_accuracy",
@@ -2351,7 +2330,6 @@
       "aggregation": "sum(group_budget * sum(relative_weight * credit)/sum(relative_weight)); final ROUND_HALF_UP to 0.1",
       "raw_rubric_weight_semantics": "within-group relative weight; effective maximum comes from allocation"
     },
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

@@ -1,6 +1,6 @@
 {
   "id": "O41",
-  "task_id": "task-author-v13-mcd-3-1-42da8c03ef",
+  "task_id": "O41",
   "company": "McDonald's Corporation",
   "ticker": "MCD",
   "category_id": "3.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "54f0b21ea78013b326ee19ca260c7b24219f2c843de5f99e454c6313f746620d",
+  "source_sha256": "f4a1ec709a75a20c957b74bfc0b8a92b5348d21c0e644246e17f6f978bd9dbab",
   "rubrics": [
     {
       "rubric_id": "core_global_point",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "mcd_q2_2026_global_comp_sales",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "Global comparable sales growth, as reported",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "mcd_q2_2026_us_comp_sales",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "U.S. comparable sales growth, as reported",
@@ -152,7 +150,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "mcd_q2_2026_iom_comp_sales",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "International Operated Markets comparable sales growth, as reported",
@@ -210,7 +207,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "mcd_q2_2026_idl_comp_sales",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "International Developmental Licensed Markets comparable sales growth, as reported",
@@ -398,7 +394,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "mcd_q2_2026_global_comp_sales",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "Global comparable sales growth, as reported",
@@ -1650,7 +1645,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-mcd-3-1-42da8c03ef"
+                "O41"
               ]
             },
             "decisions": {
@@ -1680,7 +1675,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-mcd-3-1-42da8c03ef",
+    "task_id": "O41",
     "public_question": "Strict information cutoff: 2026-03-30T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nMcDonald's Corporation (MCD) — Q2 2026 comparable sales forecast\n\nAs of the cutoff on March 30, 2026, at 7:00 a.m. ET, forecast McDonald's reported comparable sales growth for Q2 2026 (April 1 through June 30, 2026). All figures should be year-over-year percentage changes in constant currencies, reported to one decimal place.\n\nProvide point forecasts for four measures: global comparable sales growth; U.S. segment comparable sales growth; International Operated Markets segment comparable sales growth; and International Developmental Licensed Markets & Corporate segment comparable sales growth.\n\nIn addition, provide an 80% prediction interval for global comparable sales growth, stating the lower bound, upper bound, and interval width in percentage points. The interval should reflect the uncertainty surrounding the point forecast.\n\nFinally, estimate the Q2 2026 segment comparable-sales weights used in the global aggregation: the U.S., International Operated Markets, and International Developmental Licensed Markets & Corporate shares of the global comparable-sales base, each in percent, with the three shares summing to 100 percent.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.global_comp_point_pct: Point forecast of Q2 2026 global comparable sales growth in percent.\n- $.global_comp_interval_low_pct: Lower bound of the 80% prediction interval for Q2 2026 global comparable sales growth, in percent.\n- $.global_comp_interval_high_pct: Upper bound of the 80% prediction interval for Q2 2026 global comparable sales growth, in percent.\n- $.segment_comp_points.us_pct: Point forecast of Q2 2026 U.S. comparable sales growth in percent.\n- $.segment_comp_points.iom_pct: Point forecast of Q2 2026 International Operated Markets comparable sales growth in percent.\n- $.segment_comp_points.idl_pct: Point forecast of Q2 2026 International Developmental Licensed Markets & Corporate comparable sales growth in percent.\n- $.comp_weights_pct.us: U.S. share of the global comparable-sales base used in the bridge, in percent.\n- $.comp_weights_pct.iom: International Operated Markets share of the global comparable-sales base used in the bridge, in percent.\n- $.comp_weights_pct.idl: International Developmental Licensed Markets & Corporate share of the global comparable-sales base used in the bridge, in percent.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2020,7 +2015,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-mcd-3-1-42da8c03ef"
+          "O41"
         ]
       },
       "decisions": {
@@ -2048,7 +2043,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "mcd_q2_2026_comps_forecast",
+    "question_id": "O41",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2065,8 +2060,7 @@
         "excerpt": "Comparable Sales\nThe following table presents the percent change in comparable sales for the quarters and six months ended June 30, 2026 and 2025:\nIncrease/(Decrease)\nQuarters Ended June 30,\n2026 2025\nU.S. 0.8 % 2.5 %\nInternational Operated Markets 1.5 4.0\nInternational Developmental Licensed Markets 1.9 5.6\nTotal Company 1.3 % 3.8 %",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_q2_2026_us_comp_sales",
@@ -2082,8 +2076,7 @@
         "excerpt": "Comparable Sales\nThe following table presents the percent change in comparable sales for the quarters and six months ended June 30, 2026 and 2025:\nIncrease/(Decrease)\nQuarters Ended June 30,\n2026 2025\nU.S. 0.8 % 2.5 %\nInternational Operated Markets 1.5 4.0\nInternational Developmental Licensed Markets 1.9 5.6\nTotal Company 1.3 % 3.8 %",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_q2_2026_iom_comp_sales",
@@ -2099,8 +2092,7 @@
         "excerpt": "Comparable Sales\nThe following table presents the percent change in comparable sales for the quarters and six months ended June 30, 2026 and 2025:\nIncrease/(Decrease)\nQuarters Ended June 30,\n2026 2025\nU.S. 0.8 % 2.5 %\nInternational Operated Markets 1.5 4.0\nInternational Developmental Licensed Markets 1.9 5.6\nTotal Company 1.3 % 3.8 %",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       },
       {
         "truth_id": "mcd_q2_2026_idl_comp_sales",
@@ -2116,15 +2108,12 @@
         "excerpt": "Comparable Sales\nThe following table presents the percent change in comparable sales for the quarters and six months ended June 30, 2026 and 2025:\nIncrease/(Decrease)\nQuarters Ended June 30,\n2026 2025\nU.S. 0.8 % 2.5 %\nInternational Operated Markets 1.5 4.0\nInternational Developmental Licensed Markets 1.9 5.6\nTotal Company 1.3 % 3.8 %",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "regulator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "regulator"
       }
-    ],
-    "verification_notes": "All four Q2 2026 comparable-sales truths were read directly from McDonald's SEC Form 10-Q for the quarterly period ended June 30, 2026 (immutable document id 333fceeb-786f-4a39-90f1-86655e3b44d1; doc-001, chunk 1), MD&A \"Comparable Sales\" table, \"Quarters Ended June 30, 2026 and 2025\" columns: U.S. 0.8%, International Operated Markets 1.5%, International Developmental Licensed Markets 1.9%, Total Company 1.3%. The filing's database public_available_at is 2026-08-07T12:52:33+00:00, i.e. after the Solver cutoff of 2026-03-30T07:00:00-04:00, so each is a realized company outcome (reported actual, not consensus or guidance). Values are constant-currency comparable sales as defined by McDonald's; the 10-Q labels the third segment row \"International Developmental Licensed Markets\" (comparable sales for the International Developmental Licensed Markets & Corporate segment, as Corporate has no comparable-sales base). Corroboration: the issuer's Q2 2026 results release (document id 493f93ec-583c-4a59-8d38-79ea669524df, \"McDONALD'S REPORTS SECOND QUARTER 2026 RESULTS\", public 2026-08-04T11:00:01+00:00) states global comparable sales increased 1.3%, U.S. 0.8%, International Operated Markets 1.5%, International Developmental Licensed Markets 1.9%; independent news/earnings-call coverage (doc-072, doc-077, doc-089, doc-107) confirms global 1.3%, U.S. 0.8%, IOM 1.5% and IDL 1.9%. Excerpts are verbatim contiguous spans from the successfully read 10-Q chunk; the period heading is given in the locator because the table rows do not repeat the fiscal period."
+    ]
   },
   "evaluation_policy": {
     "forecast_score_policy": {
-      "version": "forecast-20261004-v1",
       "kind": "interval80",
       "budgets": {
         "point": 70,
@@ -2286,9 +2275,6 @@
           "denominator": 7
         }
       },
-      "removed_rubrics": [
-        "support_interval_sharpness"
-      ],
       "interval": {
         "rubric_id": "support_interval_coverage",
         "point_rubric_id": "core_global_point",
@@ -2300,7 +2286,6 @@
       "aggregation": "sum(group_budget * sum(relative_weight * credit)/sum(relative_weight)); final ROUND_HALF_UP to 0.1",
       "raw_rubric_weight_semantics": "within-group relative weight; effective maximum comes from allocation"
     },
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

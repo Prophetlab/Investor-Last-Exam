@@ -1,6 +1,6 @@
 {
   "id": "O05",
-  "task_id": "task-author-v13-aapl-3-1-ca4252ec04",
+  "task_id": "O05",
   "company": "Apple Inc.",
   "ticker": "AAPL",
   "category_id": "3.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "bf326b19b664057d50da9b4ff88d452208b2606b5628f00ae9fb61c801630a54",
+  "source_sha256": "6a39e73106bf0cb2a93074e3bbc2d10482f7c709bc3cab3b836b174a88363ae8",
   "rubrics": [
     {
       "rubric_id": "core_total_revenue_point",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_fq326_total",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Apple Inc.",
         "metric": "Total net sales (total revenue)",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_fq326_iphone",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Apple Inc.",
         "metric": "iPhone net sales",
@@ -152,7 +150,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_fq326_mac",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Apple Inc.",
         "metric": "Mac net sales",
@@ -210,7 +207,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_fq326_ipad",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Apple Inc.",
         "metric": "iPad net sales",
@@ -268,7 +264,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_fq326_wearables",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Apple Inc.",
         "metric": "Wearables, Home and Accessories net sales",
@@ -326,7 +321,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_fq326_services",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Apple Inc.",
         "metric": "Services net sales",
@@ -470,7 +464,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aapl_fq326_total",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Apple Inc.",
         "metric": "Total net sales (total revenue)",
@@ -1714,7 +1707,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-aapl-3-1-ca4252ec04"
+                "O05"
               ]
             },
             "decisions": {
@@ -1744,7 +1737,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-aapl-3-1-ca4252ec04",
+    "task_id": "O05",
     "public_question": "Strict information cutoff: 2026-03-01T16:30:00-04:00. Use only information publicly available on or before this timestamp.\n\nForecast Apple Inc.'s (AAPL) net sales for its fiscal 2026 third quarter (the June quarter), using only information available at the cutoff stated above.\n\nIn USD billions, provide:\n- a point forecast of total company net sales for that quarter;\n- the low and high bounds of an 80% prediction interval for that total;\n- point forecasts for iPhone, Mac, iPad, Wearables/Home and Accessories, and Services net sales for the same quarter, with the category forecasts reconciling to the total.\n\nExplain the assumptions and reasoning behind each forecast, identify the main uncertainties, and include the evidence and calculations that support your answer.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.total_revenue_forecast_usd_billions: Point estimate of Apple's fiscal 2026 third-quarter total company net sales, in USD billions.\n- $.interval_low_usd_billions: Lower bound of the 80% prediction interval for the quarter's total net sales, in USD billions.\n- $.interval_high_usd_billions: Upper bound of the 80% prediction interval for the quarter's total net sales, in USD billions.\n- $.iphone_revenue_usd_billions: Forecast of iPhone net sales for the quarter, in USD billions.\n- $.mac_revenue_usd_billions: Forecast of Mac net sales for the quarter, in USD billions.\n- $.ipad_revenue_usd_billions: Forecast of iPad net sales for the quarter, in USD billions.\n- $.wearables_home_accessories_revenue_usd_billions: Forecast of Wearables, Home and Accessories net sales for the quarter, in USD billions.\n- $.services_revenue_usd_billions: Forecast of Services net sales for the quarter, in USD billions.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2018,7 +2011,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-aapl-3-1-ca4252ec04"
+          "O05"
         ]
       },
       "decisions": {
@@ -2046,7 +2039,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "aapl_fq3fy26_revenue_forecast",
+    "question_id": "O05",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2063,8 +2056,7 @@
         "excerpt": "Total net sales $ 109,417",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "aapl_fq326_iphone",
@@ -2080,8 +2072,7 @@
         "excerpt": "iPhone $ 54,252",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "aapl_fq326_mac",
@@ -2097,8 +2088,7 @@
         "excerpt": "Mac 10,352",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "aapl_fq326_ipad",
@@ -2114,8 +2104,7 @@
         "excerpt": "iPad 6,191",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "aapl_fq326_wearables",
@@ -2131,8 +2120,7 @@
         "excerpt": "Wearables, Home and Accessories 7,883",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "aapl_fq326_services",
@@ -2148,15 +2136,12 @@
         "excerpt": "Services 30,739",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Corrections per validator feedback: (1) unit set exactly to the requested 'USD' for all six targets; (2) values stated as the exact as-filed figures shown in the document (Apple's Form 10-Q presents these tables in millions; e.g., total net sales $109,417 million = $109.417 billion; category billions equivalents: 54.252, 10.352, 6.191, 7.883, 30.739). All six FQ3 FY2026 targets are realized outcomes verified from Apple Inc.'s Form 10-Q for the fiscal quarter ended June 27, 2026 (SEC EDGAR; immutable document_version_id 35bd552d-2c9f-409f-9d3a-a6ffe629460f; public_available_at 2026-07-31T06:01:03Z, after the 2026-03-01 solver cutoff): iPhone 54,252; Mac 10,352; iPad 6,191; Wearables, Home and Accessories 7,883; Services 30,739; Total net sales 109,417 (the five categories sum exactly to the total). Excerpts are short verbatim spans from the successfully read 10-Q chunk (MD&A 'Products and Services Performance' net sales table, column 'Three Months Ended June 27, 2026'; identical figures appear in Note 2 – Revenue), and each locator carries the exact official period heading because the spans alone do not repeat the quarter. Cross-checked against Apple's 2026-07-30 earnings release ('quarterly revenue of $109.4 billion') and post-result news coverage ($109.417B total; iPhone $54.252B; Services $30.739B)."
+    ]
   },
   "evaluation_policy": {
     "forecast_score_policy": {
-      "version": "forecast-20261004-v1",
       "kind": "interval80",
       "budgets": {
         "point": 70,
@@ -2327,9 +2312,6 @@
           "denominator": 29
         }
       },
-      "removed_rubrics": [
-        "support_interval_sharpness"
-      ],
       "interval": {
         "rubric_id": "support_interval_coverage",
         "point_rubric_id": "core_total_revenue_point",
@@ -2341,7 +2323,6 @@
       "aggregation": "sum(group_budget * sum(relative_weight * credit)/sum(relative_weight)); final ROUND_HALF_UP to 0.1",
       "raw_rubric_weight_semantics": "within-group relative weight; effective maximum comes from allocation"
     },
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

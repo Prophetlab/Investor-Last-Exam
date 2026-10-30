@@ -1,6 +1,6 @@
 {
   "id": "O22",
-  "task_id": "task-author-v13-googl-6-1-1d211ff5b8",
+  "task_id": "O22",
   "company": "Alphabet Inc.",
   "ticker": "GOOGL",
   "category_id": "6.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "753a131d7cae1fec62f07bfd5d57bd748e43f515e7fedb2a9e4fd95d58d9c14e",
+  "source_sha256": "15dccf4efa3980c5c11b74935dfc8c6e853707bfe10b3693ea41c88e7444f1ad",
   "rubrics": [
     {
       "rubric_id": "core_rev_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "alphabet_q2_2026_total_revenues",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Alphabet Inc.",
         "metric": "Total revenues (consolidated, as reported)",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "alphabet_q2_2026_services_revenues",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Alphabet Inc.",
         "metric": "Google Services segment revenues (as reported)",
@@ -152,7 +150,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "alphabet_q2_2026_cloud_revenues",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Alphabet Inc.",
         "metric": "Google Cloud segment revenues (as reported)",
@@ -210,7 +207,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "alphabet_q2_2026_operating_income",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Alphabet Inc.",
         "metric": "Income from operations (GAAP operating income, as reported)",
@@ -1449,7 +1445,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-googl-6-1-1d211ff5b8"
+                "O22"
               ]
             },
             "decisions": {
@@ -1479,7 +1475,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-googl-6-1-1d211ff5b8",
+    "task_id": "O22",
     "public_question": "Strict information cutoff: 2026-06-08T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAlphabet Inc. (GOOGL) — Q2 2026 earnings outlook decision.\n\nObjective: as of the stated information date, and using only information available on or before it, deliver an equity-research view on Alphabet covering Q2 2026, the quarter ending 30 June 2026. Evidence scope: the company's public filings, earnings materials, and other information available on or before that date; select whichever materials are sufficient.\n\nConventions: dollar amounts in USD millions; the margin in percent.\n\nDeliverables: point estimates for consolidated revenues, Google Services segment revenues, Google Cloud segment revenues, and income from operations, plus consolidated operating margin; a reproducible bridge with clearly stated assumptions; a brief earnings-outlook assessment covering whether recent developments change the outlook and how robust the investment case is; a stance of increase, maintain, or reduce for an existing long position over the next two reported quarters; measurable invalidation conditions for that stance; and the principal uncertainties for the estimates.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.q2_total_revenue_usd_m: Q2 2026 consolidated revenues point estimate, USD millions.\n- $.q2_services_revenue_usd_m: Q2 2026 Google Services segment revenues point estimate, USD millions.\n- $.q2_cloud_revenue_usd_m: Q2 2026 Google Cloud segment revenues point estimate, USD millions.\n- $.q2_operating_income_usd_m: Q2 2026 income from operations point estimate, USD millions.\n- $.q2_operating_margin_pct: Q2 2026 consolidated operating margin point estimate, percent.\n- $.bridge: Reproducible bridge from cutoff-available results and assumptions to the estimates.\n- $.thesis_view: Assessment of whether latest operating evidence changes the earnings outlook and thesis robustness.\n- $.recommendation: Stance on an existing long position: increase, maintain, or reduce.\n- $.invalidation_conditions: Measurable conditions that would invalidate the stance.\n- $.key_uncertainties: Principal uncertainties for the Q2 2026 nowcast.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1704,7 +1700,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-googl-6-1-1d211ff5b8"
+          "O22"
         ]
       },
       "decisions": {
@@ -1732,7 +1728,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "alphabet_q2_2026_earnings_outlook_decision",
+    "question_id": "O22",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -1749,8 +1745,7 @@
         "excerpt": "Total revenues $ 96,428 $ 119,796 $ 186,662 $ 229,692",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "alphabet_q2_2026_services_revenues",
@@ -1766,8 +1761,7 @@
         "excerpt": "Google Services total 82,543 94,540 159,807 184,177",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "alphabet_q2_2026_cloud_revenues",
@@ -1783,8 +1777,7 @@
         "excerpt": "Google Cloud 13,624 24,768 25,884 44,796",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "alphabet_q2_2026_operating_income",
@@ -1800,14 +1793,11 @@
         "excerpt": "Income from operations 31,271 40,770 61,877 80,466",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All four targets were resolved from Alphabet Inc.'s Form 10-Q for the quarterly period ended June 30, 2026 (immutable document_version_id 66272c60-8ea7-4af5-b34f-811088b9a2f8; source SEC EDGAR; public_available_at 2026-07-23T01:15:55+00:00, after the 2026-06-08 Solver cutoff), whose chunks 1-3 were each read successfully. Three Months Ended June 30, 2026 column: Consolidated Statements of Income 'Revenues' row = $119,796 million and 'Income from operations' row = $40,770 million; Note 2 'Revenues' disaggregated revenues table shows 'Google Services total' = $94,540 million and 'Google Cloud' = $24,768 million (same amounts confirmed in the Note 15 segment table: Total revenues $ 96,428 $ 119,796 $ 186,662 $ 229,692; Total income from operations $ 31,271 $ 40,770 $ 61,877 $ 80,466). Each excerpt is a verbatim row span from a successful read; locators carry the official period heading ('Three Months Ended June 30, 2026') because the excerpt rows do not repeat the quarter. Cross-checked against the Q2 2026 earnings call (document_id 74e744a1-dc81-47d8-86ec-62d6a59c831b): revenues $119.8B (+24%), Services $94.5B (+15%), Cloud $24.8B (+82%), operating income $40.8B (+30%), margin 34% — consistent; derived operating margin = 40,770/119,796 = 34.0%. Q2 2025 comparatives in the same tables (96,428; 82,543; 13,624; 31,271) give YoY +24.2%/+14.5%/+81.8%/+30.4%. Alternate candidate documents listed in the feasibility handles belong to other issuers (NISOURCE, People Inc, PLAYSTUDIOS filings) and were not used; every value comes from Alphabet's own 10-Q. No post-cutoff information underlies any cutoff baseline; all four targets are post-cutoff realized outcomes."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

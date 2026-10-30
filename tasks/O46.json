@@ -1,6 +1,6 @@
 {
   "id": "O46",
-  "task_id": "task-author-v13-mcd-5-2-e1b200e39a-bmk-prior-r1",
+  "task_id": "O46",
   "company": "McDonald's Corporation",
   "ticker": "MCD",
   "category_id": "5.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "7da48ff67476b7749c4ad7d42205bd2d0c3b7da279c8d0fc9c896ec595da92bf",
+  "source_sha256": "64527b52795260f2a60e10e0c63190eac9a94f4652f02175da4cbd3fe9b1c4f8",
   "rubrics": [
     {
       "rubric_id": "core_revenue_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "t_q2_2026_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "Consolidated revenues",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "t_q2_2026_diluted_eps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "Diluted earnings per common share",
@@ -152,7 +150,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "t_q2_2026_us_comps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "U.S. comparable sales growth",
@@ -210,7 +207,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "t_q2_2026_global_comps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "Global comparable sales growth",
@@ -1767,7 +1763,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-mcd-5-2-e1b200e39a-bmk-prior-r1"
+                "O46"
               ]
             },
             "decisions": {
@@ -1797,7 +1793,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-mcd-5-2-e1b200e39a-bmk-prior-r1",
+    "task_id": "O46",
     "public_question": "Strict information cutoff: 2026-03-30T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nActing as an analyst covering McDonald's Corporation (MCD), update your Q2 2026 forecast as of the 30 March 2026 07:00 ET cutoff, struck before the quarter begins (quarter ending 30 June 2026).\n\nStart from this fixed pre-update house model for Q2 2026: consolidated revenue USD7,150 million; global comparable sales growth3.4%; U.S.2.6%; International Operated Markets3.6%; International Developmental Licensed Markets4.2%; adjusted operating margin48.0%; diluted EPS USD3.34 per share. These are stipulated model inputs, not reported results or prescribed revisions. Keep a full before-to-after audit trail. Identify one company-specific development published after 12 February 2026 and on or before the cutoff that you judge most material for the quarter, and state its summary, source and publication date. Apply it to the prior model.\n\nDeliver:\n- Revised Q2 2026 consolidated revenues (USD millions); global, U.S., International Operated Markets and International Developmental Licensed Markets comparable sales growth (percent); adjusted operating margin (percent); and diluted EPS (USD per share).\n- A line-by-line bridge covering all seven Q2 2026 forecast lines, showing prior value, revised value, delta, a changed/unchanged flag and the driver of each change.\n- The FY2026 planning assumptions carried forward unchanged, with their values.\n- A revenue bridge and an EPS bridge showing how the signal transmits to the revised lines, plus a materiality judgment on the signal.\n\nUse only information available at the cutoff, and distinguish reported figures from your estimates.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.new_signal.summary: The new cutoff-valid company-specific development bearing on the Q2 2026 quarter\n- $.new_signal.source: Source that disclosed the new development\n- $.new_signal.public_date: Publication date of the new development\n- $.revised_q2_2026.revenue_usd_m: Revised Q2 2026 consolidated revenues in USD millions\n- $.revised_q2_2026.global_comps_pct: Revised Q2 2026 global comparable sales growth in percent\n- $.revised_q2_2026.us_comps_pct: Revised Q2 2026 U.S. comparable sales growth in percent\n- $.revised_q2_2026.iom_comps_pct: Revised Q2 2026 International Operated Markets comparable sales growth in percent\n- $.revised_q2_2026.idl_comps_pct: Revised Q2 2026 International Developmental Licensed Markets comparable sales growth in percent\n- $.revised_q2_2026.operating_margin_pct: Revised Q2 2026 adjusted operating margin in percent\n- $.revised_q2_2026.diluted_eps_usd: Revised Q2 2026 diluted earnings per share in USD\n- $.line_changes: Prior, revised and delta for each of the seven Q2 2026 lines with a changed flag\n- $.carried_forward: FY2026 planning assumptions carried forward unchanged, with values\n- $.bridge: Before-to-after explanation of how the signal moves the affected lines\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2201,7 +2197,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-mcd-5-2-e1b200e39a-bmk-prior-r1"
+          "O46"
         ]
       },
       "decisions": {
@@ -2229,7 +2225,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "mcd_q2_2026_forecast_update",
+    "question_id": "O46",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2246,8 +2242,7 @@
         "excerpt": "Total revenues $ 7,099 $ 6,843 $ 13,616 $ 12,799",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "t_q2_2026_diluted_eps",
@@ -2263,8 +2258,7 @@
         "excerpt": "Earnings per common share-diluted $ 3.32 $ 3.14 $ 6.10 $ 5.74",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "t_q2_2026_us_comps",
@@ -2280,8 +2274,7 @@
         "excerpt": "U.S. comparable sales increased 0.8% for the quarter and 2.3% for the six months.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "t_q2_2026_global_comps",
@@ -2297,8 +2290,7 @@
         "excerpt": "Global comparable sales increased 1.3% for the quarter and 2.5% for the six months.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "t_q2_2025_revenue",
@@ -2314,8 +2306,7 @@
         "excerpt": "Total revenues 6,843 6,490 12,799 12,659",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "t_q2_2025_diluted_eps",
@@ -2331,14 +2322,11 @@
         "excerpt": "Earnings per common share-diluted $ 3.14 $ 2.80 $ 5.74 $ 5.46",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All six targets were resolved from issuer-filed quarterly reports retrieved and Read directly from the private database.\n\nDiscovery: lookup(quarterly, us) returned MCDONALDS CORP 2026-06-30 Form 10-Q (document_id 333fceeb-786f-4a39-90f1-86655e3b44d1, doc-024, public 2026-08-07T12:52:33+00:00) and MCDONALDS CORP 2025-06-30 Form 10-Q (document_id a25133f3-2fef-452c-9a08-d8f7a5aab1a2, doc-026, public 2025-08-06T16:17:05+00:00). Both match host feasibility handles for these truth_ids.\n\nQ2 2026 realized outcomes (Read of doc-024, chunk 1, successful):\n- Consolidated revenues: $7,099 million, Condensed Consolidated Statement of Income total revenues line (\"Total revenues $ 7,099 $ 6,843 $ 13,616 $ 12,799\"), quarter column vs. prior-year quarter 6,843 and six-month 13,616/12,799. Independently corroborated by the issuer's Q2 2026 earnings release (McDONALD'S REPORTS SECOND QUARTER 2026 RESULTS, document_id 493f93ec-583c-4a59-8d38-79ea669524df, public 2026-08-04T11:00:01+00:00), which shows \"Revenues $ 7,099 $ 6,843\".\n- Diluted EPS: $3.32 (\"Earnings per common share-diluted $ 3.32 $ 3.14 $ 6.10 $ 5.74\"); earnings release corroborates \"$ 3.32 $ 3.14\".\n- U.S. comparable sales: +0.8% (\"U.S. comparable sales increased 0.8% for the quarter and 2.3% for the six months\"); the MD&A Comparable Sales table (p. 25) shows \"U.S. 0.8 % 2.5 %\" for the quarter ended June 30, 2026 vs 2025.\n- Global comparable sales: +1.3% (\"Global comparable sales increased 1.3% for the quarter and 2.5% for the six months\"); table \"Total Company 1.3 % 3.8 %\" and the earnings release's \"Global comparable sales increased 1.3%: U.S. increased 0.8%...\" both corroborate.\nSegment detail read for context (not submitted as targets): IOM +1.5% and IDL +1.9% for Q2 2026.\n\nQ2 2025 cutoff baselines (Read of doc-026, chunk 1, successful):\n- Consolidated revenues: $6,843 million (\"Total revenues 6,843 6,490 12,799 12,659\").\n- Diluted EPS: $3.14 (\"Earnings per common share-diluted $ 3.14 $ 2.80 $ 5.74 $ 5.46\").\n- Segment comps read as context: U.S. 2.5%, IOM 4.0%, IDL 5.6%, Total 3.8% for the quarter ended June 30, 2025. These prior-year comps are also visible as the comparative columns of the Q2 2026 press release table, and the prior-year revenue/EPS comparatives in the Q2 2026 10-Q match, giving cross-document consistency.\n\nTiming/boundary checks: the four Q2 2026 items are realized_outcome and became public on 2026-08-04 (earnings release) / 2026-08-07 (10-Q), i.e., after the 2026-03-30T07:00:00-04:00 Solver cutoff, and after the expected_available_after 2026-07-29T07:00:00-04:00. The two Q2 2025 items are cutoff_baseline, public 2025-08-06, strictly before the cutoff, and contain no post-cutoff information. No target uses post-cutoff material in the baseline, no adjusted/non-GAAP substitute was used for reported revenue or diluted EPS, and each excerpt is a single short span copied from one successfully Read chunk with the official period/column heading supplied in the locator."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

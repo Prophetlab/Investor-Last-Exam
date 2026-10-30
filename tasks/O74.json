@@ -1,6 +1,6 @@
 {
   "id": "O74",
-  "task_id": "task-author-v13-tsla-4-2-2b50301878",
+  "task_id": "O74",
   "company": "Tesla, Inc.",
   "ticker": "TSLA",
   "category_id": "4.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "33c5d9992b46780684b349c53111da1eb058b3a8c38732731b3c5f760f504777",
+  "source_sha256": "54cb531dc7b5d6f0549f4ec26c97b4017d55521d4688f3eef013933278f2d009",
   "rubrics": [
     {
       "rubric_id": "core_cutoff_close_price",
@@ -304,7 +304,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tsla_q2_2026_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Tesla, Inc.",
         "metric": "Total revenues",
@@ -1622,7 +1621,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-tsla-4-2-2b50301878"
+                "O74"
               ]
             },
             "decisions": {
@@ -1652,7 +1651,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-tsla-4-2-2b50301878",
+    "task_id": "O74",
     "public_question": "Strict information cutoff: 2026-03-23T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nTesla, Inc. (TSLA) reverse-DCF implied growth. Using the closing share price from the last completed trading session before the 23 March 2026 16:00 ET cutoff, and common shares outstanding as disclosed on the cover page of Tesla's most recent annual report, build the capital bridge: market capitalisation; net cash (cash and cash equivalents plus short-term investments less debt and finance leases) per the audited FY2025 year-end balance sheet; and enterprise value.\n\nSolve for the single constant annual revenue growth rate over the FY2026–FY2035 horizon that equates the DCF value of the firm to that enterprise value, holding fixed: FY2025 audited total revenues as the base; EBIT margin of 10.0% in FY2026 rising 1.0 percentage point yearly to 19.0% in FY2035; 21.0% cash tax on EBIT; D&A at 8.0% of revenue; capex at 10.0% of revenue; net working capital increase at 1.0% of the year-over-year revenue increase; FCF = EBIT × (1 − 21.0%) + D&A − capex − ΔNWC; year-end discounting at 9.0%; terminal value = FY2035 FCF × 1.03 ÷ (0.09 − 0.03), discounted ten years.\n\nReport the implied CAGR, the implied FY2026 and FY2035 revenues, your Q2 2026 total revenue forecast and its year-over-year growth versus reported Q2 2025 revenue, and classify the near-term trajectory as supportive if Q2 2026 growth is at least the implied FY2026 growth, otherwise challenging. Amounts in USD billions; rates in percent.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.capital_bridge.share_price_usd: Cutoff closing share price used as the fixed price anchor, USD per share.\n- $.capital_bridge.shares_outstanding_millions: Common shares outstanding from the most recent annual report, millions.\n- $.capital_bridge.market_cap_usd_bn: Cutoff market capitalisation, USD billions.\n- $.capital_bridge.net_cash_usd_bn: Net cash from the audited year-end balance sheet, USD billions.\n- $.capital_bridge.enterprise_value_usd_bn: Enterprise value bridged from the cutoff price, USD billions.\n- $.implied_expectations.implied_revenue_cagr_pct: Solved constant FY2026-FY2035 revenue growth rate implied by the cutoff price, percent.\n- $.implied_expectations.implied_fy2026_revenue_usd_bn: FY2026 revenue implied by the solved growth rate, USD billions.\n- $.implied_expectations.implied_fy2035_revenue_usd_bn: FY2035 revenue implied by the solved growth rate, USD billions.\n- $.near_term_check.q2_2026_revenue_forecast_usd_bn: Forecast Q2 2026 total revenues, USD billions.\n- $.near_term_check.q2_2026_yoy_growth_pct: Forecast Q2 2026 year-over-year revenue growth versus reported Q2 2025, percent.\n- $.near_term_check.trajectory_verdict: Supports or challenges classification of the near-term trajectory against the implied FY2026 growth.\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1950,7 +1949,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-tsla-4-2-2b50301878"
+          "O74"
         ]
       },
       "decisions": {
@@ -1978,7 +1977,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "tsla_reverse_dcf_implied_growth_2026",
+    "question_id": "O74",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -1995,8 +1994,7 @@
         "excerpt": "Total revenues 94,827 97,690 96,773",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_cash_2025",
@@ -2012,8 +2010,7 @@
         "excerpt": "Cash and cash equivalents $ 16,513 $ 16,139",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_sti_2025",
@@ -2029,8 +2026,7 @@
         "excerpt": "Short-term investments 27,546 20,424",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_debt_2025",
@@ -2046,8 +2042,7 @@
         "excerpt": "Total debt 1,569 6,584 $ 8,177 $ 6,429",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_shares_outstanding",
@@ -2063,8 +2058,7 @@
         "excerpt": "As of January 23, 2026, there were 3,752,431,984 shares of the registrant’s common stock outstanding.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_close_2026_03_20",
@@ -2080,8 +2074,7 @@
         "excerpt": "The call comes as Tesla shares closed at $367.96 on Friday, extending the stock's year-to-date decline to 18%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "exchange",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "exchange"
       },
       {
         "truth_id": "tsla_implied_cagr",
@@ -2097,8 +2090,7 @@
         "excerpt": "Total revenues 94,827 97,690 96,773",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_q2_2026_revenue",
@@ -2114,8 +2106,7 @@
         "excerpt": "Total revenues 28,236 22,496 50,623 41,831",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_q2_2025_revenue",
@@ -2131,14 +2122,11 @@
         "excerpt": "Total revenues 22,496 25,500 41,831 46,801",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Only tsla_debt_2025 was corrected. The FY2025 Form 10-K (doc 52f3ff1d-1023-416a-ba59-626696f90249, public 2026-01-29T01:55:04Z) prints the debt-and-finance-leases carrying value only as two components - 'Current portion of debt and finance leases 1,640' and 'Debt and finance leases, net of current portion 6,736' (Note 9: 'Total debt and finance leases $ 1,640 $ 6,736') - whose sum is 8,376 (USD 8.376bn); the combined figure 8,376 never appears as a single number anywhere in the filing (verified across all five chunks). The nearest audited printed total is Note 9's 'Total debt' line, 8,177 (unpaid principal; USD 8.177bn, within 2.4% of 8,376), quoted verbatim with its full row 'Total debt 1,569 6,584 $ 8,177 $ 6,429'. All other targets were already accepted: FY2025 total revenues 94,827 (USD 94.827bn), cash and cash equivalents 16,513 (USD 16.513bn), short-term investments 27,546 (USD 27.546bn), cover-page shares outstanding 3,752,431,984 (= 3,752.431984 million), Q2 2026 total revenues 28,236 (USD 28.236bn, realized after the cutoff), Q2 2025 total revenues 22,496 (USD 22.496bn), cutoff close USD 367.96 (2026-03-20), and the deterministic implied CAGR 28.47% (market cap 3,752,431,984 x 367.96 = USD 1,380.74bn; net cash 16,513 + 27,546 - 8,376 = USD 35.68bn; EV USD 1,345.06bn). No post-cutoff information used for any cutoff_baseline target."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200
