@@ -202,3 +202,17 @@ No open-source license is specified in this initial repository. The paper, finan
   url          = {https://prophet-lab.cn/benchmarks/investor-last-exam-v1/}
 }
 ```
+
+## Star History
+
+<div align="center">
+
+<a href="https://www.star-history.com/?repos=prophetlab%2Finvestor-last-exam&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=prophetlab/investor-last-exam&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=prophetlab/investor-last-exam&type=date&legend=top-left" />
+   <img width="800" alt="Star History Chart" src="https://api.star-history.com/chart?repos=prophetlab/investor-last-exam&type=date&legend=top-left" />
+ </picture>
+</a>
+
+</div>
