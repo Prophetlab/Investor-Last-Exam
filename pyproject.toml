@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "investor-last-exam"
+version = "1.0.0"
+description = "Point-in-time equity research benchmark runner"
+requires-python = ">=3.12"
+dependencies = [
+  "harbor==0.23.0", "httpx[socks]>=0.28,<1", "pydantic>=2.13,<3",
+  "pydantic-settings>=2.7,<3", "jsonschema>=4.23,<5", "gymnasium>=1.1,<2",
+  "fastapi>=0.115,<1", "toml>=0.10,<1",
+]
+
+[project.scripts]
+ile = "ile_bench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "prompts/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
