@@ -1,6 +1,6 @@
 {
   "id": "O20",
-  "task_id": "task-author-v13-googl-5-1-3048f5ed24",
+  "task_id": "O20",
   "company": "Alphabet Inc.",
   "ticker": "GOOGL",
   "category_id": "5.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "bfd51e9477afa7953eabfd27dc93cab7f749ab68532218e0cae65ea3e9bb4061",
+  "source_sha256": "1926f1df568ecae229a78739f05ea7057801a2c0be9b15b420b894355a85ba40",
   "rubrics": [
     {
       "rubric_id": "core_tpu_launch_event",
@@ -1527,7 +1527,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-googl-5-1-3048f5ed24"
+                "O20"
               ]
             },
             "decisions": {
@@ -1557,7 +1557,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-googl-5-1-3048f5ed24",
+    "task_id": "O20",
     "public_question": "Strict information cutoff: 2026-04-23T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAct as the monitoring desk covering Alphabet Inc. (GOOGL) and its Google Cloud segment. The information cutoff is 2026-04-23T16:00:00-04:00. Screen only items published during the 48-hour window ending at that cutoff, and determine which, if any, materially change the desk's standing forecast of Alphabet's Q2 2026 (quarter ending 2026-06-30) Google Cloud segment revenue.\n\nTwo inputs are fixed: the standing Q2 2026 Google Cloud revenue baseline of $19.8 billion, and a materiality rule under which an item counts only if it implies at least $0.10 billion of incremental annual Google Cloud revenue.\n\nDeliver a monitoring digest containing: the window start and end timestamps; a deduplicated, impact-ordered list of material events, each with an event ID, date, subject, action, affected Google Cloud revenue driver(s), direction, estimated impact on the Q2 2026 forecast in USD billions, and source; an explicit boolean no-material-change position; a screened-out list giving a one-line reason for each immaterial item; and the revised Q2 2026 Google Cloud segment revenue forecast in USD billions.\n\nFor context, research Alphabet's reported Google Cloud segment revenue for Q4 2025 and Q2 2025 and its Q4 2025 Cloud backlog, all in USD billions.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.window_start: Start timestamp of the monitored 48-hour information window.\n- $.window_end: End timestamp of the monitored window, equal to the information cutoff.\n- $.material_events: Ordered list of window items judged material to Q2 2026 Google Cloud revenue, each with event ID, date, subject, action, affected driver(s), direction, USD-billion impact and source.\n- $.material_events[].affected_drivers: Google Cloud revenue driver or drivers affected by each material event, as a comma-separated label.\n- $.material_events[].impact_on_q2_2026_cloud_revenue_usd_b: Estimated effect of each material event on the Q2 2026 Google Cloud revenue forecast, in USD billions.\n- $.no_material_change: Explicit boolean position on whether any window item is material.\n- $.screened_out: Window items judged immaterial, each with a one-line reason.\n- $.revised_q2_2026_cloud_revenue_usd_b: Revised Q2 2026 Google Cloud segment revenue forecast in USD billions.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1984,7 +1984,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-googl-5-1-3048f5ed24"
+          "O20"
         ]
       },
       "decisions": {
@@ -2012,7 +2012,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "alphabet_monitor_update_2026-04-23",
+    "question_id": "O20",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2029,8 +2029,7 @@
         "excerpt": "Cloud revenues were up 82% to $24.8 billion",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "gcp_rev_q4_2025",
@@ -2046,8 +2045,7 @@
         "excerpt": "Cloud revenue accelerated meaningfully and were up 48% to $17.7 billion.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "gcp_rev_q2_2025",
@@ -2063,8 +2061,7 @@
         "excerpt": "revenues increased by 32% to $13.6 billion in the second quarter",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "gcp_backlog_q4_2025",
@@ -2080,14 +2077,11 @@
         "excerpt": "Google Cloud's backlog increased 55% sequentially and more than doubled year-over-year, reaching $240 billion at the end of the fourth quarter.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Corrected only the two rejected targets; Q4 2025 revenue ($17.7B) and Q4 2025 backlog ($240B) remain unchanged. gcp_rev_q2_2026: Q2 2026 Alphabet Inc Earnings Call (doc 74e744a1-dc81-47d8-86ec-62d6a59c831b, public 2026-07-22T23:33:31.381000Z), CFO Anat Ashkenazi, Google Cloud segment results - verbatim 'Cloud revenues were up 82% to $24.8 billion'; cross-checked against Alphabet's Form 10-Q for the quarter ended 2026-06-30 (doc 66272c60-8ea7-4af5-b34f-811088b9a2f8), Note 15 segment table Google Cloud row 13,624 / 24,768 (USD millions), and MD&A 'increase in Google Cloud revenues of $11.1 billion, or 82%'. This is a post-cutoff issuer-reported actual. gcp_rev_q2_2025: Q2 2025 Alphabet Inc Earnings Call (doc 410e9488-e95a-4da4-8d2e-10c97864ddd5, public 2025-07-24T01:01:12.143000Z), CFO Anat Ashkenazi, Google Cloud segment results - verbatim 'revenues increased by 32% to $13.6 billion in the second quarter'; cross-checked against the Form 10-Q for the quarter ended 2025-06-30 (doc 47a87d20-f538-40e7-a544-6db329742afb), Note 15 segment table Google Cloud row 10,347 / 13,624 (USD millions), and the comparative column in the Q2 2026 10-Q. Both corrected excerpts state the figures verbatim in USD billions and match the submitted values exactly; the underlying reported amounts are $24,768M and $13,624M respectively."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

@@ -1,6 +1,6 @@
 {
   "id": "O54",
-  "task_id": "task-author-v13-meta-6-1-79cc80328a",
+  "task_id": "O54",
   "company": "Meta Platforms, Inc.",
   "ticker": "META",
   "category_id": "6.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "def1f50ec39c5aeee01f10ed55a3e727896bfd8c172590ac2d93493b09430612",
+  "source_sha256": "708d37d3d3ebf6a4442d876e001dab04dd0d72fae5f88586763213d910742663",
   "rubrics": [
     {
       "rubric_id": "core_q2_revenue_forecast_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "q2_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Meta Platforms, Inc.",
         "metric": "Total revenue",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "q2_op_income",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Meta Platforms, Inc.",
         "metric": "Income from operations",
@@ -152,7 +150,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "q2_expenses",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Meta Platforms, Inc.",
         "metric": "Total costs and expenses",
@@ -1648,7 +1645,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-meta-6-1-79cc80328a"
+                "O54"
               ]
             },
             "decisions": {
@@ -1678,7 +1675,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-meta-6-1-79cc80328a",
+    "task_id": "O54",
     "public_question": "Strict information cutoff: 2026-06-29T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nMeta Platforms, Inc. (META) — information cutoff 2026-06-29, 16:00 ET.\n\nUsing only information available at or before the cutoff, build a near-term earnings outlook for Meta and a position recommendation for the fund's Meta holding over a 12-month horizon.\n\nDeliver Q2 2026 (three months ending June 30, 2026) point forecasts, in USD millions on a GAAP as-reported basis, for total revenue, total costs and expenses, and operating income. The submitted figures must satisfy the identity: total revenue minus total costs and expenses equals operating income. Support them with a reproducible forecast bridge narrating how the cutoff-available evidence and your adjustments lead to each of the three figures.\n\nAssess whether evidence available at the cutoff changes Meta's near-term earnings trajectory and the robustness of the investment thesis. Recommend add, maintain, or trim for the fund's Meta position, with rationale linking the action to your forecasts and the supporting evidence. State the conditions that must hold for your thesis to work, the conditions that would falsify it, and the key uncertainties that could change the outlook, thesis, or action.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.q2_2026_revenue_forecast_usd_m: Point forecast of Meta Q2 2026 consolidated total revenue in USD millions.\n- $.q2_2026_total_expenses_forecast_usd_m: Point forecast of Meta Q2 2026 total costs and expenses in USD millions.\n- $.q2_2026_operating_income_forecast_usd_m: Point forecast of Meta Q2 2026 operating income in USD millions, consistent with revenue less expenses.\n- $.forecast_bridge_notes: Narrative of the reproducible bridge from cutoff evidence to the three forecasts.\n- $.earnings_outlook_assessment: Whether cutoff evidence changes Meta's near-term earnings trajectory, with support.\n- $.recommended_action: Recommended action (add, maintain, trim) for the Meta position.\n- $.decision_rationale: Rationale connecting the action to forecasts, evidence and conditions.\n- $.thesis_conditions: Conditions that must hold for the constructive thesis.\n- $.falsification_conditions: Conditions that would invalidate the constructive thesis.\n- $.key_uncertainties: Key uncertainties that could change the outlook, thesis or action.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2079,7 +2076,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-meta-6-1-79cc80328a"
+          "O54"
         ]
       },
       "decisions": {
@@ -2107,7 +2104,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "meta_q2_2026_earnings_outlook_decision",
+    "question_id": "O54",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2124,8 +2121,7 @@
         "excerpt": "Revenue $ 60,801 $ 47,516 $ 117,111 $ 89,830",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q2_op_income",
@@ -2141,8 +2137,7 @@
         "excerpt": "Income from operations 18,775 20,441 41,647 37,997",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q2_expenses",
@@ -2158,14 +2153,11 @@
         "excerpt": "Total costs and expenses 42,026 27,075 75,464 51,833",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Verified directly from the private database. Source: Meta Platforms, Inc. Form 10-Q for the quarter ended 2026-06-30 (document_version_id 74e2c32e-6ec9-418d-a267-980fac14dccc, SEC EDGAR, public_available_at 2026-07-29T18:58:52+00:00 - after the 2026-06-29T16:00:00-04:00 solver cutoff). Successfully Read chunk 1 (Condensed Consolidated Statements of Income, page 7, column 'Three Months Ended June 30,' year 2026) and chunk 2 (Item 2 'Results of Operations' table 'condensed consolidated statements of income data (in millions)'), which contain the identical verbatim rows: 'Revenue $ 60,801 $ 47,516 $ 117,111 $ 89,830'; 'Total costs and expenses 42,026 27,075 75,464 51,833'; 'Income from operations 18,775 20,441 41,647 37,997'. Reported Q2 2026 actuals: total revenue 60,801 USD millions; total costs and expenses 42,026 USD millions; income from operations 18,775 USD millions. The revenue-minus-expenses identity holds exactly: 60,801 - 42,026 = 18,775. Cross-corroborated by EODHD news documents (0a9abec9-9df3-4efb-8ec4-634880be7550: revenue grew 28% to $60.8 billion, total expenses $42.03 billion, +55% YoY; f2b6627a-8f06-4b3a-b0dc-3feb07d7b2ca: revenues +28% YoY to $60.80 billion) and by the prior-quarter 10-Q (4d916e31-9aab-4531-827e-42a673bf0b9c: Q1 2026 revenue 56,311, total costs and expenses 33,439, income from operations 22,872; identity holds). All three targets are issuer-reported actuals for the three months ended June 30, 2026, first made public via the 10-Q filing on 2026-07-29, i.e., after the cutoff; excerpts were copied verbatim from successfully Read source chunks with the official period heading carried in the locator."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

@@ -1,6 +1,6 @@
 {
   "id": "O42",
-  "task_id": "task-author-v13-mcd-3-4-45bfe8d6c4",
+  "task_id": "O42",
   "company": "McDonald's Corporation",
   "ticker": "MCD",
   "category_id": "3.4",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "c9e7affe4fa711b0cb40bc41f6764cb73bca0d3b4e7c76c13d2538343da2c0b5",
+  "source_sha256": "d3bed41fe6328497251ab92dfbc09388446eb14fbd2be615c6238321eaf2a0fa",
   "rubrics": [
     {
       "rubric_id": "core_updated_us_comps_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "mcd_q2_2026_us_comps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "McDonald's Corporation",
         "metric": "U.S. comparable sales growth",
@@ -1367,7 +1366,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-mcd-3-4-45bfe8d6c4"
+                "O42"
               ]
             },
             "decisions": {
@@ -1397,7 +1396,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-mcd-3-4-45bfe8d6c4",
+    "task_id": "O42",
     "public_question": "Strict information cutoff: 2026-04-29T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nMcDonald's Corporation (MCD) reports U.S. comparable sales as the year-over-year percent change in sales at U.S. restaurants — company-operated and franchised — open at least 13 months, as the company defines and reports the metric.\n\nAs of 7:00 a.m. Eastern Time on April 29, 2026, update your forecast of McDonald's U.S. comparable sales growth for the quarter ending June 30, 2026, after incorporating the newest peer-operator, customer and supplier signals disclosed before that cutoff. The quarter is already underway, so this is an in-quarter nowcast: use only information available by the cutoff, and do not rely on results reported later.\n\nDeliver: (1) your updated point forecast and (2) the pre-update baseline you held for the same metric before those signals, both in percent year over year to one decimal place; (3) a driver-level bridge from the baseline to the updated forecast — for each driver you revise, name it, state the direction of change, summarize your reasoning, and cite the disclosed evidence supporting it; and (4) the drivers you leave unchanged, with the reason each is unaffected by the new information.\n\nYour updated figure will be compared with the U.S. comparable sales growth that McDonald's ultimately reports for that quarter.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.updated_us_comps_q2_2026_pct: Updated point forecast of McDonald's U.S. comparable sales growth for Q2 2026, in percent year over year.\n- $.baseline_us_comps_q2_2026_pct: Pre-update baseline forecast for the same metric ahead of the newest peer disclosures.\n- $.driver_updates[].change_summary: Driver-level changes behind the revision, each with its direction and supporting reasoning.\n- $.driver_updates[].evidence: Disclosed facts and sources supporting each driver change.\n- $.unchanged_drivers[]: Forecast drivers left unchanged after the update, with the reason each is unaffected.\nCite at least 4 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1713,7 +1712,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-mcd-3-4-45bfe8d6c4"
+          "O42"
         ]
       },
       "decisions": {
@@ -1741,7 +1740,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "mcd_us_comps_q2_2026_update",
+    "question_id": "O42",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -1758,14 +1757,11 @@
         "excerpt": "U.S. comparable sales increased 0.8% for the quarter and 2.3% for the six months.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Realized U.S. comparable sales growth for McDonald's Q2 2026 (quarter ended 2026-06-30) verified as +0.8% year-over-year. Primary source: McDonald's Form 10-Q for the period ended June 30, 2026 (immutable id 333fceeb-786f-4a39-90f1-86655e3b44d1, public_available_at 2026-08-07T12:52:33Z). A focused Read of chunk 1 returned the verbatim MD&A sentence \"U.S. comparable sales increased 0.8% for the quarter and 2.3% for the six months.\" under the section 'Second Quarter and Six Months 2026 Financial Performance'; the Comparable Sales table confirms U.S. 0.8% (Qs ended Jun 30, 2026) vs 2.5% (Qs ended Jun 30, 2025) and 2.3% vs (0.5)% for the six-month periods. Corroborated by a successful Read of McDonald's Q2 2026 earnings release (id 493f93ec-583c-4a59-8d38-79ea669524df, public 2026-08-04T11:00:01Z): \"Global comparable sales increased 1.3%: U.S. increased 0.8%...\" and by multiple independent news/call-summary items (U.S. same-store sales rising 0.8%, a slowdown from 2.5% a year earlier; US Comparable Sales: 0.8% growth in the quarter, 2.3% for the first half). The figure is an issuer-reported actual that first became public after the Solver cutoff (2026-04-29), consistent with truth_role=realized_outcome. The 10-Q comparable-sales definition matches the question's metric (restaurants open at least thirteen months, company-operated and franchised, as reported). No conflicting value was found across authorized sources; 0.8% (one decimal) is the single reported figure."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

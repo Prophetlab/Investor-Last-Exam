@@ -1,6 +1,6 @@
 {
   "id": "O33",
-  "task_id": "task-author-v13-ko-1-2-1b8aa12a09",
+  "task_id": "O33",
   "company": "The Coca-Cola Company",
   "ticker": "KO",
   "category_id": "1.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "47825f1698a845f5bd2d7412d8e012610a8ca46376c344cf4145c8b0b54630f1",
+  "source_sha256": "5475b4c5ca6632b2b88ec3a6ef9ba672dea226b9fb8e7294b63fe56278227866",
   "rubrics": [
     {
       "rubric_id": "core_calendar_start",
@@ -1531,7 +1531,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-ko-1-2-1b8aa12a09"
+                "O33"
               ]
             },
             "decisions": {
@@ -1561,7 +1561,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-ko-1-2-1b8aa12a09",
+    "task_id": "O33",
     "public_question": "Strict information cutoff: 2026-03-22T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nBuild a six-month catalyst calendar for The Coca-Cola Company (KO) covering the window from 22 March 2026 through 22 September 2026.\n\nIdentify company-specific events that are scheduled, already announced, or reasonably expected to fall inside that window, and present them as a dated table in chronological order. For each entry, provide the event date or expected timing, a short event description, a category, a binary materiality label, an expected-impact rank, and a brief evidence-based rationale. Where two or more entries describe the same underlying event, consolidate them into a single entry.\n\nApply the fixed materiality rule: an entry counts as material only if it is expected to change FY2026 consensus estimates by at least 1% or to produce a five-day share-price reaction of at least 3%; otherwise it is not material. Rank every calendar entry by its expected impact on KO's market expectations, where rank 1 is the highest expected impact, and report the total number of entries labeled material.\n\nAlso state the first and last dates of the calendar window.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.calendar_start: First date of the six-month catalyst window.\n- $.calendar_end: Last date of the six-month catalyst window.\n- $.catalysts: Chronological table of dated Coca-Cola catalysts.\n- $.catalysts[].date: Event date or expected timing for each catalyst.\n- $.catalysts[].event: Short description of each catalyst.\n- $.catalysts[].category: Category of each catalyst.\n- $.catalysts[].materiality: Binary materiality label for each catalyst under the fixed rule.\n- $.catalysts[].impact_rank: Expected-impact rank for each catalyst, 1 = highest.\n- $.catalysts[].rationale: Evidence-based reason for each entry and label.\n- $.material_catalyst_count: Number of entries labeled material.\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1969,7 +1969,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-ko-1-2-1b8aa12a09"
+          "O33"
         ]
       },
       "decisions": {
@@ -1997,7 +1997,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "ko_catalyst_calendar_2026",
+    "question_id": "O33",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2014,8 +2014,7 @@
         "excerpt": "Coca-Cola (NYSE:KO) has announced that COO Henrique Braun is expected to succeed James Quincey as CEO on March 31, 2026.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_annual_meeting_date",
@@ -2031,8 +2030,7 @@
         "excerpt": "With Lagomasino’s retirement April 29, there will be 12 directors standing for election at Coca-Cola’s annual meeting of shareowners.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "fifa_world_cup_2026_start",
@@ -2048,8 +2046,7 @@
         "excerpt": "On Thursday, June 11, the tournament opens on FOX with live coverage starting at 1:00 PM ET before host nation Mexico welcomes Group A opponent South Africa.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "official_operator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "official_operator"
       },
       {
         "truth_id": "fifa_world_cup_2026_final",
@@ -2065,8 +2062,7 @@
         "excerpt": "The FIFA World Cup 2026TM Final will air on FOX, Sunday, July 19 at 3:00 PM ET from New York New Jersey.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "official_operator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "official_operator"
       },
       {
         "truth_id": "ko_q1_2026_dividend_rate",
@@ -2082,8 +2078,7 @@
         "excerpt": "The board’s decision to lift the quarterly dividend by about 4% to US$0.53, extending a 64 year growth streak, is the clearest link between current performance and shareholder returns right now.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_q2_2026_earnings_date",
@@ -2099,14 +2094,11 @@
         "excerpt": "ATLANTA, July 28, 2026--(BUSINESS WIRE)--The Coca-Cola Company today reported second quarter 2026 results.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Both corrected targets re-verified from chunks Read this session. ko_ceo_effective_date now cites EODHD news 'Coca-Cola CEO Shift And Juice Focus Weighed Against Valuation And Returns' (document_id 0cbdcc77-db1b-44ca-a128-66d4ab880993, public_available_at 2026-02-10T07:06:03Z), whose first paragraph reads verbatim: 'Coca-Cola (NYSE:KO) has announced that COO Henrique Braun is expected to succeed James Quincey as CEO on March 31, 2026.'; value 'March 31' appears in that excerpt and with period March 2026 gives the effective date; the article is pre-cutoff, so the cutoff_baseline role holds. ko_q2_2026_earnings_date cites the actual earnings release (document_id 9139561c-4ae0-409e-958c-6b80bfda24c4, public_available_at 2026-07-28T10:55:01Z) whose opening paragraph reads verbatim: 'ATLANTA, July 28, 2026--(BUSINESS WIRE)--The Coca-Cola Company today reported second quarter 2026 results.'; value 'July 28' appears in that excerpt and the release evidences the realized company outcome. Values use the same comma-free source form as the four accepted targets; all other fields preserved."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

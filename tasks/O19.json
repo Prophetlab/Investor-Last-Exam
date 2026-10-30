@@ -1,6 +1,6 @@
 {
   "id": "O19",
-  "task_id": "task-author-v13-googl-4-3-0789bb88e2",
+  "task_id": "O19",
   "company": "Alphabet Inc.",
   "ticker": "GOOGL",
   "category_id": "4.3",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "d152548f5116f5096c5123e0a89d4574f2633636c3b4ee6ee9737c20d8bcc4b6",
+  "source_sha256": "7e4f2e1e68c7861c3c5db00be4590fe2a975f9c91b2c57c006b205a3b926f50a",
   "rubrics": [
     {
       "rubric_id": "core_revenue_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "q1_2026_rev_net_tac",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Alphabet Inc.",
         "metric": "Q1 2026 revenues net of traffic acquisition costs (net revenue = total revenues less TAC)",
@@ -95,7 +94,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "q1_2026_eps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Alphabet Inc.",
         "metric": "Q1 2026 GAAP diluted earnings per share",
@@ -154,7 +152,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "q1_2026_rev_net_tac",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Alphabet Inc.",
         "metric": "Q1 2026 revenues net of traffic acquisition costs (net revenue = total revenues less TAC)",
@@ -227,7 +224,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "q1_2026_eps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Alphabet Inc.",
         "metric": "Q1 2026 GAAP diluted earnings per share",
@@ -1637,7 +1633,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-googl-4-3-0789bb88e2"
+                "O19"
               ]
             },
             "decisions": {
@@ -1667,7 +1663,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-googl-4-3-0789bb88e2",
+    "task_id": "O19",
     "public_question": "Strict information cutoff: 2026-03-24T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAlphabet Inc. (GOOGL) — Q1 2026 earnings surprise package.\n\nAs of the cutoff, 2026-03-24 16:00 ET, produce your own independent estimates for Alphabet's Q1 2026 (quarter ending 2026-03-31) on the consensus basis of revenue net of traffic acquisition costs (total revenues less TAC), plus GAAP diluted EPS. Treat the pre-cutoff Zacks consensus of $91.69B revenue net of TAC and $2.76 GAAP diluted EPS as the frozen comparison benchmark for this task.\n\nDeliver: your Q1 2026 revenue net of TAC estimate in USD billions and its gap versus $91.69B; your Q1 2026 GAAP diluted EPS estimate and its gap versus $2.76; and calibrated probabilities, each between 0 and 1, that reported revenue net of TAC is at or above $91.69B and that reported GAAP diluted EPS is at or above $2.76.\n\nInclude a rationale for the estimates and probability calibration, your key drivers, and the single largest risk to the estimates. Quarterly results are expected in late April 2026. Use only information available at the cutoff.\n\nFor each metric, also submit the complementary probability of a miss (reported value strictly below its frozen benchmark). Meet-or-beat includes equality. Each meet-or-beat and miss probability pair must sum to 1.\n\nOutcome partition for Alphabet Inc., Q1 2026 revenues net of traffic acquisition costs (net revenue = total revenues less TAC), Q1 2026 (USD billions): below: [-infinity, 91.69); at_or_above: [91.69, +infinity). At a cutpoint, use the interval to its right.\n\nOutcome partition for Alphabet Inc., Q1 2026 GAAP diluted earnings per share, Q1 2026 (USD): below: [-infinity, 2.76); at_or_above: [2.76, +infinity). At a cutpoint, use the interval to its right.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.revenue_estimate_usd_billions: Independent forecast of Q1 2026 total revenues less traffic acquisition costs, in USD billions.\n- $.revenue_gap_usd_billions: Forecast net revenue minus the frozen $91.69B benchmark, in USD billions.\n- $.revenue_beat_probability: Probability between 0 and 1 that reported Q1 2026 net revenue is at or above $91.69B.\n- $.eps_estimate_usd: Independent forecast of Q1 2026 GAAP diluted earnings per share, in USD.\n- $.eps_gap_usd: Forecast EPS minus the frozen $2.76 benchmark, in USD.\n- $.eps_beat_probability: Probability between 0 and 1 that reported Q1 2026 GAAP diluted EPS is at or above $2.76.\n- $.estimate_rationale: Evidence-based explanation of the estimates and probability calibration.\n- $.primary_risk_to_estimates: The single largest risk to the estimates.\n- $.revenue_miss_probability: Complementary miss probability; together with revenue_beat_probability it must sum to 1.\n- $.eps_miss_probability: Complementary miss probability; together with eps_beat_probability it must sum to 1.\nCite at least 5 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2021,7 +2017,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-googl-4-3-0789bb88e2"
+          "O19"
         ]
       },
       "decisions": {
@@ -2049,7 +2045,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "googl_q1_2026_surprise_package_consensus_r1",
+    "question_id": "O19",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2066,8 +2062,7 @@
         "excerpt": "Alphabet reported revenues of $94.67 billion in the last reported quarter, representing a year-over-year change of +23.8%.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q1_2026_eps",
@@ -2083,8 +2078,7 @@
         "excerpt": "Diluted net income per share (1) $ 2.81 $ 5.11 $ 2.30 82 %",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q1_2026_rev_gaap",
@@ -2100,8 +2094,7 @@
         "excerpt": "Total revenues $ 90,234 $ 109,896",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q1_2026_tac",
@@ -2117,8 +2110,7 @@
         "excerpt": "TAC $ 13,748 $ 15,228",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q1_2026_benchmark_rev",
@@ -2134,8 +2126,7 @@
         "excerpt": "The Zacks Consensus Estimate for first-quarter 2026 revenues is pegged at $91.69 billion, implying 20% year-over-year growth.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "official_operator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "official_operator"
       },
       {
         "truth_id": "q1_2026_benchmark_eps",
@@ -2151,15 +2142,12 @@
         "excerpt": "The consensus mark for first-quarter 2026 earnings is pegged at $2.76 per share, unchanged over the past 30 days, suggesting 1.8% decline year over year.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "official_operator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "official_operator"
       }
-    ],
-    "verification_notes": "Verified independently from documents Read successfully in the private database (view authorized through 2026-09-10T10:46:46Z).\n\nQ1 2026 actuals: Alphabet Inc. Form 10-Q for the quarter ended 2026-03-31 (doc 05a4dea3-c637-4cf6-998b-f156409b8b18; public 2026-04-30T01:02:12Z; SEC EDGAR). Total revenues $109,896M; TAC $15,228M; diluted net income per share $5.11 (Executive Overview row; Note 12 consolidated column also $5.11). Net revenue = total revenues less TAC = 109,896 − 15,228 = $94,668M, i.e. the reported headline \"$94.67 billion\" (rounding only; submitted at full million precision per the requested unit). Headline corroborated by Zacks result recaps (doc daf2cc9d-62d4-43c3-bad7-cbca8007f29e, 2026-04-30T16:33:01Z; doc e630f1b7-79c3-48c3-b425-4b75cae73c31) and by key-metrics article 8d7c2c1c-dd04-4d4b-bc72-727bab930018 ($94.67B revenue; TAC $15.23B; EPS $5.11). EPS also corroborated by the Q1 2026 earnings call transcript 381e4246-513f-4174-8296-5f72f54c84f1 (\"earnings per share increased 82% to $5.11\") and AP recap fa3f8d84-e726-4945-a0f5-dae333574294.\n\nFrozen benchmark (latest pre-cutoff Zacks observations; published 2026-03-17T16:53:01Z, before the 2026-03-24 16:00 ET cutoff; doc 9c05375c-3fdd-43ea-941d-240072a010b2): Q1 2026 EPS consensus $2.76 and Q1 2026 revenue consensus $91.69 billion. The $91.69B level is on the net-of-TAC basis (Q1 2025 net base 76,486M × 1.1988 ≈ 91,690M); identical $91.69B / $2.76 values recur in other pre-cutoff Zacks articles (e.g., 15440477-aa06-4477-82fa-f7850dda8ae6, 2026-03-16; 328cb725-a420-4ff9-bc80-2d22e4235c10, 2026-03-09). No post-cutoff information used for the cutoff_baseline targets.\n\nAll excerpts are verbatim spans from single successfully Read chunks; official periods are stated in the locators where not repeated in the excerpt span.\nRecovery revision: corrected net revenue unit to USD billions without changing the frozen value 94.67. Net revenue 94.67B is a database news report rounded from official 10-Q components 109896M minus 15228M = 94668M. News is a secondary report, not itself the issuer filing."
+    ]
   },
   "evaluation_policy": {
     "forecast_score_policy": {
-      "version": "forecast-20261004-v1",
       "kind": "probability",
       "budgets": {
         "point": 40,
@@ -2312,12 +2300,10 @@
           "denominator": 9
         }
       },
-      "removed_rubrics": [],
       "interval": null,
       "aggregation": "sum(group_budget * sum(relative_weight * credit)/sum(relative_weight)); final ROUND_HALF_UP to 0.1",
       "raw_rubric_weight_semantics": "within-group relative weight; effective maximum comes from allocation"
     },
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

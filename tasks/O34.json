@@ -1,6 +1,6 @@
 {
   "id": "O34",
-  "task_id": "task-author-v13-ko-1-3-cc40399c80",
+  "task_id": "O34",
   "company": "The Coca-Cola Company",
   "ticker": "KO",
   "category_id": "1.3",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "0dc85a9e960e300c87a98ea17a74cbdb104fbcf91570f8dd53b84628161ba606",
+  "source_sha256": "4fc849260113acf0764032f4bd202640f64cad72886fed4e4460e14cb3d58023",
   "rubrics": [
     {
       "rubric_id": "core_verdict_state",
@@ -2034,7 +2034,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-ko-1-3-cc40399c80"
+                "O34"
               ]
             },
             "decisions": {
@@ -2064,7 +2064,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-ko-1-3-cc40399c80",
+    "task_id": "O34",
     "public_question": "Strict information cutoff: 2026-03-22T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nCoca-Cola (KO) — H1 fiscal 2026 thesis test.\n\nConsider this falsifiable thesis: \"Coca-Cola's H1 fiscal 2026 \"clear the top end of guidance\" thesis is a contested, falsifiable claim. Testing it requires mapping cutoff evidence on pricing power, volume inflection, North America demand, margin quality (including the impairment-aided FY2025 base), currency translation and impairment recurrence, then defining measurable break conditions that post-cutoff quarterly disclosures can resolve.\"\n\nUsing only information available at the cutoff, assess whether the cutoff record supports, weakens, or is irrelevant to that thesis, setting out the evidence basis for each dimension the thesis names and drawing on multiple distinct cutoff disclosures rather than a single document.\n\nDeliver: an overall categorical verdict — supported, weakened, broken, or insufficient evidence — with a 0-to-1 confidence level; a label and cited cutoff fact for each assessed item; the measurable break conditions the thesis calls for; the strongest supporting and strongest contradicting cutoff evidence; and a reconciliation of organic versus reported revenue growth and comparable versus reported operating margin.\n\nCoverage spans H1 fiscal 2026 (Q1 and Q2 2026), resolved by post-cutoff quarterly disclosures.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.thesis_verdict: Overall categorical verdict on the supplied H1 2026 thesis.\n- $.confidence: Confidence level from 0 to 1 attached to the verdict.\n- $.assumption_assessments[].assumption_id: Identifier of the key assumption being labeled.\n- $.assumption_assessments[].label: Support, weaken, or irrelevant label assigned to each key assumption.\n- $.assumption_assessments[].evidence_fact: Specific disclosed cutoff fact supporting the assigned label.\n- $.assumption_assessments[].source_document: Cutoff document containing the cited fact.\n- $.break_conditions[].metric: Metric used to falsify the assumption.\n- $.break_conditions[].threshold: Numeric threshold that would falsify the assumption.\n- $.break_conditions[].measurement_period: Period over which the break condition is measured.\n- $.break_conditions[].data_source: Disclosure source that would resolve the break condition.\n- $.key_evidence[].evidence_fact: Key supporting or contradicting fact from the cutoff record.\n- $.key_evidence[].label: Support, weaken, or irrelevant label for the key evidence item.\n- $.key_evidence[].source_document: Cutoff document containing the key evidence fact.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2790,7 +2790,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-ko-1-3-cc40399c80"
+          "O34"
         ]
       },
       "decisions": {
@@ -2818,7 +2818,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "ko_h1_2026_thesis_evidence_map",
+    "question_id": "O34",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2835,8 +2835,7 @@
         "excerpt": "Organic revenues on an adjusted basis rose 10% from the prior-year quarter, led by growth across all operating segments.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q2_2026_organic_revenue_growth",
@@ -2852,8 +2851,7 @@
         "excerpt": "Organic revenues increased 6%, supported by a 4% rise in concentrate sales and 2% growth in price/mix.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q1_2026_comparable_eps_growth",
@@ -2869,8 +2867,7 @@
         "excerpt": "Coca-Cola has reported a comparable EPS of 86 cents in the first quarter, up 18% from the year-ago period.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q2_2026_comparable_eps_growth",
@@ -2886,8 +2883,7 @@
         "excerpt": "Coca-Cola has reported a comparable EPS of 97 cents in the second quarter, up 11% from the year-ago period.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q1_2026_price_mix",
@@ -2903,8 +2899,7 @@
         "excerpt": "In the reported quarter, concentrate sales grew 8% year over year, while the price/mix improved 2%.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q2_2026_price_mix",
@@ -2920,8 +2915,7 @@
         "excerpt": "Price/mix contributed just 2%, comprising 3 points of pricing actions, offset by 1 point of unfavorable mix, primarily reflecting investment timing in the Asia Pacific.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q1_2026_unit_case_volume_growth",
@@ -2937,8 +2931,7 @@
         "excerpt": "Coca-Cola's total unit case volume rose 3% year over year in the first quarter, led by growth in China, the United States and India.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q2_2026_unit_case_volume_growth",
@@ -2954,8 +2947,7 @@
         "excerpt": "The upside reflected broad-based demand, with global unit case volume up 5%.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q1_2026_north_america_organic_revenue_growth",
@@ -2971,8 +2963,7 @@
         "excerpt": "Reported revenues rose 12% year over year for North America, 6% for the Asia Pacific, 14% for Latin America, 13% for EMEA and 12% for Bottling Investments. Organic revenues jumped 12% year over year in North America, 5% in the Asia Pacific, 9% in Latin America, 11% in EMEA and 10% for Bottling Investments.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q2_2026_north_america_organic_revenue_growth",
@@ -2988,8 +2979,7 @@
         "excerpt": "North America revenues increased 7%, with organic revenues also up 7%. Unit case volume grew 3% and price/mix advanced 4%, while comparable currency-neutral operating income climbed 12% on organic growth and lower operating expenses.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q1_2026_comparable_operating_margin",
@@ -3005,8 +2995,7 @@
         "excerpt": "The comparable operating margin expanded 70 bps to 34.5%, backed by organic revenue growth and reduced operating costs, partly offset by increased input costs and higher marketing investments.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q2_2026_comparable_operating_margin",
@@ -3022,8 +3011,7 @@
         "excerpt": "The reported operating margin widened 77 basis points (bps) to 34.9%, while the comparable operating margin expanded 86 basis points to 35.6%.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "h1_2026_trademark_impairment",
@@ -3039,8 +3027,7 @@
         "excerpt": "During the six months ended July 3, 2026, the Company recorded other operating charges of $44 million. These charges consisted of $19 million related to an indemnification agreement entered into as a part of the refranchising of certain of our bottling operations, $10 million related to North America modernization initiatives, $8 million related to tax litigation expense and $7 million for the amortization of noncompete agreements related to the BodyArmor acquisition.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "fy2026_organic_revenue_guidance_baseline",
@@ -3056,8 +3043,7 @@
         "excerpt": "We expect organic revenue growth of 4% to 5%, which is in line with our long-term growth algorithm.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "fy2026_comparable_eps_guidance_baseline",
@@ -3073,14 +3059,11 @@
         "excerpt": "All in, we expect comparable earnings per share growth of 7% to 8% versus $3 in 2025.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All 13 realized-outcome targets became public after the 2026-03-22 Solver cutoff and are company-reported actual results read directly from the cited private-database chunks. Q1 2026 and Q2 2026 consolidated actuals are sourced from release-day results coverage that reports the issuer's figures (Q1 2026: organic revenue +10%, price/mix +2%, unit case volume +3%, comparable EPS +18% to $0.86, comparable operating margin 34.5%, North America organic revenue +12%; Q2 2026: organic revenue +6%, price/mix +2%, unit case volume +5%, comparable EPS +11% to $0.97, comparable operating margin 35.6%, North America organic revenue +7%). Each figure was cross-checked against the issuer's Q1/Q2 2026 earnings releases and Form 10-Qs, whose 'Revenues and Volume Percent Change' tables show Consolidated organic revenue/price-mix/unit case volume of 10/2/3 for Q1 2026 and 6/2/5 for Q2 2026, and North America organic revenues of 12 (Q1) and 7 (Q2). H1 2026 trademark impairment is 0 USD millions: the Q2 2026 10-Q Note 12 itemizes the entire $44 million of six-month 2026 other operating charges (indemnification $19M, North America modernization $10M, tax litigation $8M, BodyArmor noncompete amortization $7M) with no trademark impairment, and the Q1 2026 10-Q shows $21 million of Q1 other operating charges with no trademark component; the $31 million Latin America trademark charge and the $960 million BodyArmor trademark charge fall in prior periods, outside H1 2026. The two cutoff baselines are the company's February 10, 2026 FY2026 guidance (organic revenue growth 4% to 5%; comparable EPS growth 7% to 8% versus $3 in 2025), disclosed pre-cutoff in the Q4 2025 earnings call and containing no post-cutoff information."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

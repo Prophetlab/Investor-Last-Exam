@@ -1,6 +1,6 @@
 {
   "id": "O71",
-  "task_id": "task-author-v13-tsla-3-1-e964b0347e",
+  "task_id": "O71",
   "company": "Tesla, Inc.",
   "ticker": "TSLA",
   "category_id": "3.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "fa23d0ca13668f65ed9bfe95d937937f8e1a94dff3c4d4db3c4e9deebec14529",
+  "source_sha256": "657c1cda2d1a0ecf5ea4e4ba74c66e35f94404220cb23fb1339a420b41510208",
   "rubrics": [
     {
       "rubric_id": "core_total_deliveries_point_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tesla_q2_2026_total_deliveries",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Tesla, Inc.",
         "metric": "Company-wide total vehicle deliveries (all models)",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tesla_q2_2026_model_3_y_deliveries",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Tesla, Inc.",
         "metric": "Model 3/Y vehicle deliveries",
@@ -152,7 +150,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tesla_q2_2026_other_models_deliveries",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Tesla, Inc.",
         "metric": "Other-models vehicle deliveries (all models outside Model 3/Y)",
@@ -210,7 +207,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tesla_q2_2026_total_production",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Tesla, Inc.",
         "metric": "Company-wide total vehicle production (all models)",
@@ -364,7 +360,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tesla_q2_2026_total_deliveries",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Tesla, Inc.",
         "metric": "Company-wide total vehicle deliveries (all models)",
@@ -1643,7 +1638,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-tsla-3-1-e964b0347e"
+                "O71"
               ]
             },
             "decisions": {
@@ -1673,7 +1668,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-tsla-3-1-e964b0347e",
+    "task_id": "O71",
     "public_question": "Strict information cutoff: 2026-02-21T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nActing as an equity analyst working as of the 2026-02-21 16:00 ET information cutoff, produce a volume forecast for Tesla, Inc. (TSLA) covering Q2 2026 (April 1 – June 30, 2026).\n\nDeliver the following, with all vehicle figures expressed in units:\n\n1. A point forecast and an 80% prediction interval (lower and upper bounds) for Tesla's Q2 2026 company-wide total vehicle deliveries.\n2. Point forecasts for Q2 2026 Model 3/Y deliveries and for other-models deliveries, reconciled to the total deliveries forecast.\n3. A point forecast for Q2 2026 company-wide total vehicle production, with a brief note on how it relates to the deliveries plan.\n4. A concise forecast bridge explaining the expected change versus recent quarterly run-rates, the product and regional mix assumed, and the principal risks behind the deliveries interval.\n\nBase the forecast on your own research into Tesla's disclosed production-and-delivery history and any other information available up to the cutoff. State assumptions clearly; do not rely on post-cutoff information.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.total_deliveries.point: Point forecast of Tesla's Q2 2026 company-wide total vehicle deliveries, in vehicles.\n- $.total_deliveries.interval_low_80: Lower bound of the 80% prediction interval for Tesla's Q2 2026 total deliveries, in vehicles.\n- $.total_deliveries.interval_high_80: Upper bound of the 80% prediction interval for Tesla's Q2 2026 total deliveries, in vehicles.\n- $.model_3_y_deliveries.point: Point forecast of Tesla's Q2 2026 Model 3/Y deliveries, in vehicles.\n- $.other_models_deliveries.point: Point forecast of Tesla's Q2 2026 other-models deliveries, in vehicles.\n- $.total_production.point: Point forecast of Tesla's Q2 2026 company-wide total vehicle production, in vehicles.\n- $.forecast_bridge: Narrative bridge covering the expected change, product and regional mix, and risks behind the interval.\nCite at least 4 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1987,7 +1982,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-tsla-3-1-e964b0347e"
+          "O71"
         ]
       },
       "decisions": {
@@ -2015,7 +2010,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "tesla_q2_2026_volume_forecast",
+    "question_id": "O71",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2032,8 +2027,7 @@
         "excerpt": "Q2 2026 Production Deliveries Subject to operating lease accounting Model 3/Y 442,936 467,762 2% Other Models 8,822 12,364 2% Total 451,758 480,126 2%",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tesla_q2_2026_model_3_y_deliveries",
@@ -2049,8 +2043,7 @@
         "excerpt": "Q2 2026 Production Deliveries Subject to operating lease accounting Model 3/Y 442,936 467,762 2% Other Models 8,822 12,364 2% Total 451,758 480,126 2%",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tesla_q2_2026_other_models_deliveries",
@@ -2066,8 +2059,7 @@
         "excerpt": "Q2 2026 Production Deliveries Subject to operating lease accounting Model 3/Y 442,936 467,762 2% Other Models 8,822 12,364 2% Total 451,758 480,126 2%",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tesla_q2_2026_total_production",
@@ -2083,15 +2075,12 @@
         "excerpt": "Q2 2026 Production Deliveries Subject to operating lease accounting Model 3/Y 442,936 467,762 2% Other Models 8,822 12,364 2% Total 451,758 480,126 2%",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All four targets are issuer-reported realized actuals from Tesla's press release \"Tesla Second Quarter 2026 Production, Deliveries & Deployments\" (dateline AUSTIN, Texas, July 02, 2026; Business Wire), immutable document id b780e51d-35a7-4125-a2c6-e374fb66d104, public_available_at 2026-07-02T13:05:01+00:00, i.e. after the Solver's 2026-02-21 cutoff. The \"Q2 2026 Production Deliveries\" table reports Model 3/Y produced 442,936 / delivered 467,762; Other Models produced 8,822 / delivered 12,364; Total produced 451,758 / delivered 480,126 (third column \"Subject to operating lease accounting\" = 2%). Components reconcile: 467,762 + 12,364 = 480,126 and 442,936 + 8,822 = 451,758. Cross-checks: Q1 2026 actuals of 358,023 delivered and 408,386 produced plus Q2 2026 give H1 2026 of ~838,149 delivered and ~860,144 produced, consistent with Tesla's Q2 2026 Form 10-Q MD&A statement \"In 2026, we produced approximately 860 thousand consumer vehicles and delivered approximately 838 thousand consumer vehicles through the second quarter.\" Independent coverage (e.g., Zacks 2026-07-03) confirms \"It delivered 480,126 vehicles (comprising 467,762 units of Model 3/Y and 12,364 Other models)\". Reported growth (+25% YoY vs 384,122; +34% sequentially vs 358,023) is consistent. These are reported company outcomes, not consensus, guidance or analyst estimates."
+    ]
   },
   "evaluation_policy": {
     "forecast_score_policy": {
-      "version": "forecast-20261004-v1",
       "kind": "interval80",
       "budgets": {
         "point": 70,
@@ -2244,9 +2233,6 @@
           "denominator": 9
         }
       },
-      "removed_rubrics": [
-        "support_interval_sharpness_80"
-      ],
       "interval": {
         "rubric_id": "support_interval_coverage_80",
         "point_rubric_id": "core_total_deliveries_point_accuracy",
@@ -2258,7 +2244,6 @@
       "aggregation": "sum(group_budget * sum(relative_weight * credit)/sum(relative_weight)); final ROUND_HALF_UP to 0.1",
       "raw_rubric_weight_semantics": "within-group relative weight; effective maximum comes from allocation"
     },
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

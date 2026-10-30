@@ -1,6 +1,6 @@
 {
   "id": "O52",
-  "task_id": "task-author-v13-meta-5-1-9b14c75b23",
+  "task_id": "O52",
   "company": "Meta Platforms, Inc.",
   "ticker": "META",
   "category_id": "5.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "8594607fc2057e87002236cc05a97087b4735c36224fe352c44dc968db203993",
+  "source_sha256": "7246729cb765649e7499d2c7e089d5f9b33736275862f764b61d79a9c1c74b62",
   "rubrics": [
     {
       "rubric_id": "core_realized_revenue_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "meta_q2_2026_total_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Meta Platforms, Inc.",
         "metric": "Total revenue",
@@ -1691,7 +1690,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-meta-5-1-9b14c75b23"
+                "O52"
               ]
             },
             "decisions": {
@@ -1721,7 +1720,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-meta-5-1-9b14c75b23",
+    "task_id": "O52",
     "public_question": "Strict information cutoff: 2026-04-29T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nMeta Platforms, Inc. (META) — Q2 2026 revenue monitoring screen.\n\nUsing only information available up to the cutoff of 2026-04-29 16:00 ET, screen news and disclosures from the monitored window for items that could materially change a standing forecast of Meta's Q2 2026 total revenue (quarter ending 30 June 2026).\n\nThe standing baseline is USD 59.0 billion. Treat a screened item as material only if its expected effect on the Q2 2026 revenue forecast is at least 1.0% of that baseline (about USD 0.59 billion).\n\nDeliverables:\n- A screening table of the items you assess, each with its revenue driver, direction, materiality verdict, expected impact and supporting evidence.\n- Your revised point forecast of Q2 2026 total revenue in USD billions after the screen.\n- A ranking of screened items from largest to smallest expected absolute impact on the Q2 2026 revenue forecast.\n- An explicit no-material-change determination if no screened item crosses the threshold.\n\nExpress the revised forecast and item impacts in USD billions.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.revised_q2_2026_revenue_billion: Updated point forecast of Meta's Q2 2026 total revenue in USD billions after the window screen.\n- $.no_material_change: Boolean stating whether no screened item crossed the 1.0% materiality threshold.\n- $.screened_items: Screening table of window items with revenue driver, direction, materiality verdict, expected impact and evidence.\n- $.ranking: Ordered item ids from largest to smallest expected absolute impact on the Q2 2026 revenue forecast.\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2230,7 +2229,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-meta-5-1-9b14c75b23"
+          "O52"
         ]
       },
       "decisions": {
@@ -2258,7 +2257,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "meta_q2_2026_monitor",
+    "question_id": "O52",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2275,8 +2274,7 @@
         "excerpt": "Total revenue for the second quarter of 2026 was $60.80 billion, an increase of 28% compared to the second quarter of 2025, due to an increase in advertising revenue.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "meta_q2_2025_total_revenue",
@@ -2292,8 +2290,7 @@
         "excerpt": "Total revenue for the second quarter of 2025 was $47.52 billion, an increase of 22% compared to the second quarter of 2024, due to an increase in advertising revenue.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "meta_q1_2026_total_revenue",
@@ -2309,14 +2306,11 @@
         "excerpt": "Total revenue for the first quarter of 2026 was $56.31 billion, an increase of 33% compared to the first quarter of 2025, due to an increase in advertising revenue.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Retrieved and successfully Read the issuer's 10-Q filings in the private database (all authorized as of 2026-09-09T21:04:30Z). Q2 2026: Meta Platforms, Inc. 2026-06-30 Form 10-Q, document_version_id 74e2c32e-6ec9-418d-a267-980fac14dccc, public 2026-07-29T18:58:52Z, chunk 2 — Executive Overview states total revenue for Q2 2026 of $60.80 billion, up 28% YoY; the same quarter's income-statement data table shows Revenue $60,801 million (three months ended June 30, 2026), consistent with the narrative sentence. Q1 2026: Meta Platforms, Inc. 2026-03-31 Form 10-Q, document_version_id 4d916e31-9aab-4531-827e-42a673bf0b9c, public 2026-04-29T23:54:12Z, chunk 2 — total revenue $56.31 billion, up 33% YoY; income-statement data table shows Revenue $56,311 million (three months ended March 31, 2026); independently corroborated by the Q1 2026 earnings call transcript (ba70d464-cc03-4f69-bfa3-b3fc84dfa0ba): 'Q1 total revenue was $56.3 billion, up 33% or 29% on a constant currency basis.' Q2 2025: Meta Platforms, Inc. 2025-06-30 Form 10-Q, document_version_id 42854d53-5538-46af-9ce0-a05d7a11c0fc, public 2025-07-31T00:02:13Z, chunk 2 — total revenue $47.52 billion, up 22% YoY; income-statement data table shows Revenue $47,516 million (three months ended June 30, 2025); corroborated by the Q2 2025 earnings call transcript (5e974098-e844-4961-a1eb-ce990e681980): 'Q2 total revenue was $47.5 billion, up 22% on both a reported and constant currency basis.' Arithmetic checks against disclosed comparatives: 60,801/47,516-1 = +28.0%; 56,311/42,314-1 = +33.1%; 47,516/39,071-1 = +21.6%, all matching the stated growth rates. Timing: the Q1 2026 and Q2 2026 prints first became public after the Solver cutoff of 2026-04-29 16:00 ET (2026-04-29T20:00:00Z) and are recorded as realized outcomes (company-reported actuals); the Q2 2025 figure predates the cutoff and is recorded as a cutoff baseline. Monitor context (not part of the submitted values): realized Q2 2026 revenue of $60.80B is +$1.8B (+3.1%) versus the $59.0B standing baseline and +$1.0B (+1.7%) versus the author's $59.8B revised point forecast, i.e., the baseline understates the realized quarter and a material-change determination (no_material_change = false) is directionally consistent. No post-cutoff information was used for the cutoff_baseline target; excerpts are single verbatim spans from the successfully read chunks, and no value was inferred."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

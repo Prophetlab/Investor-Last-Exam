@@ -1,6 +1,6 @@
 {
   "id": "O36",
-  "task_id": "task-author-v13-ko-2-3-4c773f1745",
+  "task_id": "O36",
   "company": "The Coca-Cola Company",
   "ticker": "KO",
   "category_id": "2.3",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "11ca99657083bc52e5cd9c6e4489f249804699244f9686b65481a3d9e8ffac32",
+  "source_sha256": "3ae55f80484dbdb7fa6e3654af4729d03b92a4ef70b120fcad9ca1232d1cc78c",
   "rubrics": [
     {
       "rubric_id": "core_organic_growth_identity",
@@ -1893,7 +1893,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-ko-2-3-4c773f1745"
+                "O36"
               ]
             },
             "decisions": {
@@ -1923,7 +1923,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-ko-2-3-4c773f1745",
+    "task_id": "O36",
     "public_question": "Strict information cutoff: 2026-04-21T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nThe Coca-Cola Company (KO) has reported full-year fiscal 2025 results for the year ended 31 December 2025, together with prior-year comparative and fourth-quarter disclosures. Reconstruct KO's disclosed revenue and profit results into a fixed unit-economics framework, using figures as the company reports them.\n\nDeliver: a formula schema that defines, with the accounting label, unit and period for each variable, how the company's disclosed revenue-growth components combine into organic and reported net operating revenue growth, and how net operating revenues and operating income convert to a per-system-unit-case basis; recomputed consolidated and segment revenue bridges reconciled to reported net operating revenues and reported growth; the comparative-year consolidated bridge and the year-over-year change in the mix of drivers; per-case revenue and operating income for both years together with a GAAP operating margin comparability judgment; and a quarterly cross-check of the same identity.\n\nExpress revenue and operating income in USD millions on a GAAP basis and volume in billions of system unit cases, applying the company's own definitions of organic growth, currency effects and structural changes. Close with an assessment of what the driver mix implies for revenue quality and for extrapolating profit.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.formula_schema.organic_growth_identity: Equation defining organic revenue growth from concentrate sales volume and price/mix.\n- $.formula_schema.reported_growth_identity: Equation defining reported net operating revenue growth including currency and acquisitions/divestitures.\n- $.formula_schema.unit_economics_identity: Equation defining revenue and operating income per system unit case.\n- $.variables.concentrate_sales_volume: Definition, accounting label, unit and period for the bridge volume driver.\n- $.variables.price_mix: Definition, accounting label, unit and period for the price/mix driver.\n- $.variables.currency: Definition, accounting label, unit and period for the currency driver.\n- $.variables.acquisitions_divestitures: Definition, accounting label, unit and period for the acquisitions and divestitures driver.\n- $.variables.system_unit_case_volume: Definition, accounting label, unit and period for system unit case volume.\n- $.variables.net_operating_revenues: Definition, accounting label, unit and period for net operating revenues.\n- $.fy2025_revenue_bridge: FY2025 bridge rows for the consolidated company and each operating segment.\n- $.fy2024_consolidated_bridge: FY2024 consolidated bridge driver impacts and disclosed total.\n- $.revenue_reconciliation.fy2025_revenue_usd_m: Reported FY2025 net operating revenues used in the dollar reconciliation.\n- $.revenue_reconciliation.fy2024_revenue_usd_m: Reported FY2024 net operating revenues used as the growth base.\n- $.revenue_reconciliation.fy2025_implied_growth_pct: Growth implied by the dollar increase over the prior-year base.\n- $.unit_case_economics.system_unit_cases_bn_fy2025: FY2025 system unit case volume used in per-case economics.\n- $.unit_case_economics.revenue_per_unit_case_usd_fy2025: FY2025 revenue per system unit case.\n- $.unit_case_economics.operating_income_usd_m_fy2025: FY2025 GAAP operating income used in profit conversion.\n- $.unit_case_economics.operating_income_usd_m_fy2024: FY2024 GAAP operating income used in profit conversion.\n- $.unit_case_economics.operating_margin_pct_fy2025: FY2025 GAAP operating margin.\n- $.unit_case_economics.operating_margin_pct_fy2024: FY2024 GAAP operating margin for comparability assessment.\n- $.unit_case_economics.operating_income_per_unit_case_usd_fy2025: FY2025 operating income per system unit case.\n- $.quarterly_check.organic_growth_pct: Quarterly organic growth used to verify the identity.\n- $.quarterly_check.price_mix_pct: Quarterly price/mix component of the verification.\n- $.quarterly_check.concentrate_sales_growth_pct: Quarterly concentrate sales growth implied by the quarterly organic growth and price/mix.\n- $.quarterly_check.unit_case_growth_pct: Quarterly unit case volume growth used to explain the concentrate-versus-unit-case gap.\n- $.assessment: Driver-mix comparison, largest contributor, concentrate-model explanation and margin-comparability judgment.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2332,7 +2332,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-ko-2-3-4c773f1745"
+          "O36"
         ]
       },
       "decisions": {
@@ -2360,7 +2360,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "ko_fy2025_unit_economics_reconstruction",
+    "question_id": "O36",
     "truth_mode": "cutoff_known",
     "targets": [
       {
@@ -2377,8 +2377,7 @@
         "excerpt": "Net operating revenues were $47,941 million in 2025, compared to $47,061 million in 2024, an increase of $880 million, or 2%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2024_net_revenues",
@@ -2394,8 +2393,7 @@
         "excerpt": "Net operating revenues were $47,061 million in 2024, compared to $45,754 million in 2023, an increase of $1,307 million, or 3%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2025_reported_growth",
@@ -2411,8 +2409,7 @@
         "excerpt": "Net operating revenues were $47,941 million in 2025, compared to $47,061 million in 2024, an increase of $880 million, or 2%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2025_concentrate_sales_growth",
@@ -2428,8 +2425,7 @@
         "excerpt": "In 2025, worldwide concentrate sales volume grew 1% and unit case volume was even compared to 2024.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2025_price_mix_impact",
@@ -2445,8 +2441,7 @@
         "excerpt": "Price/mix had a 4% favorable impact on our consolidated net operating revenues.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2025_currency_impact",
@@ -2462,8 +2457,7 @@
         "excerpt": "Fluctuations in foreign currency exchange rates, including the effects of our hedging activities, unfavorably impacted our consolidated net operating revenues by 2%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2025_acq_div_impact",
@@ -2479,8 +2473,7 @@
         "excerpt": "Consolidated 1 % | 4 % | (2) % | (1) % | 2 %",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2025_unit_case_volume",
@@ -2496,8 +2489,7 @@
         "excerpt": "The Coca-Cola system sold 33.8 billion and 33.7 billion unit cases of our products in 2025 and 2024, respectively.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2024_unit_case_volume",
@@ -2513,8 +2505,7 @@
         "excerpt": "The Coca-Cola system sold 33.7 billion and 33.3 billion unit cases of our products in 2024 and 2023, respectively.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2025_operating_income",
@@ -2530,8 +2521,7 @@
         "excerpt": "Operating income was $13,762 million in 2025, compared to $9,992 million in 2024, an increase of $3,770 million, or 38%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2024_operating_income",
@@ -2547,8 +2537,7 @@
         "excerpt": "Operating income was $9,992 million in 2024, compared to $11,311 million in 2023, a decrease of $1,319 million, or 12%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2025_operating_margin",
@@ -2564,8 +2553,7 @@
         "excerpt": "Consolidated 28.7 % 21.2 %",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2024_operating_margin",
@@ -2581,8 +2569,7 @@
         "excerpt": "Consolidated 21.2 % 24.7 %",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2024_volume_growth",
@@ -2598,8 +2585,7 @@
         "excerpt": "After considering the impact of structural changes, worldwide concentrate sales volume grew 2%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2024_price_mix_impact",
@@ -2615,8 +2601,7 @@
         "excerpt": "Price, product and geographic mix had an 11% favorable impact on our consolidated net operating revenues.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2024_currency_impact",
@@ -2632,8 +2617,7 @@
         "excerpt": "Fluctuations in foreign currency exchange rates decreased our consolidated net operating revenues by 5%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2024_acq_div_impact",
@@ -2649,8 +2633,7 @@
         "excerpt": "Consolidated | 2 % | 11 % | (5) % | (4) % | 3 %",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_q4_2025_organic_growth",
@@ -2666,8 +2649,7 @@
         "excerpt": "During the fourth quarter, we grew organic revenues 5%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_q4_2025_price_mix",
@@ -2683,8 +2665,7 @@
         "excerpt": "Our price/mix growth of 1% was primarily driven by approximately 4 points of pricing actions, offset by 3 points of unfavorable mix, which was driven by an unusual combination of business mix, category mix, and timing of a number of items.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_q4_2025_unit_case_growth",
@@ -2700,8 +2681,7 @@
         "excerpt": "Unit case growth was 1%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2025_organic_growth",
@@ -2717,8 +2697,7 @@
         "excerpt": "Consolidated 1 % 4 % (2) % (1) % 2 %",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "ko_fy2025_revenue_per_unit_case",
@@ -2734,14 +2713,11 @@
         "excerpt": "Net operating revenues were $47,941 million in 2025, compared to $47,061 million in 2024, an increase of $880 million, or 2%.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Corrected only the four rejected targets. The source documents report these impacts as unfavorable magnitudes: FY2025 foreign currency unfavorably impacted consolidated net operating revenues by 2% and the FY2025 bridge cell is (2)%; FY2025 acquisitions & divestitures cell is (1)%. FY2024 foreign currency decreased consolidated net operating revenues by 5% and the FY2024 bridge cell is (5)%; FY2024 acquisitions & divestitures cell is (4)%. The submitted values are the reported percentage-point magnitudes (2, 1, 5, 4), each of which is a negative contribution to reported net operating revenue growth as disclosed in the consolidated bridge. Sources: FY2025 Form 10-K 47632c4e-d920-4e12-889a-da4f95a8744c (public 2026-02-20T14:46:33Z) and FY2024 Form 10-K 4de50471-9e1e-41c7-ba17-b584284b64a9 (public 2025-02-20T20:17:13Z)."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

@@ -1,6 +1,6 @@
 {
   "id": "O15",
-  "task_id": "task-author-v13-amzn-3-4-800e795c4c",
+  "task_id": "O15",
   "company": "Amazon.com, Inc.",
   "ticker": "AMZN",
   "category_id": "3.4",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "cf702525a34fc257448c6aa6d3651ead854ebc5445d2d2133c4c4e997b29e1d5",
+  "source_sha256": "aa8a8ed516969182ddcd00433994a7bd6e326ae340b90c1cfd33afef26e5b39f",
   "rubrics": [
     {
       "rubric_id": "core_point_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aws_q2_2026",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Amazon.com, Inc.",
         "metric": "AWS segment net sales",
@@ -344,7 +343,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "aws_q2_2026",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Amazon.com, Inc.",
         "metric": "AWS segment net sales",
@@ -1590,7 +1588,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-amzn-3-4-800e795c4c"
+                "O15"
               ]
             },
             "decisions": {
@@ -1620,7 +1618,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-amzn-3-4-800e795c4c",
+    "task_id": "O15",
     "public_question": "Strict information cutoff: 2026-03-31T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nCompany: Amazon.com, Inc. (ticker AMZN). Metric: AWS segment net sales, on the segment basis reported in Amazon's financial statements, for the quarter ending 2026-06-30 (period 2026-04-01 to 2026-06-30), stated in USD millions. Work as of the information cutoff 2026-03-31 16:00 ET; AWS results for that quarter are due around 2026-07-30.\n\nPrepare an update. Your standing prior is the pre-signal estimate of AWS Q2 2026 net sales you carried at the start of February 2026, before the cross-company (peer, customer or supplier) disclosures of February and March 2026; state that baseline in USD millions. Deliver: (1) an updated point forecast; (2) the revision versus that baseline; (3) an itemized bridge in which each material adjustment driver carries a USD millions impact and the items reconcile to the revision; (4) the outlook drivers you deliberately left unchanged, each with the reason it was retained; (5) low and high bounds for an uncertainty range around the updated forecast; and (6) the specific disclosures available on or before the cutoff that support your adjustments. Cite only cutoff-valid evidence and explain economically how the cross-company signals transmit into AWS revenue.\n\nUnits and accounting basis must match the segment as reported. Adjustment magnitude must be justified, not asserted.\n\nThe requested low and high bounds are the 10th and 90th percentiles of a central 80% prediction interval for realized AWS Q2 2026 segment net sales, not unspecified optimistic/pessimistic scenarios. Both endpoints, the prior, the updated point forecast and every bridge impact use USD millions on the same reported AWS segment basis. Explain how the uncertainty drivers support both endpoints.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.updated_forecast_usd_m: Updated point forecast of AWS segment net sales for 2026-04-01 to 2026-06-30, USD millions.\n- $.prior_baseline_usd_m: Standing pre-signal estimate being revised from, USD millions.\n- $.revision_usd_m: Quantified revision versus the standing estimate, USD millions.\n- $.bridge_items: Itemized adjustment drivers with USD millions impacts reconciling to the revision.\n- $.unchanged_drivers: Drivers deliberately retained unchanged from the prior view, with reasons.\n- $.key_evidence: Cutoff-available disclosures cited in support of the adjustments.\n- $.forecast_range_low_usd_m: Low bound of the uncertainty range around the updated forecast.\n- $.forecast_range_high_usd_m: High bound of the uncertainty range around the updated forecast.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2013,7 +2011,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-amzn-3-4-800e795c4c"
+          "O15"
         ]
       },
       "decisions": {
@@ -2041,7 +2039,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "amzn_aws_q2_2026_crossread_update",
+    "question_id": "O15",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2058,15 +2056,12 @@
         "excerpt": "AWS Net sales $ 30,873 $ 42,232 $ 60,140 $ 79,819",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Verified aws_q2_2026 (Amazon.com, Inc., AWS segment net sales, quarter 2026-04-01 to 2026-06-30, USD millions) via a successful direct Read of Amazon's Form 10-Q for the quarterly period ended June 30, 2026 (document_version_id 3a0ad43d-23be-4d3d-bfaa-2ae86872514a; SEC EDGAR; public_available_at 2026-07-30T18:11:14+00:00). Note 8 — Segment Information verbatim row: 'AWS Net sales $ 30,873 $ 42,232 $ 60,140 $ 79,819', with header 'Three Months Ended June 30, Six Months Ended June 30, 2025 2026 2025 2026' mapping $42,232 = Three Months Ended June 30, 2026 (second amount; $30,873 = Q2 2025; $60,140 / $79,819 = six-month figures). Nine-month arithmetic checks: 37,587 (Q1 2026) + 42,232 = 79,819; 29,267 + 30,873 = 60,140. Corroborated by the company's Q2 2026 results release ('AWS segment sales increased 37% year-over-year to $42.2 billion'; '$169 billion annualized revenue run rate' = 42,232 x 4) and independent news summaries ('AWS Revenue: $42.2 billion, up 36.7% year-over-year'; 42,232/30,873 = +36.8% y/y). The outcome became public 2026-07-30, after the Solver cutoff of 2026-03-31T16:00 ET; it is the issuer-reported actual (realized outcome), not consensus, guidance or an analyst estimate."
+    ]
   },
   "evaluation_policy": {
     "forecast_score_policy": {
-      "version": "forecast-20261004-v1",
       "kind": "interval80",
       "budgets": {
         "point": 70,
@@ -2219,9 +2214,6 @@
           "denominator": 28
         }
       },
-      "removed_rubrics": [
-        "support_range_sharpness"
-      ],
       "interval": {
         "rubric_id": "support_range_coverage",
         "point_rubric_id": "core_point_accuracy",
@@ -2233,7 +2225,6 @@
       "aggregation": "sum(group_budget * sum(relative_weight * credit)/sum(relative_weight)); final ROUND_HALF_UP to 0.1",
       "raw_rubric_weight_semantics": "within-group relative weight; effective maximum comes from allocation"
     },
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

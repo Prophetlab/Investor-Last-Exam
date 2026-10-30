@@ -1,6 +1,6 @@
 {
   "id": "O77",
-  "task_id": "task-author-v13-tsla-5-2-b619b49216",
+  "task_id": "O77",
   "company": "Tesla, Inc.",
   "ticker": "TSLA",
   "category_id": "5.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "507967e6dc245da383f71f9327d1f3494bd66d09985b14425fa095886b730ac7",
+  "source_sha256": "527e31c567e0c1d2b2bad47549b7690aacac71addff8d3986d21ac13176ae4a4",
   "rubrics": [
     {
       "rubric_id": "core_realized_delivery_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tsla_q1_2026_deliveries",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Tesla, Inc.",
         "metric": "total vehicle deliveries (global, quarterly production and deliveries disclosure)",
@@ -1316,7 +1315,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-tsla-5-2-b619b49216"
+                "O77"
               ]
             },
             "decisions": {
@@ -1346,7 +1345,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-tsla-5-2-b619b49216",
+    "task_id": "O77",
     "public_question": "Strict information cutoff: 2026-02-21T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nTesla, Inc. (TSLA) in-period update to the desk's working estimate of Tesla's Q1 2026 global vehicle deliveries (quarter ending 2026-03-31). The desk's prior working estimate of 385,000 vehicles, fixed on 2026-01-29, is supplied as a task-given external assumption rather than a value to retrieve; use it as the starting point so the update shows a clear before-to-after change.\n\nDeliver: (1) a revised Q1 2026 deliveries point estimate, in vehicles; (2) the revision against that supplied baseline, in vehicles and as a percent; (3) the demand signals that justify the revision, with each one's estimated vehicle contribution; (4) the parts of the prior delivery model you deliberately leave unchanged, with reasons; and (5) the main uncertainties around the revised estimate and the conditions that would invalidate it.\n\nDeliveries means worldwide deliveries reported in Tesla's quarterly production and deliveries disclosure (deliveries, not production). Ground the update only in information available at the stated cutoff, keep the before-to-after audit trail reproducible, and show how it relates to Tesla's most recently reported quarterly delivery level.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.revised_q1_2026_deliveries: Revised Q1 2026 global vehicle deliveries point estimate, in vehicles.\n- $.revision_vs_prior: Change versus the 385,000-vehicle task baseline, in vehicles.\n- $.revision_pct: Change versus the task baseline expressed as a percent.\n- $.change_drivers: Driver-level attribution of the revision using cutoff-available evidence.\n- $.unchanged_elements: Prior-model elements deliberately left unchanged, with reasons.\n- $.key_uncertainties: Main uncertainties around the revised estimate.\nCite at least 4 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1619,7 +1618,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-tsla-5-2-b619b49216"
+          "O77"
         ]
       },
       "decisions": {
@@ -1647,7 +1646,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "tsla_q1_2026_deliveries_update",
+    "question_id": "O77",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -1664,8 +1663,7 @@
         "excerpt": "Q1 2026 Production Deliveries Subject to operating lease accounting Model 3/Y 394,611 341,893 1% Other Models 13,775 16,130 2% Total 408,386 358,023 1%",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_q4_2025_deliveries",
@@ -1681,14 +1679,11 @@
         "excerpt": "Tesla delivered 418,227 vehicles in the fourth quarter of 2025, down from 495,570 vehicles in Q4 2024.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Verified from the private database (authorized as of 2026-09-12T18:35:52.908292+00:00). tsla_q1_2026_deliveries: successfully read the issuer's Q1 2026 production and deliveries disclosure 'Tesla First Quarter 2026 Production, Deliveries & Deployments' (Business Wire via EODHD, document c27bf098-6054-49ce-85ae-28cef503252b, public_available_at 2026-04-02T13:03:01+00:00); the Q1 2026 table Total row reports production 408,386 and deliveries 358,023, and the narrative states 'delivered over 358,000 vehicles'. Became public after the 2026-02-21 Solver cutoff (post-cutoff realized outcome; not consensus or guidance). Corroborated across the database (e.g., 70c0fe11, 49022cac, 7c8215ca, 89200330) and consistent with the Q1 2026 10-Q (446170cb) which states 'approximately 358 thousand consumer vehicles' delivered. tsla_q4_2025_deliveries: successfully read '2 Magnificent Seven Stocks to Buy at a Discount' (EODHD news, document 24bb9598-2471-44bc-9172-70b7ed24cd48, public_available_at 2026-02-05T20:50:01+00:00): 'Tesla delivered 418,227 vehicles in the fourth quarter of 2025, down from 495,570 vehicles in Q4 2024.' Pre-cutoff only (published 2026-02-05; before the 2026-02-21 cutoff) and corroborated by other pre-cutoff database records: 23b99d86 (2026-01-29, 'The company delivered 418,227 vehicles...') and d1cc564e (2026-01-28, 'Vehicles Delivered: 418,227'). Audited and excluded for Q4 2025: FY2025 Form 10-K 52f3ff1d (all 5 chunks read; only full-year ~1.64 million deliveries, no quarterly count), Q4 2025 earnings call 0cacd342 (no quarterly total stated), and the 2026-02-13 SEC EDGAR handle c3324d8c (which is Uber Technologies' FY2025 10-K and contains no Tesla delivery figure). No post-cutoff information was used for the cutoff_baseline target."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

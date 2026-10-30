@@ -1,6 +1,6 @@
 {
   "id": "O21",
-  "task_id": "task-author-v13-googl-5-2-c172de92bb-bmk-prior-r1",
+  "task_id": "O21",
   "company": "Alphabet Inc.",
   "ticker": "GOOGL",
   "category_id": "5.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "66f21e4509dbf19504379ead0e9534bacc5876a838cdf47551ee022d3f67caaf",
+  "source_sha256": "5fa0a2c018a953e6518b54cee8f4c0bf0a5ec0d8f43cbd1edea1d09c254abb1b",
   "rubrics": [
     {
       "rubric_id": "core_revised_revenue_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "outcome_q2_2026_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Alphabet Inc.",
         "metric": "total revenues",
@@ -95,7 +94,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "outcome_q2_2026_cloud",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Alphabet Inc.",
         "metric": "Google Cloud revenues",
@@ -154,7 +152,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "outcome_q2_2026_eps",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Alphabet Inc.",
         "metric": "diluted EPS",
@@ -1832,7 +1829,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-googl-5-2-c172de92bb-bmk-prior-r1"
+                "O21"
               ]
             },
             "decisions": {
@@ -1862,7 +1859,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-googl-5-2-c172de92bb-bmk-prior-r1",
+    "task_id": "O21",
     "public_question": "Strict information cutoff: 2026-03-24T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAlphabet Inc. (GOOGL) — Q2 2026 forecast update from a frozen prior model.\n\nOur house model for Alphabet was frozen on 2026-01-30. It carries Q2 2026 (2026-04-01 to 2026-06-30) forecasts for consolidated revenues, Google Cloud revenues and diluted EPS, plus FY2026 (2026-01-01 to 2026-12-31) capital expenditure and diluted share-count assumptions. Use these stipulated house-model inputs frozen on 2026-01-30: Q2 2026 consolidated revenue USD 107.0 billion, Google Cloud revenue USD 17.0 billion and GAAP diluted EPS USD 2.60 per share; FY2026 capex USD 150 billion and diluted shares 12,250 million. These are external modeling assumptions supplied for this task, not reported results or prescribed revised forecasts.\n\nBetween 2026-01-30 and the research cutoff of 2026-03-24 16:00 ET, Alphabet released new reported financial results. Identify the single most decision-relevant such disclosure, note its publication date and the figures it contains, and use that signal — and only that signal — to update the frozen model.\n\nDeliver the prior frozen values and the revised values with their deltas for Q2 2026 total revenue, Cloud revenue and diluted EPS, and for the FY2026 capex assumption; a before-to-after bridge mapping each signal figure to the model field it revises, including material effects on GAAP earnings and any distinction between operating and nonoperating items; the fields held unchanged with the reason each is held; and the principal risk to the revised forecasts. Quote currency amounts in USD billions and EPS in USD per share on a consistent basis, with every revision traceable to the identified signal.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.signal_description: Identification of the new cutoff-valid results disclosure that drives the update.\n- $.signal_date: Publication date of the identified signal.\n- $.signal_key_figures: The disclosed figures material to the selected signal and the forecast revision.\n- $.prior_total_revenue_usd_b: Frozen Q2 2026 total revenue forecast the update starts from, in USD billions.\n- $.prior_cloud_revenue_usd_b: Frozen Q2 2026 Google Cloud revenue forecast, in USD billions.\n- $.prior_diluted_eps_usd: Frozen Q2 2026 diluted EPS forecast, in USD per share.\n- $.prior_fy2026_capex_usd_b: Frozen FY2026 capital expenditure assumption, in USD billions.\n- $.revised_total_revenue_usd_b: Updated Q2 2026 total revenue forecast, in USD billions.\n- $.revised_cloud_revenue_usd_b: Updated Q2 2026 Google Cloud revenue forecast, in USD billions.\n- $.revised_diluted_eps_usd: Updated Q2 2026 diluted EPS forecast, in USD per share.\n- $.revised_fy2026_capex_usd_b: Updated FY2026 capital expenditure assumption, in USD billions.\n- $.delta_total_revenue_usd_b: Change in the Q2 2026 total revenue forecast versus the frozen prior, in USD billions.\n- $.delta_cloud_revenue_usd_b: Change in the Q2 2026 Google Cloud revenue forecast versus the frozen prior, in USD billions.\n- $.delta_diluted_eps_usd: Change in the Q2 2026 diluted EPS forecast versus the frozen prior, in USD per share.\n- $.delta_fy2026_capex_usd_b: Change in the FY2026 capital expenditure assumption versus the frozen prior, in USD billions.\n- $.unchanged_fields: Model fields the signal does not inform, with frozen values and reasons for holding them.\n- $.bridge: Before-to-after bridge mapping each signal figure to the field it revises and the revision logic.\n- $.uncertainty: The main risk to the revised forecasts.\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2368,7 +2365,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-googl-5-2-c172de92bb-bmk-prior-r1"
+          "O21"
         ]
       },
       "decisions": {
@@ -2396,7 +2393,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "alphabet_q2_2026_forecast_update",
+    "question_id": "O21",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2413,8 +2410,7 @@
         "excerpt": "Revenues $ 96,428 $ 119,796 $ 186,662 $ 229,692",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "outcome_q2_2026_cloud",
@@ -2430,8 +2426,7 @@
         "excerpt": "Google Cloud 13,624 24,768 25,884 44,796",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "outcome_q2_2026_eps",
@@ -2447,8 +2442,7 @@
         "excerpt": "Diluted net income per common share (Note 12) $ 2.31 $ 9.11 $ 5.12 $ 14.24",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "signal_q4_2025_revenue",
@@ -2464,9 +2458,7 @@
         "excerpt": "Consolidated revenues reached $113.8 billion, up 18% or 17% in constant currency and was driven by an acceleration in Search and Cloud revenues.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2",
-        "verification_notes": "Host unit correction release-unit-repair-20260914-v1: the preserved excerpt explicitly states $113.8 billion; stored value is normalized to 113800.0 USD millions. No new database retrieval; previous value and notes preserved in private_before.json."
+        "source_authority": "issuer"
       },
       {
         "truth_id": "signal_q4_2025_cloud",
@@ -2482,9 +2474,7 @@
         "excerpt": "Cloud revenue accelerated meaningfully and were up 48% to $17.7 billion.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2",
-        "verification_notes": "Host unit correction release-unit-repair-20260914-v1: the preserved excerpt explicitly states $17.7 billion; stored value is normalized to 17700.0 USD millions. No new database retrieval; previous value and notes preserved in private_before.json."
+        "source_authority": "issuer"
       },
       {
         "truth_id": "signal_q4_2025_backlog",
@@ -2500,8 +2490,7 @@
         "excerpt": "Google Cloud's backlog increased 55% sequentially and more than doubled year-over-year, reaching $240 billion at the end of the fourth quarter.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "signal_fy2026_capex_guide",
@@ -2517,8 +2506,7 @@
         "excerpt": "For the full year 2026, we expect CapEx to be in the range of $175 billion to $185 billion with investments ramping over the course of the year.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "base_q2_2025_revenue",
@@ -2534,8 +2522,7 @@
         "excerpt": "Revenues $ 84,742 $ 96,428 $ 165,281 $ 186,662",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "base_q2_2025_cloud",
@@ -2551,8 +2538,7 @@
         "excerpt": "Google Cloud 10,347 13,624 19,921 25,884",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "base_q2_2025_eps",
@@ -2568,14 +2554,11 @@
         "excerpt": "Diluted net income per share (Note 12) $ 1.89 $ 2.31 $ 3.78 $ 5.12",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Patch re-resolves only the two remaining rejected signal targets so that each submitted quantity matches the figure disclosed in the cited document exactly, recorded in the target's declared unit field. signal_q4_2025_revenue = 113.8: the Q4 2025 Alphabet Inc Earnings Call (document cd202946-9296-4639-ba5f-be97ad711150, public 2026-02-05T05:04:51.619Z, event date 2026-02-04, before the cutoff) states 'Consolidated revenues reached $113.8 billion, up 18% or 17% in constant currency and was driven by an acceleration in Search and Cloud revenues.' for Q4 2025 (2025-10-01 to 2025-12-31). signal_q4_2025_cloud = 17.7: the same call states 'Cloud revenue accelerated meaningfully and were up 48% to $17.7 billion.' for Q4 2025. Both excerpts are verbatim from the successfully Read call chunk and contain the submitted quantities; the values are recorded exactly as disclosed (113.8 and 17.7). The previously accepted signal_fy2026_capex_guide (175 USD billions, same call) and all other verified targets remain unchanged."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

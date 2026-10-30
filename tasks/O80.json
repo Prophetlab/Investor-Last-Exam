@@ -1,6 +1,6 @@
 {
   "id": "O80",
-  "task_id": "task-author-v13-tsla-6-1-915c147550",
+  "task_id": "O80",
   "company": "Tesla, Inc.",
   "ticker": "TSLA",
   "category_id": "6.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "37844e33ca40d196f63747dca6229b15d4a6dd3eeb480fc17d106de22c244d79",
+  "source_sha256": "dde3a3545113203b77f307f82baad62fd608cb35a4d876b4b3be9dd2be9b8f31",
   "rubrics": [
     {
       "rubric_id": "core_q2_deliveries_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tsla_q2_2026_deliveries",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Tesla, Inc.",
         "metric": "Total vehicle deliveries",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tsla_q2_2026_total_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Tesla, Inc.",
         "metric": "Total revenues (GAAP)",
@@ -152,7 +150,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "tsla_q2_2026_auto_gross_margin",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Tesla, Inc.",
         "metric": "Total automotive gross margin (GAAP)",
@@ -1562,7 +1559,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-tsla-6-1-915c147550"
+                "O80"
               ]
             },
             "decisions": {
@@ -1592,7 +1589,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-tsla-6-1-915c147550",
+    "task_id": "O80",
     "public_question": "Strict information cutoff: 2026-06-22T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nTesla, Inc. (TSLA) — Q2 2026 nowcast and exposure decision.\n\nUsing only information publicly available by the June 22, 2026, 16:00 US Eastern cutoff, produce a Q2 2026 (April 1 – June 30, 2026) forecast set for Tesla and a corresponding exposure decision for TSLA shares.\n\nForecasts (state each in its specified unit):\n- Q2 2026 total vehicle deliveries, in thousands of vehicles.\n- Q2 2026 total revenues, in USD billions, on a GAAP basis.\n- Q2 2026 automotive gross margin, in percent, on a GAAP basis (gross margin on total automotive revenues).\n\nFor each forecast figure, provide a reproducible bridge built from your cutoff inputs so that another analyst can follow the estimate.\n\nThen give a rating for TSLA shares as of the cutoff — add (increase), hold (maintain), or trim (reduce) — with a concise rationale connecting the rating to your Q2 2026 forecast set, and at least two specific, checkable conditions or developments that would cause you to change the rating.\n\nTesla's Q2 delivery report and Q2 results have not been published by the cutoff, so the forecast must stand on evidence available before then.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.q2_2026_forecast.deliveries_thousand: Q2 2026 total vehicle deliveries forecast, in thousands of vehicles.\n- $.q2_2026_forecast.total_revenue_usd_bn: Q2 2026 GAAP total revenue forecast, in USD billions.\n- $.q2_2026_forecast.auto_gross_margin_pct: Q2 2026 GAAP automotive gross margin forecast, in percent.\n- $.investment_view.rating: Add/hold/trim recommendation for TSLA at the cutoff.\n- $.investment_view.rationale: Concise rationale linking the rating to the Q2 2026 forecast set.\n- $.investment_view.conditions_to_change_view: Specific conditions that would change the rating.\nCite at least 4 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1957,7 +1954,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-tsla-6-1-915c147550"
+          "O80"
         ]
       },
       "decisions": {
@@ -1985,7 +1982,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "tsla-q2-2026-outlook-decision",
+    "question_id": "O80",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2002,8 +1999,7 @@
         "excerpt": "Q2 2026 Production Deliveries Subject to operating lease accounting Model 3/Y 442,936 467,762 2% Other Models 8,822 12,364 2% Total 451,758 480,126 2%",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_q2_2026_total_revenue",
@@ -2019,8 +2015,7 @@
         "excerpt": "Total revenues $ 28,236 $ 22,496 $ 5,740 26 % $ 50,623 $ 41,831 $ 8,792 21 %",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsla_q2_2026_auto_gross_margin",
@@ -2036,14 +2031,11 @@
         "excerpt": "Gross margin total automotive 16.9 % 17.2 % 18.7 % 16.8 %",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Independent verification from the private database (authorized view as of 2026-09-11T09:41:17Z), each source successfully Read before submission. (a) Deliveries: retrieved Tesla's Q2 2026 production/deliveries release ('Tesla Second Quarter 2026 Production, Deliveries & Deployments', Business Wire, July 2, 2026); its Q2 2026 table shows Total production 451,758 and Total deliveries 480,126. Cross-check: Q1 2026 deliveries 358,023 + Q2 2026 480,126 = 838,149, matching the 'approximately 838 thousand consumer vehicles' delivered through 2Q26 per the Q2 10-Q; production 408,386 + 451,758 = 860,144, matching 'approximately 860 thousand'. (b) Total revenue: Tesla's 2026-06-30 Form 10-Q (public 2026-07-23T01:02:32Z) - MD&A Revenues table and consolidated statements both show Total revenues $28,236 million for the three months ended June 30, 2026; H1 $50,623M less Q2 $28,236M = $22,387M = Q1 2026 revenue (~$22.39B), and press coverage reports $28.24B. (c) Automotive gross margin: same Form 10-Q - 'Gross margin total automotive' row reports 16.9% for the Three Months Ended June 30, 2026 column (columns: 3M26 16.9%, 3M25 17.2%, 6M26 18.7%, 6M25 16.8%); arithmetic cross-check from the statements: total automotive revenues 20,516 less total automotive cost of revenues 17,053 = 3,463 gross profit; 3,463/20,516 = 16.9%. The Q2 2026 earnings call's 'automotive margins, excluding regulatory credits' (16.3%) is a different, ex-credit basis and was not used. All three outcomes first became public after the Solver cutoff of 2026-06-22T16:00 US Eastern (July 2 and July 23, 2026); no consensus estimates, guidance, or post-authorized-cutoff material were used as values."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

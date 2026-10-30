@@ -1,6 +1,6 @@
 {
   "id": "O11",
-  "task_id": "task-author-v13-amzn-2-4-18f812ed9a",
+  "task_id": "O11",
   "company": "Amazon.com, Inc.",
   "ticker": "AMZN",
   "category_id": "2.4",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "752179ed7df894b81f21d58abeca645038ceccab65587626f74cec2dc16df6ab",
+  "source_sha256": "97a88b3e25d6cb32f7941f0f8cfb1b6805d8ddf9400ba209d7566b9c6e429b7c",
   "rubrics": [
     {
       "rubric_id": "core_amzn_fy2026_capex_plan",
@@ -84,7 +84,7 @@
       "category": "result",
       "title": "Listed counterparty edge coverage",
       "criterion": "The exposure map identifies at least five listed AI-infrastructure counterparties that receive Amazon's FY2026 AI and AWS capital spending.",
-      "pass_condition": "The edges array contains at least five counterparty records.",
+      "pass_condition": "The edges array contains at least five distinct listed counterparties, counted by their ticker symbols.",
       "financial_subject": "Amazon.com, Inc. and listed counterparties",
       "period": "FY2026 program",
       "public_concept_id": "exposure_edge",
@@ -103,7 +103,8 @@
         "checker_id": "minimum_item_count",
         "parameters": {
           "path": "$.structured_output.edges",
-          "minimum": 5
+          "minimum": 5,
+          "distinct_by": "ticker"
         }
       },
       "judge": null,
@@ -1927,7 +1928,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-amzn-2-4-18f812ed9a"
+                "O11"
               ]
             },
             "decisions": {
@@ -1957,7 +1958,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-amzn-2-4-18f812ed9a",
+    "task_id": "O11",
     "public_question": "Strict information cutoff: 2026-04-30T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAs of 30 April 2026, map how Amazon.com's FY2026 AI and AWS capital-expenditure program transmits to listed AI-infrastructure counterparties, and present the result as a structured exposure graph.\n\nReport: (1) Amazon's disclosed FY2026 capital-expenditure plan and its Q1 2026 cash capital expenditure, both in USD billions; (2) for each exposed counterparty, its ticker, the relation type (for example direct supplier, design partner, foundry or infrastructure provider), whether the exposure is direct or indirect, the revenue-impact direction (positive, negative or mixed), the product or service through which Amazon's spending transmits, and an exposure anchor — the counterparty's latest reported AI or data-center revenue, forward AI revenue target or share — with the value and unit, or an explicit not-disclosed determination; (3) the two or three strongest transmission chains from Amazon's capital spending to counterparties, plus at least one alternative path, including any offsetting dynamic; and (4) the material disclosure gaps that prevent Amazon-specific quantification of counterparty revenue.\n\nUse only information publicly available before the cutoff.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.amazon_capex_2026_plan_usd_bn: Amazon's disclosed 2026 capital-expenditure plan in USD billions\n- $.amazon_q1_2026_capex_usd_bn: Amazon's Q1 2026 cash capital expenditure in USD billions\n- $.edges[].counterparty: Named listed counterparty on one Amazon AI capex exposure edge\n- $.edges[].ticker: Ticker of the exposed counterparty\n- $.edges[].relation_type: Relation type of the edge, such as direct supplier, design partner, foundry or infrastructure provider\n- $.edges[].directness: Direct or indirect classification of the exposure\n- $.edges[].direction: Direction of the revenue impact: positive, negative or mixed\n- $.edges[].product_or_service: Specific product or service through which Amazon capex transmits\n- $.edges[].exposure_metric: Name and fiscal period of the counterparty's exposure anchor\n- $.edges[].exposure_value: Numeric exposure anchor value, or null when not disclosed\n- $.edges[].exposure_unit: Unit of the exposure anchor: USD billions, percent or not disclosed\n- $.strongest_paths: The two or three strongest transmission chains from Amazon capex to counterparties\n- $.alternative_paths: At least one alternative transmission path, including any offsetting dynamic\n- $.disclosure_gaps: Material disclosure gaps that prevent Amazon-specific quantification\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2524,7 +2525,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-amzn-2-4-18f812ed9a"
+          "O11"
         ]
       },
       "decisions": {
@@ -2552,7 +2553,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "amzn_ai_capex_exposure_map",
+    "question_id": "O11",
     "truth_mode": "cutoff_known",
     "targets": [
       {
@@ -2569,8 +2570,7 @@
         "excerpt": "We expect to invest about $200 billion in capital expenditures across Amazon, but predominantly in AWS because we have very high demand, customers really want AWS for core and AI workloads, and we're monetizing capacity as fast as we can install it.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "amzn_q1_2026_cash_capex",
@@ -2586,8 +2586,7 @@
         "excerpt": "Our cash CapEx is $43.2 billion in Q1. This primarily relates to AWS and generative AI, as we invest to support strong customer demand.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "nvda_q4_fy2026_dc_revenue",
@@ -2603,8 +2602,7 @@
         "excerpt": "Q4 data center revenue of $62 billion increased 75% year over year and 22% sequentially, driven primarily by sustained strength in Blackwell and the Blackwell Ultra ramp.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "nvda_top5_hyperscaler_dc_share",
@@ -2620,8 +2618,7 @@
         "excerpt": "Analyst expectations for 2026 CapEx across the top five cloud providers and hyperscalers who collectively account for a little over 50% of our Data Center revenue are up nearly $120 billion since the start of the year and approaching $700 billion.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "avgo_q1_fy2026_ai_revenue",
@@ -2637,8 +2634,7 @@
         "excerpt": "AI semiconductor revenue, which grew 16% year on year to $8.4 billion, way above our outlook.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "mrvl_q4_fy2026_dc_revenue",
@@ -2654,8 +2650,7 @@
         "excerpt": "In our data center end market, we delivered record fourth-quarter revenue of $1.65 billion, representing 9% sequential growth and 21% year-over-year growth.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "mrvl_fy2026_custom_revenue",
@@ -2671,8 +2666,7 @@
         "excerpt": "In just a few years, we have scaled from zero revenue to $1.5 billion in fiscal 2026.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "anet_fy2026_ai_networking_target",
@@ -2688,8 +2682,7 @@
         "excerpt": "With our increased visibility, we are now doubling from 2025 to 2026 to $3.25 billion in AI networking revenue.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "anet_fy2025_cloud_ai_titans_share",
@@ -2705,8 +2698,7 @@
         "excerpt": "Shifting to annual customer sector revenue for 2025, cloud and AI titans contributed significantly at 48%.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tsmc_ai_asic_wafer_share",
@@ -2722,14 +2714,11 @@
         "excerpt": "close to 99% wafer fabrication share for the top 10 players' AI Server Compute and ASIC shipments",
         "truth_role": "expert_annotation",
         "outcome_kind": "reported_actual",
-        "source_authority": "official_operator",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "official_operator"
       }
-    ],
-    "verification_notes": "All ten targets were located via lookup/search and verified by Read of the cited chunks. Amazon's FY2026 plan of about $200B (predominantly AWS/AI) is from the Q4 2025 earnings call (c9c49ffa, public 2026-02-06); Q1 2026 cash capex of $43.2B is from the Q1 2026 call (eb18c6a8, public 2026-04-30 00:23Z, before the 2026-04-30 16:00 ET cutoff; the 2026 10-Q separately shows $44,203M of gross purchases of property and equipment). NVIDIA Q4 FY2026 data center revenue of $62B and the top-five cloud/hyperscaler share of \"a little over 50%\" of Data Center revenue are both from the Q4 FY2026 call (387ba5fb, public 2026-02-26). Broadcom Q1 FY2026 AI semiconductor revenue of $8.4B is from the Q1 2026 call (4e559fbe, public 2026-03-05). Marvell Q4 FY2026 data center revenue of $1.65B and FY2026 custom revenue of $1.5B are from the Q4 FY2026 call (2ae5ef31, public 2026-03-06). Arista's FY2026 AI networking target of $3.25B and FY2025 cloud/AI titans share of 48% are from the Q4 2025 call (0abaedc7, public 2026-02-13). TSMC's close to 99% share of top-10 AI server compute ASIC wafer fabrication is a Counterpoint Research expert annotation quoted in the 2026-02-02 news article (584f274d). All cited documents are authorized and public before the cutoff; no post-cutoff or consensus material was used. Excerpts are short verbatim spans from the successfully read chunks; where the value sentence did not repeat the fiscal period, the period heading is given in the locator."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

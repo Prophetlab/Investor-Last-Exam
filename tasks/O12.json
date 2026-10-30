@@ -1,6 +1,6 @@
 {
   "id": "O12",
-  "task_id": "task-author-v13-amzn-3-2-484f959ba3",
+  "task_id": "O12",
   "company": "Amazon.com, Inc.",
   "ticker": "AMZN",
   "category_id": "3.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "04746589c33888f9cf94351c0b4b8bd4407949cc5b4cf782ef99560b27850b7a",
+  "source_sha256": "ab6ed9bf4a7b0325dbdafcf21140f046899813e55e74cf0b308873dcbb100f69",
   "rubrics": [
     {
       "rubric_id": "core_consolidated_net_sales_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "amzn_q2_2026_net_sales",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Amazon.com, Inc.",
         "metric": "Consolidated net sales",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "amzn_q2_2026_operating_income",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Amazon.com, Inc.",
         "metric": "Consolidated operating income",
@@ -152,7 +150,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "amzn_q2_2026_aws_net_sales",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Amazon.com, Inc.",
         "metric": "AWS segment net sales",
@@ -210,7 +207,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "amzn_q2_2026_aws_operating_income",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "Amazon.com, Inc.",
         "metric": "AWS segment operating income",
@@ -1832,7 +1828,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-amzn-3-2-484f959ba3"
+                "O12"
               ]
             },
             "decisions": {
@@ -1862,7 +1858,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-amzn-3-2-484f959ba3",
+    "task_id": "O12",
     "public_question": "Strict information cutoff: 2026-03-31T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAmazon.com will report results for the quarter ending June 30, 2026. Using only information available up to March 31, 2026, forecast what the company will report for that quarter.\n\nGive point estimates in USD billions for consolidated net sales, consolidated operating income, AWS segment net sales and AWS segment operating income, along with the implied year-over-year growth rates and operating margins for the quarter.\n\nShow the bridge from Amazon's reported results and management guidance to your estimates, including the growth and margin assumptions and the cost and mix factors behind them. Set out the key uncertainties and sensitivities: what could move the numbers materially, and in which direction.\n\nMake each assumption explicit and show enough of the arithmetic that a reader can follow how the four estimates are built up.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.net_sales_usd_bn: Point forecast of Q2 2026 consolidated net sales in USD billions.\n- $.operating_income_usd_bn: Point forecast of Q2 2026 consolidated operating income in USD billions.\n- $.aws_net_sales_usd_bn: Point forecast of Q2 2026 AWS segment net sales in USD billions.\n- $.aws_operating_income_usd_bn: Point forecast of Q2 2026 AWS segment operating income in USD billions.\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2364,7 +2360,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-amzn-3-2-484f959ba3"
+          "O12"
         ]
       },
       "decisions": {
@@ -2392,7 +2388,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "amzn-q2-2026-forecast",
+    "question_id": "O12",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2409,8 +2405,7 @@
         "excerpt": "CONSOLIDATED STATEMENTS OF OPERATIONS (in millions, except per share data) (unaudited) Three Months Ended June 30, Six Months Ended June 30, 2025 2026 2025 2026 Net product sales $ 68,246 $ 77,602 $ 132,216 $ 148,906 Net service sales 99,456 123,004 191,153 233,219 Total net sales 167,702 200,606 323,369 382,125",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "amzn_q2_2026_operating_income",
@@ -2426,8 +2421,7 @@
         "excerpt": "CONSOLIDATED STATEMENTS OF OPERATIONS (in millions, except per share data) (unaudited) Three Months Ended June 30, Six Months Ended June 30, 2025 2026 2025 2026 Net product sales $ 68,246 $ 77,602 $ 132,216 $ 148,906 Net service sales 99,456 123,004 191,153 233,219 Total net sales 167,702 200,606 323,369 382,125 Operating expenses: Cost of sales 80,809 95,778 157,785 183,241 Fulfillment 25,976 29,633 50,569 56,922 Technology and infrastructure 27,166 33,158 50,160 62,725 Sales and marketing 11,416 11,698 21,179 22,012 General and administrative 2,965 2,788 5,593 5,375 Other operating expense (income), net 199 90 507 537 Total operating expenses 148,531 173,145 285,793 330,812 Operating income 19,171 27,461 37,576 51,313",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "amzn_q2_2026_aws_net_sales",
@@ -2443,8 +2437,7 @@
         "excerpt": "Information on reportable segments and reconciliation to consolidated net income is as follows (in millions): Three Months Ended June 30, Six Months Ended June 30, 2025 2026 2025 2026 North America Net sales $ 100,068 $ 116,177 $ 192,955 $ 220,320 Operating expenses 92,551 107,054 179,597 202,930 Operating income $ 7,517 $ 9,123 $ 13,358 $ 17,390 International Net sales $ 36,761 $ 42,197 $ 70,274 $ 81,986 Operating expenses 35,267 40,480 67,763 78,845 Operating income $ 1,494 $ 1,717 $ 2,511 $ 3,141 AWS Net sales $ 30,873 $ 42,232 $ 60,140 $ 79,819 Operating expenses 20,713 25,611 38,433 49,037 Operating income $ 10,160 $ 16,621 $ 21,707 $ 30,782",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "amzn_q2_2026_aws_operating_income",
@@ -2460,14 +2453,11 @@
         "excerpt": "Information on reportable segments and reconciliation to consolidated net income is as follows (in millions): Three Months Ended June 30, Six Months Ended June 30, 2025 2026 2025 2026 North America Net sales $ 100,068 $ 116,177 $ 192,955 $ 220,320 Operating expenses 92,551 107,054 179,597 202,930 Operating income $ 7,517 $ 9,123 $ 13,358 $ 17,390 International Net sales $ 36,761 $ 42,197 $ 70,274 $ 81,986 Operating expenses 35,267 40,480 67,763 78,845 Operating income $ 1,494 $ 1,717 $ 2,511 $ 3,141 AWS Net sales $ 30,873 $ 42,232 $ 60,140 $ 79,819 Operating expenses 20,713 25,611 38,433 49,037 Operating income $ 10,160 $ 16,621 $ 21,707 $ 30,782",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All four realized outcomes verified from Amazon.com, Inc.'s Form 10-Q for the quarter ended June 30, 2026 (SEC EDGAR; immutable document id 3a0ad43d-23be-4d3d-bfaa-2ae86872514a; public_available_at 2026-07-30T18:11:14Z, after the 2026-03-31 solver cutoff). Consolidated net sales (200,606) and consolidated operating income (27,461) were read from the Consolidated Statements of Operations, three months ended June 30, 2026 columns; AWS segment net sales (42,232) and AWS segment operating income (16,621) were read from the Note 8 Segment Information reportable-segments table; all amounts in USD millions as captioned ('in millions, except per share data' / 'in millions'). Excerpts are short contiguous verbatim spans copied from successfully read chunks; targeted character-level checks confirmed the unit captions, the 'Three Months Ended June 30' period heading, and exact dollar-symbol placement. Internal arithmetic checks: 116,177 + 42,197 + 42,232 = 200,606 (segments sum to consolidated net sales); 9,123 + 1,717 + 16,621 = 27,461 (segments sum to consolidated operating income); 20,713 + 25,611 + 16,621 = 42,232 (AWS). YoY vs Q2 2025 comparatives (167,702 / 19,171 / 30,873 / 10,160) = +19.6% / +43.2% / +36.8% / +63.6%, matching the July 30, 2026 earnings release headlines (net sales +20% to $200.6B; operating income $27.5B, +43%; AWS +37% to $42.2B; AWS operating income $16.6B vs $10.2B), also corroborated by earnings-release news document 14fccab0-f76f-4e71-a323-197da2e397a0 (public 2026-07-30T20:01:01Z)."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

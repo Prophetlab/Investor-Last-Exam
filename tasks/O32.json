@@ -1,6 +1,6 @@
 {
   "id": "O32",
-  "task_id": "task-author-v13-jpm-6-1-dd030db723",
+  "task_id": "O32",
   "company": "JPMorgan Chase & Co.",
   "ticker": "JPM",
   "category_id": "6.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "74383ef3fb31a36c2d67b0e68fe2bc00f02e612dce761423aa77c928e753dacc",
+  "source_sha256": "c2639bcdfa3878ea881c47c02ddae724058c6c7e7674f1df6bca3eef1cc576f5",
   "rubrics": [
     {
       "rubric_id": "core_eps_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "jpm_q2_eps_actual",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "JPMorgan Chase & Co.",
         "metric": "diluted earnings per share (GAAP, reported)",
@@ -94,7 +93,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "jpm_q2_revenue_actual",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "JPMorgan Chase & Co.",
         "metric": "total net revenue (reported)",
@@ -152,7 +150,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "jpm_q2_nii_actual",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "JPMorgan Chase & Co.",
         "metric": "net interest income (reported)",
@@ -210,7 +207,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "jpm_q2_provision_actual",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "JPMorgan Chase & Co.",
         "metric": "provision for credit losses",
@@ -1664,7 +1660,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-jpm-6-1-dd030db723"
+                "O32"
               ]
             },
             "decisions": {
@@ -1694,7 +1690,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-jpm-6-1-dd030db723",
+    "task_id": "O32",
     "public_question": "Strict information cutoff: 2026-04-14T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nJPMorgan Chase & Co. (JPM) — Q2 2026 research update\n\nActing as a bank equity analyst, deliver one coherent update on JPMorgan Chase & Co. (JPM) using only information available by the cutoff of April 14, 2026, 7:00 a.m. ET. The target is Q2 2026, the quarter ending June 30, 2026, to be reported in July 2026.\n\nProposition to test: Whether the earnings drivers behind JPM's Q1 2026 results prove durable or episodic will determine its Q2 2026 reported revenue, net interest income, credit-loss provisions and diluted EPS, and therefore the appropriate stance on JPM common stock through the next quarterly report.\n\nProvide:\n1. One point estimate for Q2 2026 reported (GAAP) diluted EPS, in USD per share.\n2. One point estimate for Q2 2026 total net revenue and one for net interest income, each in USD billions, on the company's reported basis.\n3. One point estimate for Q2 2026 provision for credit losses, in USD billions, reported basis.\n4. Your assessment of which Q1 2026 earnings drivers are durable versus episodic, and why.\n5. An investment stance on JPM common stock for the coming quarter — constructive, neutral or cautious — with supporting evidence and reasoning, plus the specific developments that would change that stance.\n\nEach narrative answer must be under 150 words.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.q2_eps_usd: Point forecast of JPM's Q2 2026 reported diluted EPS in USD per share.\n- $.q2_revenue_usd_bn: Point forecast of JPM's Q2 2026 total net revenue in USD billions.\n- $.q2_nii_usd_bn: Point forecast of JPM's Q2 2026 net interest income in USD billions.\n- $.q2_provision_usd_bn: Point forecast of JPM's Q2 2026 provision for credit losses in USD billions.\n- $.q1_earnings_durability: Which Q1 2026 earnings drivers are durable versus episodic, and why.\n- $.stance: Investment stance on JPM common stock for the coming quarter.\n- $.stance_rationale: Central evidence and reasoning supporting the stance.\n- $.stance_change_conditions: Specific developments that would change the stance.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2076,7 +2072,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-jpm-6-1-dd030db723"
+          "O32"
         ]
       },
       "decisions": {
@@ -2104,7 +2100,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "jpm-2026-q1-postprint-update",
+    "question_id": "O32",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2121,8 +2117,7 @@
         "excerpt": "Diluted earnings per share 7.70 5.24 13.63 10.31",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_q2_revenue_actual",
@@ -2138,8 +2133,7 @@
         "excerpt": "Reported net revenues of $57.35 billion",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_q2_nii_actual",
@@ -2155,8 +2149,7 @@
         "excerpt": "JPMorgan Chase (JPM) Q2 CY2026 Highlights: Net Interest Income: $25.51 billion",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_q2_provision_actual",
@@ -2172,14 +2165,11 @@
         "excerpt": "Q2 Non-GAAP EPS of $6.14 beats by $0.34. * $4.6 billion net gain related to Visa shares10 ($1.27 increase in EPS) * $1.0 billion of gains on certain equity investments12 ($0.29 increase in EPS) * Revenue of $58B (+26.9% Y/Y) beats by $6.7B. * Credit costs of $2.5 billion",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Round-3 revision per validation feedback (quarter identification). jpm_q2_nii_actual now cited to EODHD Financial News 'JPMorgan Chase (NYSE:JPM) Delivers Impressive Q2 CY2026' (id cc5fde03-03d9-48dc-8c70-cbc40db6e55c; public_available_at 2026-07-14T10:40:09+00:00; successfully Read, offsets verified twice). The quoted span 'JPMorgan Chase (JPM) Q2 CY2026 Highlights: Net Interest Income: $25.51 billion' is contiguous raw text with the quarter marker 'Q2 CY2026' directly attached to the value; it is the reported-basis NII (matches 10-Q 25,511M; the separate managed NII of 25.62bn per doc-164 was not used). jpm_q2_provision_actual now cited to EODHD Financial News / Seeking Alpha 'JPMorgan Chase Non-GAAP EPS of $6.14 beats by $0.34, revenue of $58B beats by $6.7B' (id 0c4ef7e2-396c-4257-800a-0302f57f317f; public_available_at 2026-07-14T10:35:18+00:00; successfully Read). The quoted span is a single contiguous run of the press-release summary bullets; it opens with 'Q2' (offsets 120–122) and closes with 'Credit costs of $2.5 billion' (offsets 363–391), i.e., the quarter marker appears inside the excerpt itself and about 240 characters from the provision figure. 'Credit costs' is JPM's own label for the quarter's provision for credit losses (call transcript doc-066: 'Credit costs were $2.5 billion, with net charge-offs of $2.4 billion and a net reserve build of $149 million'; Zacks doc-114: '$2.52 billion, down 12%'; 10-Q: provision 2,515M) — all reported-basis Q2 2026 amounts, rounded per source (2.5/2.52 billion). EPS target unchanged (10-Q: diluted $7.70 GAAP). Revenue target unchanged (Zacks doc cc679fa1: 'Reported net revenues of $57.35 billion...'). All four values are post-cutoff (after 2026-04-14) issuer-reported outcomes for the quarter ended June 30, 2026 (Q2 2026); managed-basis and adjusted-excluding-items figures were excluded per the reported/GAAP basis requested."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

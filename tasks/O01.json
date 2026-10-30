@@ -1,6 +1,6 @@
 {
   "id": "O01",
-  "task_id": "task-author-v13-aapl-1-1-5e6fea69cb",
+  "task_id": "O01",
   "company": "Apple Inc.",
   "ticker": "AAPL",
   "category_id": "1.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "fb6a07b70a20d875681253b0783cfdb5def9b59b731dfb40fe3b6700b33ad8a3",
+  "source_sha256": "253ab64505cfa096945f30f5fafff8216724d06c09e3eaa87679ec152ad6beb4",
   "rubrics": [
     {
       "rubric_id": "core_universe_closed_set",
@@ -1715,7 +1715,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-aapl-1-1-5e6fea69cb"
+                "O01"
               ]
             },
             "decisions": {
@@ -1745,7 +1745,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-aapl-1-1-5e6fea69cb",
+    "task_id": "O01",
     "public_question": "Strict information cutoff: 2026-04-30T16:30:00-04:00. Use only information publicly available on or before this timestamp.\n\nScreen a closed four-company universe — Apple, Microsoft, Alphabet, and Meta Platforms — for revenue-growth acceleration as of the cutoff.\n\nFor each company, establish two as-reported (not constant-currency) total revenue growth figures that were known at the cutoff: the year-over-year growth in the company's most recently reported fiscal quarter, and the year-over-year growth in its most recently completed fiscal year. State both in percent to one decimal place. The revenue acceleration score is the latest-quarter growth minus the fiscal-year growth, expressed in percentage points to one decimal place.\n\nOrder the four companies by acceleration score, highest first, breaking ties by higher latest-quarter growth and then by larger latest-quarter revenue. A company qualifies for the deeper-research shortlist only if its acceleration score is at least +5.0 percentage points.\n\nDeliver a ranked screen of all four names showing rank, company, the label of the latest reported fiscal quarter, latest-quarter total revenue in USD billions, both growth rates, the acceleration score, and a qualification flag. Identify the qualifying subset and give an exclusion reason for each company that does not qualify.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.ranked_screen: Ranked screen table of all four companies ordered by acceleration score, with qualification flags and supporting growth figures.\n- $.ranked_screen[].rank: Rank position of the company in the acceleration screen, 1 = highest acceleration score.\n- $.ranked_screen[].company: Company name from the four-company screening universe.\n- $.ranked_screen[].latest_reported_quarter: Label of the company's most recently reported fiscal quarter as of the cutoff.\n- $.ranked_screen[].latest_quarter_revenue_usd_bn: Total revenue in the latest reported quarter, in USD billions.\n- $.ranked_screen[].latest_quarter_yoy_growth_pct: As-reported year-over-year total revenue growth in the latest reported quarter, in percent.\n- $.ranked_screen[].fiscal_year_yoy_growth_pct: As-reported year-over-year total revenue growth in the latest completed fiscal year, in percent.\n- $.ranked_screen[].acceleration_pp: Latest-quarter growth minus fiscal-year growth, in percentage points.\n- $.ranked_screen[].shortlist_qualified: True when the acceleration score is at least +5.0 percentage points, otherwise false.\n- $.ranked_screen[].exclusion_reason: Reason a company fails the +5.0 percentage-point qualification threshold, or null when it qualifies.\nCite at least 8 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2117,7 +2117,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-aapl-1-1-5e6fea69cb"
+          "O01"
         ]
       },
       "decisions": {
@@ -2145,7 +2145,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "megacap_revenue_acceleration_screen_2026q2",
+    "question_id": "O01",
     "truth_mode": "cutoff_known",
     "targets": [
       {
@@ -2162,8 +2162,7 @@
         "excerpt": "We are reporting our best ever quarter with $143.8 billion in revenue, up 16% from a year ago and exceeding our expectations.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "aapl_fy25_growth",
@@ -2179,8 +2178,7 @@
         "excerpt": "Total net sales $ 416,161 6 % $ 391,035 2 % $ 383,285",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "aapl_q1fy26_revenue",
@@ -2196,8 +2194,7 @@
         "excerpt": "Our revenue of $143.8 billion, was up 16% year-over-year, our best quarter ever.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_q3fy26_growth",
@@ -2213,8 +2210,7 @@
         "excerpt": "This quarter, revenue was $82.9 billion, up 18% and 15% in constant currency.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_fy25_growth",
@@ -2230,8 +2226,7 @@
         "excerpt": "Revenue increased $36.6 billion or 15% with growth across each of our segments.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_q3fy26_revenue",
@@ -2247,8 +2242,7 @@
         "excerpt": "This quarter, revenue was $82.9 billion, up 18% and 15% in constant currency.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "googl_q126_growth",
@@ -2264,8 +2258,7 @@
         "excerpt": "Consolidated revenue reached $109.9 billion, up 22% or 19% in constant currency.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "googl_fy25_growth",
@@ -2281,8 +2274,7 @@
         "excerpt": "Revenues were $402.8 billion, an increase of 15% year over year, primarily driven by an increase in Google Services revenues of $37.8 billion, or 12%, and an increase in Google Cloud revenues of $15.5 billion, or 36%.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "googl_q126_revenue",
@@ -2298,8 +2290,7 @@
         "excerpt": "Consolidated revenue reached $109.9 billion, up 22% or 19% in constant currency.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "meta_q126_growth",
@@ -2315,8 +2306,7 @@
         "excerpt": "Q1 total revenue was $56.3 billion, up 33% or 29% on a constant currency basis.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "meta_fy25_growth",
@@ -2332,8 +2322,7 @@
         "excerpt": "Total revenue for 2025 was $200.97 billion, an increase of 22% compared to 2024, due to an increase in advertising revenue.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "meta_q126_revenue",
@@ -2349,14 +2338,11 @@
         "excerpt": "Q1 total revenue was $56.3 billion, up 33% or 29% on a constant currency basis.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All 12 targets verified from cutoff-authorized sources (authorized as of 2026-04-30T16:30:00-04:00); every cited document is public before the cutoff and no post-cutoff information is used. Quarterly as-reported YoY total revenue growth and latest-quarter revenue were taken from each issuer's Q1 2026 / Q3 FY2026 earnings-call transcript (LSEG Workspace); annual as-reported YoY growth was taken from each issuer's latest Form 10-K MD&A. Verified values: Apple FQ1 2026 net sales $143.8B, +16% YoY (transcript 40907477-9075-4040-b7bd-46b59f5150a7, public 2026-01-30T02:01:05.760Z); Apple FY2025 net sales $416,161M vs $391,035M, +6% (10-K 6084a7ec-ad3b-4380-999d-e9d64a5d9f25, public 2025-10-31T10:01:27Z). Microsoft FQ3 2026 revenue $82.9B, +18% as reported (15% constant currency) (transcript e97d4cc5-24d5-4fe1-ab56-1a3b4d1af6b5, public 2026-04-29T23:11:37.122Z); Microsoft FY2025 revenue +15% ($281,724M vs $245,122M) (10-K 7aafdfbc-1463-4978-b5e8-81e567eb78a7, public 2025-07-30T20:11:41Z). Alphabet Q1 2026 revenue $109.9B, +22% as reported (19% constant currency) (transcript 381e4246-513f-4174-8296-5f72f54c84f1, public 2026-04-30T00:03:36.473Z); Alphabet FY2025 revenue $402.8B, +15% YoY (10-K 3ba46b73-04e0-400e-b4b4-f33c38809160, public 2026-02-05T02:56:04Z). Meta Q1 2026 revenue $56.3B, +33% as reported (29% constant currency) (transcript ba70d464-cc03-4f69-bfa3-b3fc84dfa0ba, public 2026-04-30T00:08:34.445Z); Meta FY2025 revenue $200.97B, +22% YoY (10-K 7e2727cd-48e3-4195-bbe0-65c0fddb22ea, public 2026-01-29T00:13:47Z). Derived acceleration scores (latest-quarter growth minus fiscal-year growth): Meta +11.0pp, Apple +10.0pp, Alphabet +7.0pp, Microsoft +3.0pp. Rank order highest first: Meta, Apple, Alphabet, Microsoft. Shortlist qualifying at the +5.0pp threshold: Meta Platforms, Apple, Alphabet; Microsoft is screened out because +3.0pp is below +5.0pp. The 10-Q filings were also read and corroborate the quarterly figures ($143,756M +16% for Apple; $82,886M +18% for Microsoft; $109,896M +22% for Alphabet; $56,311M +33% for Meta), but the transcripts were used for the quarterly targets to match the requested public availability timing. Constant-currency figures (19% Alphabet, 15% Microsoft, 29% Meta) were excluded from the as-reported growth inputs."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

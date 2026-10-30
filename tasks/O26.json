@@ -1,6 +1,6 @@
 {
   "id": "O26",
-  "task_id": "task-author-v13-jpm-3-4-76db488eba",
+  "task_id": "O26",
   "company": "JPMorgan Chase & Co.",
   "ticker": "JPM",
   "category_id": "3.4",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "1c3790dd198741db2e2b079a041b7e6735750ff77f35fd14ca80ce6dbe718c53",
+  "source_sha256": "d0fcc30be6d01a4d51c13c48c023126df1462d8a8128dd41bb0117791ce98a06",
   "rubrics": [
     {
       "rubric_id": "core_updated_cib_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "jpm_q2_2026_cib_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "JPMorgan Chase & Co.",
         "metric": "Commercial & Investment Bank net revenue",
@@ -93,7 +92,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "jpm_q2_2026_total_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "JPMorgan Chase & Co.",
         "metric": "Total net revenue",
@@ -1541,7 +1539,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-jpm-3-4-76db488eba"
+                "O26"
               ]
             },
             "decisions": {
@@ -1571,7 +1569,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-jpm-3-4-76db488eba",
+    "task_id": "O26",
     "public_question": "Strict information cutoff: 2026-05-14T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nUsing only information publicly available before 7:00 a.m. ET on May 14, 2026, update your Q2 2026 (quarter ending June 30, 2026) forecast for JPMorgan Chase & Co. (JPM). All figures in USD millions.\n\nYour starting point is an explicitly dated, frozen Q2 2026 build for JPM, formed from the pre-signal information specified below. Identify the capital-markets peer disclosure you treat as the read-through signal, and state its issuer and reporting period together with that peer's reported year-over-year growth in investment banking fees and in markets revenue for its latest reported quarter.\n\nState the read-through coefficient you choose — the fraction of the peer's reported growth you pass into JPM's affected lines — and apply it only to those lines, holding every other segment line at its prior value.\n\nDeliver: the prior build's CIB net revenue and total net revenue; the year-over-year growth in investment banking fees and markets revenue implied by that build against JPM's reported Q2 2025 results; the dollar deltas for investment banking fees and markets revenue; the updated CIB net revenue; the updated total net revenue consistent with your segment build; the list of unchanged lines; and a bridge note explaining your mapping and the affected-only treatment.\n\nPrior formation and freezing: construct your standing Q2 2026 forecast using only information publicly available by March 31, 2026, 4:00 p.m. ET, before the Q1 2026 peer results used for this update. This is your own dated forecast, not a claim that the company disclosed that forecast. Explicitly identify its assumptions and dated source evidence. Before reading or analyzing the subsequent peer earnings signal, write prior_build.json in your workspace and then keep that file unchanged. Record the prior investment-banking-fee forecast, prior Markets forecast, other CIB revenue, CCB revenue, AWM revenue and Corporate revenue, together with prior CIB and total revenue and the prior's information cutoff. Use mutually exclusive lines so other CIB + investment banking fees + Markets = CIB and CCB + CIB + AWM + Corporate = total. Include the file in the final artifacts list and repeat the two affected prior amounts in bridge_note or calculations so the update can be reproduced from the final submission. Do not choose or back-solve the prior from the peer signal, the updated forecast, or a realized future result.\n\nUpdate convention: mapping_coefficient is a dimensionless fraction greater than zero and no greater than one. Convert each peer year-over-year growth percentage to a decimal before applying it. The incremental updates are:\n  ib_fees_delta_musd = prior investment-banking-fee forecast × mapping_coefficient × signal_ib_fees_growth_pct / 100;\n  markets_delta_musd = prior Markets forecast × mapping_coefficient × signal_markets_growth_pct / 100.\nAdd these increments to the frozen prior; do not replace its assumed growth with the peer's growth, and do not multiply the increments by last year's actuals instead. Last year's Q2 2025 actuals are used only to compute each prior-implied year-over-year growth: 100 × (prior line / matching Q2 2025 actual − 1). State and consistently use the matching consolidated or CIB fee scope; do not mix those bases. Keep other CIB, CCB, AWM and Corporate at their frozen prior values. Updated CIB and updated total each equal their respective prior plus the same two increments.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.signal_source: Issuer and period of the peer disclosure identified as the read-through signal.\n- $.signal_ib_fees_growth_pct: Peer's reported year-over-year investment banking fee growth.\n- $.signal_markets_growth_pct: Peer's reported year-over-year markets revenue growth.\n- $.mapping_coefficient: Fraction of the peer's reported growth passed through into the affected lines.\n- $.prior_implied_ib_growth_pct: Investment banking fee growth implied by the prior build against JPM's Q2 2025 result.\n- $.prior_implied_markets_growth_pct: Markets revenue growth implied by the prior build against JPM's Q2 2025 result.\n- $.prior_cib_revenue_musd: CIB net revenue in the standing Q2 2026 build.\n- $.ib_fees_delta_musd: Change to the prior build's investment banking fee line.\n- $.markets_delta_musd: Change to the prior build's markets revenue line.\n- $.updated_cib_revenue_musd: Updated Q2 2026 CIB net revenue forecast after the peer read-through.\n- $.prior_total_revenue_musd: Total net revenue in the standing Q2 2026 build.\n- $.updated_total_revenue_musd: Updated Q2 2026 total net revenue forecast after the affected-only update.\n- $.unchanged_lines: Segment lines held at their prior values because the peer evidence does not bear on them.\n- $.bridge_note: Explanation of the mapping and the affected-only treatment.\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -1928,7 +1926,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-jpm-3-4-76db488eba"
+          "O26"
         ]
       },
       "decisions": {
@@ -1956,7 +1954,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "jpm_cib_readthrough_update_q2_2026",
+    "question_id": "O26",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -1973,8 +1971,7 @@
         "excerpt": "Total net revenue (a) 24,853 19,535 27",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_q2_2026_total_revenue",
@@ -1990,8 +1987,7 @@
         "excerpt": "Total net revenue 57,347 44,912 107,183 90,222",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_q2_2026_ib_fees",
@@ -2007,8 +2003,7 @@
         "excerpt": "Investment banking fees $ 3,277 $ 2,513 30 %",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_q2_2026_markets_revenue",
@@ -2024,8 +2019,7 @@
         "excerpt": "Markets (c) 12,078 8,936 35",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_q2_2025_ib_fees",
@@ -2041,8 +2035,7 @@
         "excerpt": "Investment banking fees $ 2,499 $ 2,304 $ 4,677 $ 4,258",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_q2_2025_markets_revenue",
@@ -2058,8 +2051,7 @@
         "excerpt": "Total net revenue $ 5,690 $ 3,246 $ 8,936 $ 4,981 $ 2,812 $ 7,793",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "citi_q1_2026_ib_fees_growth",
@@ -2075,8 +2067,7 @@
         "excerpt": "Investment banking fees 1,232 1,104 12",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "citi_q1_2026_markets_growth",
@@ -2092,14 +2083,11 @@
         "excerpt": "Markets 7,246 6,075 19",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All eight targets were resolved by successful Reads of the cited chunks in the authorized private database (authorized as of 2026-09-09T21:52:02Z). JPM Q2 2026 realized outcomes: 2026-06-30 Form 10-Q (21ed8ba4-f72e-44d6-ad25-850e1d826f53, public 2026-08-06T16:19:04Z) - CIB 'Selected income statement data' for the three months ended June 30, 2026 shows Total net revenue (a) $24,853M and Investment banking fees $3,277M; the Executive Overview 'Financial performance of JPMorganChase (unaudited)' table shows the Markets (c) memo row $12,078M (footnote: Markets consists of CIB's Fixed Income Markets and Equity Markets businesses); the Consolidated statements of income show Total net revenue $57,347M. JPM Q2 2025 cutoff baselines: 2025-06-30 Form 10-Q (a6442ee5-1319-440f-959a-6adb30f42e2f, public 2025-08-05T20:18:23Z) - Consolidated statements of income show Investment banking fees $2,499M (the firm-wide reported line that is the base used in the standing build; the CIB segment table separately shows $2,513M) and the Markets revenue table shows Total Markets $8,936M. Citi Q1 2026 peer growth signal: 2026-03-31 Form 10-Q (58bec7ae-dcfe-4176-af56-0be7b01eea9e, public 2026-05-07T20:50:23Z) - Banking segment Investment banking fees 1,232 vs 1,104 = 12% and SEGMENT REVENUES Markets 7,246 vs 6,075 = 19%; these match Citigroup's Q1 2026 earnings call statements (IB fees +12%, markets revenues +19%). Note on JPM investment banking fees: the firm-wide 'Investment banking fees' line (2,499 in 2Q25; 3,208 in 2Q26) differs from the CIB segment figure (2,513 in 2Q25; 3,277 in 2Q26, up 30% and headlined as $3.3 billion); the baseline target follows the standing build's firm-wide base ($2,499M, consistent with the +12.0% implied growth used in the task) and the realized target uses the CIB segment figure consistent with the requested CIB concept."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

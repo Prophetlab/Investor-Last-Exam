@@ -1,6 +1,6 @@
 {
   "id": "O45",
-  "task_id": "task-author-v13-mcd-5-1-0d8e7c9299",
+  "task_id": "O45",
   "company": "McDonald's Corporation",
   "ticker": "MCD",
   "category_id": "5.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "325ddd75b38b85bb0398f5fd17c4143dde88a6aad1807da732326e2158183440",
+  "source_sha256": "dc61cdeb0a3cb045f6d919404fb188f0f4217984828051bf96e76ac4da969c95",
   "rubrics": [
     {
       "rubric_id": "core_value_menu_launch_coverage",
@@ -1779,7 +1779,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-mcd-5-1-0d8e7c9299"
+                "O45"
               ]
             },
             "decisions": {
@@ -1809,7 +1809,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-mcd-5-1-0d8e7c9299",
+    "task_id": "O45",
     "public_question": "Strict information cutoff: 2026-04-29T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nMcDonald's Corporation (MCD) — Q2 2026 revenue event monitoring.\n\nQuestion: within the monitored window of 1–28 April 2026, which McDonald's-specific developments materially change the Q2 2026 (quarter ending 30 June 2026) total revenue outlook, and which in-window items are screened out?\n\nDeliverables: whether the outlook changes materially or is unchanged; the revised Q2 2026 total revenue figure in USD millions and the net in-window adjustment in USD millions; for each material development, a stable event identifier, the revenue driver affected, the direction of the effect, and the estimated USD million impact, ordered by absolute impact; and the screened-out in-window items, each with its subject, a category of non-material company event or out of scope, and a brief reason.\n\nRestrict the review to items dated within the window.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.forecast_change_status: Whether the digest reports a material change or an explicit no-change outcome.\n- $.revised_q2_2026_revenue_usd_mm: Revised Q2 2026 total revenue forecast in USD millions.\n- $.net_event_adjustment_usd_mm: Net USD million adjustment to the fixed baseline from material in-window events.\n- $.material_events[].event_id: Stable identifier for each material in-window event.\n- $.material_events[].affected_driver: Revenue driver label affected by the material event.\n- $.material_events[].direction: Direction of the material event's effect on the Q2 2026 revenue forecast.\n- $.material_events[].revenue_impact_usd_mm: Estimated Q2 2026 revenue impact of the material event in USD millions.\n- $.screened_out[].subject: Identity of each in-window item examined and screened out.\n- $.screened_out[].category: Whether the screened-out item is a non-material company event or out of scope.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2431,7 +2431,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-mcd-5-1-0d8e7c9299"
+          "O45"
         ]
       },
       "decisions": {
@@ -2459,7 +2459,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "mcd_q2_2026_event_monitoring",
+    "question_id": "O45",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2476,14 +2476,11 @@
         "excerpt": "Total revenues 7,099 6,843",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Read MCD Q2 2026 Form 10-Q (document_version_id 333fceeb-786f-4a39-90f1-86655e3b44d1, public_available_at 2026-08-07T12:52:33Z) chunk 1: Condensed Consolidated Statement of Income (unaudited), Quarters Ended June 30, shows Total revenues 7,099 (2026) vs 6,843 (2025), with six-month totals 13,616 vs 12,799; i.e., Q2 2026 total revenues = USD 7,099 million. Corroborated by the issuer's Q2 2026 results press release (document_id 493f93ec-583c-4a59-8d38-79ea669524df, public 2026-08-04T11:00:01Z): \"TOTAL REVENUES 7,099 6,843 256 4\" and \"Revenues $ 7,099 $ 6,843 4 % 2 %\"; and by news coverage citing $7.10 billion (+3.7% YoY). The result became public after the Solver cutoff of 2026-04-29, so it is a realized company outcome (reported actual), not consensus or guidance."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

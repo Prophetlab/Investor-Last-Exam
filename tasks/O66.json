@@ -1,6 +1,6 @@
 {
   "id": "O66",
-  "task_id": "task-author-v13-nflx-5-1-94a77b0bad",
+  "task_id": "O66",
   "company": "Netflix, Inc.",
   "ticker": "NFLX",
   "category_id": "5.1",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "98c38174123fc7abe7036afdf81023d130539a192af1148c4474c489560a11c8",
+  "source_sha256": "30db71a5789379ff91697cfdea2a1143a729685feaf97b293eb301f0e7b70552",
   "rubrics": [
     {
       "rubric_id": "core_baseline_q2_revenue",
@@ -1731,7 +1731,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-nflx-5-1-94a77b0bad"
+                "O66"
               ]
             },
             "decisions": {
@@ -1761,7 +1761,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-nflx-5-1-94a77b0bad",
+    "task_id": "O66",
     "public_question": "Strict information cutoff: 2026-05-16T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAct as a financial analyst monitoring Netflix, Inc. (NFLX) for developments that materially change the company's Q2 2026 revenue outlook (quarter ending June 30, 2026), using only information available by the stated cutoff.\n\nEvidence scope: public information dated within the April 17 - May 16, 2026 monitoring window that was available by the cutoff. You choose which documents are sufficient.\n\nDeliver:\n\n1. The Q2 2026 revenue outlook baseline and the dollar amount equal to 1% of it.\n2. Every window development considered, classified as material or screened out, with the reason each screened item fails the 1% bar.\n3. For each material event: date, subject, action, the revenue driver affected, direction, and estimated Q2 2026 revenue impact, ranked by impact.\n4. Your updated Q2 2026 revenue estimate and whether it is above, below, or unchanged versus the baseline.\n\nExplain how each material event connects to its estimated revenue impact and to the updated estimate.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.baseline_q2_2026_revenue_usd_m: The retrieved management Q2 2026 revenue outlook used as the monitoring baseline.\n- $.materiality_threshold_usd_m: The 1%-of-baseline dollar threshold that separates material from screened items.\n- $.updated_q2_2026_revenue_usd_m: The updated Q2 2026 revenue nowcast after applying window information.\n- $.net_revision_direction: Whether the updated estimate is an increase, decrease or unchanged versus baseline.\n- $.material_events: Ranked material window events with date, subject, action, driver, direction and impact.\n- $.material_events[].revenue_driver: The revenue driver label attached to each material window event.\n- $.screened_no_change_items: Window items that fail the materiality bar, each with the reason it fails.\nCite at least 4 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2238,7 +2238,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-nflx-5-1-94a77b0bad"
+          "O66"
         ]
       },
       "decisions": {
@@ -2266,7 +2266,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "nflx_q2_2026_revenue_monitoring_digest",
+    "question_id": "O66",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2283,8 +2283,7 @@
         "excerpt": "Weakest Q2: Netflix (NASDAQ:NFLX) Launched by Reed Hastings as a DVD mail rental company until its famous pivot to streaming in 2007, Netflix (NASDAQ: NFLX) is a pioneering streaming content platform. Netflix reported revenues of $12.56 billion, up 13.4% year on year.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q2_2026_revenue_guidance",
@@ -2300,8 +2299,7 @@
         "excerpt": "Netflix sees Q2 2026 revenue of $12.57 billion, which was also below the estimates of $12.64 billion.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "q1_2026_revenue_actual",
@@ -2317,8 +2315,7 @@
         "excerpt": "Netflix (NFLX) posted Q1 2026 revenue of $12.24B, up 16.19% YoY",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "fy2026_revenue_growth_guidance",
@@ -2334,14 +2331,11 @@
         "excerpt": "we are maintaining our guidance, our strong outlook for organic growth that we established for 2026. That's revenue growth 12% to 14%, operating margin at 31.5%, that includes roughly doubling the advertising business to about $3 billion.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Only q2_2026_revenue_actual was replaced; the other three targets remain as previously verified. (1) q2_2026_revenue_actual: the cited post-cutoff report (public 2026-08-21T21:31:48Z) states verbatim 'Netflix reported revenues of $12.56 billion, up 13.4% year on year.' under the Q2 results heading 'Weakest Q2: Netflix (NASDAQ:NFLX)'; $12.56 billion equals $12,560 million and ties to the issuer's 2026-06-30 Form 10-Q, which prints 'Revenues $ 12,559,938' (in thousands = $12,559.938 million) for the three months ended June 30, 2026. The excerpt is a reported actual (no forecast/guidance/consensus wording). (2) q2_2026_revenue_guidance (cutoff_baseline): 'Netflix sees Q2 2026 revenue of $12.57 billion, which was also below the estimates of $12.64 billion.' (public 2026-04-16T20:41:05Z), pre-cutoff. (3) q1_2026_revenue_actual: 'Netflix (NFLX) posted Q1 2026 revenue of $12.24B, up 16.19% YoY' (public 2026-05-28T14:58:38Z); cross-checked against the Q1 2026 10-Q ('than our reported revenues of $12,250 million' for the three months ended March 31, 2026). (4) fy2026_revenue_growth_guidance (cutoff_baseline): Q1 2026 earnings call transcript, 'revenue growth 12% to 14%'. No post-cutoff information was used for the two cutoff_baseline targets."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

@@ -1,6 +1,6 @@
 {
   "id": "O62",
-  "task_id": "task-author-v13-msft-5-2-a1a92f83e4",
+  "task_id": "O62",
   "company": "Microsoft Corporation",
   "ticker": "MSFT",
   "category_id": "5.2",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "0ecdfa0f819c7bba63d3bf9f72bda13a35a34706769be21cb8a3921b4500579e",
+  "source_sha256": "cb1c97f91ca5483984b85307ea7eb99784a93cf13a436d2acc8a95466d3319dc",
   "rubrics": [
     {
       "rubric_id": "core_total_revenue_accuracy",
@@ -36,7 +36,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_q4fy26_revenue",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corp",
         "metric": "Total company revenue",
@@ -95,7 +94,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_q4fy26_azure_cc",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corp",
         "metric": "Azure and other cloud services revenue growth year over year in constant currency",
@@ -154,7 +152,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_q4fy26_ic_rev",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corp",
         "metric": "Intelligent Cloud segment revenue",
@@ -213,7 +210,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_q4fy26_pbp_rev",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corp",
         "metric": "Productivity and Business Processes segment revenue",
@@ -272,7 +268,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "msft_q4fy26_mpc_rev",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "news",
         "entity": "Microsoft Corp",
         "metric": "More Personal Computing segment revenue",
@@ -1745,7 +1740,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-msft-5-2-a1a92f83e4"
+                "O62"
               ]
             },
             "decisions": {
@@ -1775,7 +1770,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-msft-5-2-a1a92f83e4",
+    "task_id": "O62",
     "public_question": "Strict information cutoff: 2026-03-30T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nMicrosoft Corporation (MSFT) — FY2026 Q4 forecast update (quarter ending June 30, 2026).\n\nAs of the U.S. equity market close on March 30, 2026 (4:00 p.m. EDT), before the June quarter begins, update your standing model for that quarter using only information available through the cutoff.\n\nProduce revised forecasts for: total company revenue (USD billions); Azure and other cloud services year-over-year growth in constant currency (percent); Intelligent Cloud segment revenue (USD billions); Productivity and Business Processes segment revenue (USD billions); More Personal Computing segment revenue (USD billions).\n\nState the explicit prior model your update starts from: the prior value of each field and the information boundary it reflects, with no later information folded into the prior. Then identify the new signal you are applying and give a field-by-field before-to-after bridge — prior value, revised value, net change and the driver of the change. Classify each field as changed or unchanged; an unchanged field is a valid outcome when the evidence does not support a revision.\n\nFinish with a reasoned net judgment on whether the accumulated information warrants material revisions to the standing model, citing the evidence and the main uncertainties behind your conclusion.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.revenue_forecast_usd_b: Revised June-quarter total revenue forecast in USD billions.\n- $.azure_growth_forecast_cc_pct: Revised June-quarter Azure constant-currency growth forecast in percent.\n- $.intelligent_cloud_forecast_usd_b: Revised June-quarter Intelligent Cloud segment revenue forecast in USD billions.\n- $.pbp_forecast_usd_b: Revised June-quarter Productivity and Business Processes segment revenue forecast in USD billions.\n- $.mpc_forecast_usd_b: Revised June-quarter More Personal Computing segment revenue forecast in USD billions.\n- $.bridge: Before-to-after bridge rows (field, prior, revised, net_change, driver) for each model field.\n- $.changed_fields: Model fields the new information revises, by field name.\n- $.unchanged_fields: Model fields kept at their prior values, by field name.\nCite at least 3 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2188,7 +2183,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-msft-5-2-a1a92f83e4"
+          "O62"
         ]
       },
       "decisions": {
@@ -2216,7 +2211,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "msft_q4fy26_forecast_update",
+    "question_id": "O62",
     "truth_mode": "future_realized",
     "targets": [
       {
@@ -2233,8 +2228,7 @@
         "excerpt": "The company reported fourth-quarter revenue of $90.01 billion and earnings per share of $4.74, both ahead of expectations.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_q4fy26_azure_cc",
@@ -2250,8 +2244,7 @@
         "excerpt": "Microsoft Corporation's MSFT Azure cloud platform closed fiscal 2026 with annual revenues surpassing $100 billion for the first time, as disclosed alongside fourth-quarter results for the period ended June 30, 2026. Azure and other cloud services revenues climbed 43% in the fiscal fourth quarter, lifting full-year Azure growth to 41% and pushing total fiscal 2026 revenues to $331.8 billion, up 18%.",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_q4fy26_ic_rev",
@@ -2267,8 +2260,7 @@
         "excerpt": "The Intelligent Cloud segment contributed $39.3 billion in revenues, up 32% year over year (31% in cc).",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_q4fy26_pbp_rev",
@@ -2284,8 +2276,7 @@
         "excerpt": "The Productivity & Business Processes segment generated $37.8 billion in revenues, which grew 14% year over year (14% in cc).",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "msft_q4fy26_mpc_rev",
@@ -2301,14 +2292,11 @@
         "excerpt": "The More Personal Computing segment generated $12.9 billion in revenues, down 4% year over year (down 5% in cc)",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "Corrected target msft_q4fy26_azure_cc: now cited to the June-quarter report that explicitly identifies the period (\"fourth-quarter results for the period ended June 30, 2026\"; \"climbed 43% in the fiscal fourth quarter\"). The constant-currency basis of the 43% is corroborated by the explicit quarter statement \"Azure growth climbed to 43% in constant currency from 39% last quarter\" (document a1d3efe8-aee9-47ac-84cc-a7ef18ce822a), which matches the acceleration from the 39% constant-currency growth reported for the March quarter and is consistent with the FY27 Q1 guide of ~45% in constant currency; a 39.6% figure appearing in one summary corresponds to the pre-earnings consensus estimate rather than the reported constant-currency figure. All other targets remain as previously verified: total revenue $90.01 billion (up 18% y/y; 17% cc); Intelligent Cloud $39.3 billion (up 32% y/y, 31% cc; rendered $39.31B / +31.6% in other coverage); Productivity and Business Processes $37.8 billion (up 14% y/y, 14% cc); More Personal Computing $12.9 billion (down 4% y/y, 5% cc). Each cited chunk was returned by a successful Read; the FY2026 Form 10-K cross-check (total $331,839M; IC $137,791M; PBP $139,996M; MPC $54,052M) is annual-basis only."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

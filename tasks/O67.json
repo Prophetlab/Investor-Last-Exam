@@ -1,6 +1,6 @@
 {
   "id": "O67",
-  "task_id": "task-author-v13-nflx-5-4-bb36ce990b",
+  "task_id": "O67",
   "company": "Netflix, Inc.",
   "ticker": "NFLX",
   "category_id": "5.4",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "37f23c8ef24dbfb79b60d2cfef70716f373af93bb0ac72eab5782246c27736e8",
+  "source_sha256": "c9d262289867412e509c639d7a3581b1687f2fbfad1909ef527286bf69fe5957",
   "rubrics": [
     {
       "rubric_id": "core_reference_price",
@@ -1744,7 +1744,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-nflx-5-4-bb36ce990b"
+                "O67"
               ]
             },
             "decisions": {
@@ -1774,7 +1774,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-nflx-5-4-bb36ce990b",
+    "task_id": "O67",
     "public_question": "Strict information cutoff: 2026-04-16T16:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nNetflix, Inc. (NFLX) reports Q1 2026 results on April 16, 2026. At the 4:00 p.m. ET cutoff that day, size a 12-month NFLX position for a $200 million NAV fund currently holding $7.2 million (3.6% of NAV), with the earnings event as the immediate risk point.\n\nFixed assumptions: expected 12-month total return 12.0%; annualized volatility 35.0%; risk-free rate 3.8%; half-Kelly fraction 0.5, so unconstrained size = 0.5 × (expected return − risk-free rate) / variance. Risk budgets: 30 bp of NAV on an adverse gap equal to the options-implied post-earnings move, and 90 bp of NAV on a decline to the stress floor. Single-name cap 4.0% of NAV.\n\nResearch the latest NFLX close before the decision; the options-implied absolute move for the Q1 2026 print; FY2026 revenue guidance; FY2025 operating income and revenue; and, from the latest balance sheet, long-term debt, cash, short-term investments and shares outstanding.\n\nStress case: guided FY2026 revenue × FY2025 operating margin, at 20× EV/EBIT; floor price = (20 × stress operating income − net debt) / shares outstanding.\n\nReport: reference price, implied move, guided revenue, FY2025 operating margin, stress operating income, net debt, floor price, floor drawdown, half-Kelly size, gap and floor limit weights, cap, binding constraint, final target weight and dollars, and the trade action and notional versus the current position.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.reference_price_usd: Latest reported NFLX closing price before the decision.\n- $.implied_earnings_move_pct: Options-implied absolute post-earnings move for the April 16, 2026 print.\n- $.guided_fy2026_revenue_usd_bn: Company-guided FY2026 revenue.\n- $.fy2025_operating_margin_pct: FY2025 operating income divided by FY2025 revenue.\n- $.stress_operating_income_usd_bn: Guided FY2026 revenue at the FY2025 operating margin.\n- $.net_debt_usd_bn: Long-term debt less cash and short-term investments at 2025-12-31.\n- $.floor_price_usd: Stress floor price per share.\n- $.floor_drawdown_pct: Decline from the reference price to the floor price.\n- $.half_kelly_weight_pct: Unconstrained half-Kelly weight.\n- $.gap_limit_weight_pct: Maximum weight under the earnings-gap risk budget.\n- $.floor_limit_weight_pct: Maximum weight under the floor-risk budget.\n- $.cap_weight_pct: Single-name cap weight.\n- $.binding_constraint: Limit that sets the final target weight.\n- $.final_target_weight_pct: Final target position weight.\n- $.target_position_usd_mn: Final target position in dollars.\n- $.trade_action: Buy, sell or hold versus the current position.\n- $.trade_notional_usd_mn: Absolute trade notional.\nCite at least 4 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2010,7 +2010,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-nflx-5-4-bb36ce990b"
+          "O67"
         ]
       },
       "decisions": {
@@ -2038,7 +2038,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "nflx_position_sizing_2026_04_16",
+    "question_id": "O67",
     "truth_mode": "cutoff_known",
     "targets": [
       {
@@ -2055,8 +2055,7 @@
         "excerpt": "On April 13, 2026, Netflix, Inc. (NASDAQ:NFLX) stock closed at $98.93 per share.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "exchange",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "exchange"
       },
       {
         "truth_id": "tr_implied_move",
@@ -2072,8 +2071,7 @@
         "excerpt": "Options traders are positioning for a move of roughly 7% in either direction following the Netflix report.",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "exchange",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "exchange"
       },
       {
         "truth_id": "tr_guide_rev",
@@ -2089,8 +2087,7 @@
         "excerpt": "We forecast 2026 revenue at $51 billion, which is up 14% year on year.",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_fy25_rev",
@@ -2106,8 +2103,7 @@
         "excerpt": "Revenues $ 45,183,036 $ 39,000,966 $ 33,723,297",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_fy25_ebit",
@@ -2123,8 +2119,7 @@
         "excerpt": "Operating income 13,326,603 10,417,614 6,954,003",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_cash",
@@ -2140,8 +2135,7 @@
         "excerpt": "Cash and cash equivalents $ 9,033,681 $ 7,804,733",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_sti",
@@ -2157,8 +2151,7 @@
         "excerpt": "Short-term investments 28,678 1,779,006",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_debt",
@@ -2174,8 +2167,7 @@
         "excerpt": "Long-term debt 13,463,971 13,798,351",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "tr_shares",
@@ -2191,14 +2183,11 @@
         "excerpt": "Common stock, $0.001 par value; 49,900,000,000 shares authorized at December 31, 2025 and December 31, 2024; 4,222,162,150 and 4,277,571,000 issued and outstanding at December 31, 2025 and December 31, 2024, respectively",
         "truth_role": "deterministic_reference",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All nine targets verified directly from successfully Read private-database chunks, all cutoff-known before 2026-04-16 16:00 ET. Reference close: EODHD news 'What Gives Netflix (NFLX) a Valuable Moat?' (doc 6cc2f5ed-7747-4040-a0cb-bca92796641c, available 2026-04-14T13:43:48Z) states NFLX closed at $98.93 on April 13, 2026. Implied move: EODHD news 'Netflix Stock Could Swing 7% After Today's Earnings' (doc 4feddab9-528e-481e-a3b7-8deb6a7cba72, available 2026-04-16T14:43:37Z) states options traders are positioning for a move of roughly 7% in either direction following the first-quarter report. Guidance: Q4 2025 Netflix earnings call (doc d0196d65-c715-458c-a384-15a319d9d2c2, available 2026-01-21T00:09:08Z): 'We forecast 2026 revenue at $51 billion, which is up 14% year on year.' FY2025 Form 10-K (doc 06d21acb-7747-4040-a0cb-bca92796641c, available 2026-01-23T21:06:34Z): FY2025 revenues $45,183,036k; operating income $13,326,603k; 2025-12-31 cash and cash equivalents $9,033,681k; short-term investments $28,678k; long-term debt $13,463,971k; 4,222,162,150 shares issued and outstanding. Cross-check of the derived chain: FY2025 operating margin = 13,326,603/45,183,036 = 29.49%; stress EBIT = 51.0 x 29.49% = $15.04bn; net debt = 13.464 - 9.034 - 0.029 = $4.40bn; floor = (20 x 15.04 - 4.40)/4.222bn = $70.21; floor drawdown = (98.93 - 70.21)/98.93 = 29.03%; floor limit = 0.90%/29.03% = 3.10%; gap limit = 0.30%/7% = 4.29%; half-Kelly = 0.5 x (12.0% - 3.8%)/0.35^2 = 33.47%; cap = 4.0%; binding constraint = fundamental_floor_risk_budget; final target 3.10% = $6.20m; trade = sell $1.00m versus the current $7.2m position."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200

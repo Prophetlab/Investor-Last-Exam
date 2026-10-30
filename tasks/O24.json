@@ -1,6 +1,6 @@
 {
   "id": "O24",
-  "task_id": "task-author-v13-jpm-1-4-a811266154-review-r2",
+  "task_id": "O24",
   "company": "JPMorgan Chase & Co.",
   "ticker": "JPM",
   "category_id": "1.4",
@@ -13,7 +13,7 @@
   "judge_system_prompt": "You are a fixed FinanceBench V11 financial-semantic judge. You receive one\nanonymous answer and only the directly relevant evidence package for each presented Rubric. Decide\neach standalone binary Rubric yes or no. Do not grade formatting already handled by schema checks,\ndo not invent absent evidence, and do not require the Solver to reproduce the author's route.\nThe answer's document_ref (for example doc-0001) is an episode-local tool alias; a reference\npackage's document_version_id is a database identifier in a DIFFERENT namespace. Never require\nliteral equality between them or fail a claim merely because the strings differ. Compare the\ncited excerpt, financial claim, entity, period, and accounting scope. Direct evidence materials\nare reference evidence, not a closed list of sources the Solver must reproduce. Alternative\nevidence may support the same claim; unsupported or contradictory claims must still fail.\nFor financial Rubrics, equivalent object-versus-array representations are acceptable when\nthe relevant values, reconciliation, and supporting evidence can actually be identified.\nDo not fail multiple financial claims solely for a container shape or total-row layout.\nThis is not permission to infer missing values or accept incorrect financial calculations.\nReturn every presented rubric id exactly once in a single submit_semantic_grade_v11 call.\nEach decision must contain rubric_id (string), passed (boolean), and rationale (a nonempty\nclaim-specific explanation). A batch summary does not replace each decision's rationale.\n\nReview every listed rubric strictly and individually. Do not supply missing key claims, calculations, or evidence on behalf of the answer. When a key statement is ambiguous or the evidence required by the rubric is insufficient, lean toward not passing that item. Do not introduce requirements beyond the provided task and rubrics; preserve their stated equivalences, tolerances, weights, and scoring rules.",
   "solver_toolset_id": "solver-4fa9e1b0eaba",
   "max_score": 100.0,
-  "source_sha256": "ab954162c0c21ebd9f7f3d9ded02f7c2def560d2cfd2f03f1860eba3c05b4fb9",
+  "source_sha256": "8b742eee5e89a2c2a6f034d7ebc55d06eee82613bc24c23f192ca249a5fa1d40",
   "rubrics": [
     {
       "rubric_id": "core_driver_count",
@@ -519,7 +519,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "jpm_q2_2026_nii_ex_markets",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "JPMorgan Chase & Co.",
         "metric": "net interest income excluding Markets",
@@ -577,7 +576,6 @@
       "judge": null,
       "future_truth": {
         "truth_id": "jpm_q2_2026_nii_total",
-        "resolver_id": "compact_datalake_query_v2",
         "dataset": "annual-reports",
         "entity": "JPMorgan Chase & Co.",
         "metric": "net interest income",
@@ -1725,7 +1723,7 @@
               "title": "Task Id",
               "type": "string",
               "enum": [
-                "task-author-v13-jpm-1-4-a811266154-review-r2"
+                "O24"
               ]
             },
             "decisions": {
@@ -1755,7 +1753,7 @@
     }
   ],
   "judge_input_template": {
-    "task_id": "task-author-v13-jpm-1-4-a811266154-review-r2",
+    "task_id": "O24",
     "public_question": "Strict information cutoff: 2026-03-15T07:00:00-04:00. Use only information publicly available on or before this timestamp.\n\nAs of 2026-03-15T07:00:00-04:00, analyze JPMorgan Chase & Co. (JPM) and estimate Q2 2026 net interest income excluding Markets for the period April 1–June 30, 2026. Identify the key drivers of that metric and quantify each driver’s marginal sensitivity in comparable units: USD millions of Q2 2026 NII excluding Markets per one percentage point, where one percentage point means 100 basis points for rate, yield, or pricing drivers and a 1% balance change for volume drivers. State a baseline derived from JPMorgan Chase’s most recent disclosed full-year net interest income excluding Markets or current-year outlook, converted to a quarterly amount, and cite the supporting document and period. For each driver, provide its name, formula, sensitivity, expected Q2 2026 contribution, and supporting disclosed evidence. Rank the drivers by absolute comparable-unit sensitivity. Reconcile the baseline and driver contributions to a Q2 2026 NII excluding Markets point estimate, and provide a plausible low-to-high range. Imply Q2 2026 total net interest income by combining the ex-Markets estimate with a separately stated Markets net interest income assumption. Use USD millions and only information available by the cutoff.\n\nSubmission method (required):\nCall `submit_answer` as the final response. In `structured_output`, submit:\n- $.baseline.value_usd_mm: Stated baseline for the Q2 2026 bridge, expressed in USD millions per quarter.\n- $.baseline.source: Document and period supporting the stated baseline.\n- $.drivers[].name: Name of a key driver of Q2 2026 NII excluding Markets.\n- $.drivers[].formula: Formula linking the driver to Q2 2026 NII excluding Markets.\n- $.drivers[].sensitivity_usd_mm_per_pp: Marginal sensitivity in USD millions of Q2 2026 NII excluding Markets per one percentage point of the driver.\n- $.drivers[].expected_q2_2026_contribution_usd_mm: Expected Q2 2026 NII contribution of the driver in USD millions.\n- $.drivers[].evidence: Disclosed evidence supporting the driver's baseline value and sensitivity.\n- $.ranked_drivers: Drivers ordered by absolute comparable-unit sensitivity.\n- $.q2_2026_nii_ex_markets: Point estimate of Q2 2026 NII excluding Markets in USD millions.\n- $.q2_2026_nii_range.low_usd_mm: Low end of the plausible range for Q2 2026 NII excluding Markets.\n- $.q2_2026_nii_range.high_usd_mm: High end of the plausible range for Q2 2026 NII excluding Markets.\n- $.q2_2026_total_nii: Implied Q2 2026 total net interest income in USD millions.\n- $.reconciliation: Bridge tying the baseline, driver contributions and the point estimate.\nCite at least 2 distinct cutoff-database documents. Include material calculations and any file explicitly required by the question. You may call submit_answer at most three times. The first two rejected calls return field-level errors; the third call is final even if validation issues remain.",
     "anonymous_answer": "{{SUBMITTED_ANSWER_JSON}}",
     "judge_rubrics": [
@@ -2214,7 +2212,7 @@
         "title": "Task Id",
         "type": "string",
         "enum": [
-          "task-author-v13-jpm-1-4-a811266154-review-r2"
+          "O24"
         ]
       },
       "decisions": {
@@ -2242,7 +2240,7 @@
   },
   "ground_truth": {
     "schema_version": "11.0-truth",
-    "question_id": "jpm_q2_2026_nii_driver_tree",
+    "question_id": "O24",
     "truth_mode": "hybrid",
     "targets": [
       {
@@ -2259,8 +2257,7 @@
         "excerpt": "Memo: NII excluding Markets (b) $ 23,677 $ 22,753 4 $ 46,957 $ 45,343 4",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_q2_2026_nii_total",
@@ -2276,8 +2273,7 @@
         "excerpt": "Net interest income 25,511 23,209 50,877 46,482",
         "truth_role": "realized_outcome",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       },
       {
         "truth_id": "jpm_fy2025_nii_ex_markets_actual",
@@ -2293,14 +2289,11 @@
         "excerpt": "Net interest income excluding Markets $ 92,591 $ 92,419 $ 90,041",
         "truth_role": "cutoff_baseline",
         "outcome_kind": "reported_actual",
-        "source_authority": "issuer",
-        "resolver_id": "compact_datalake_query_v2"
+        "source_authority": "issuer"
       }
-    ],
-    "verification_notes": "All three targets resolved from issuer SEC filings in the private database via lookup/read. (1) Q2 2026 NII excluding Markets = $23,677mm, read verbatim from JPMorgan Chase's Form 10-Q for the period ended 2026-06-30 (document_id 21ed8ba4-f72e-44d6-ad25-850e1d826f53, public 2026-08-06T16:19:04Z, post Solver cutoff 2026-03-15), Executive Overview memo row 'NII excluding Markets' for the three months ended June 30, 2026; the same chunk also shows $46,957mm for H1 2026, confirming the quarterly reading. (2) Q2 2026 total net interest income = $25,511mm, read verbatim from the Consolidated statements of income (unaudited), p. 93 of the same 10-Q, three-months-ended-June-30-2026 column; corroborated by EODHD news (document_id cc5fde03-03d9-48dc-8c70-cbc40db6e55c, 2026-07-14) reporting Q2 CY2026 NII of $25.51bn. (3) FY2025 NII excluding Markets = $92,591mm, read verbatim from the 2025 Form 10-K non-GAAP reconciliation (document_id 33c53e56-0441-4251-a700-597f98757ff7, public 2026-02-13T21:20:01Z, pre-cutoff), row 'Net interest income excluding Markets', 2025 column; the 10-K narrative also states 'NII excluding Markets was $92.6 billion, flat when compared with the prior year.' Both realized outcomes became public after the cutoff and are issuer-reported company results (not guidance, consensus or analyst estimates); the baseline uses only pre-cutoff information. The ex-Markets measure is the issuer's reported non-GAAP metric (managed-basis total NII less Markets NII), so the total and ex-Markets figures are on the same reported basis. Excerpts were copied exactly from single successfully Read chunks with no labels, ellipses or paraphrase; official period headings are supplied in the locators where the excerpt row does not itself repeat the period."
+    ]
   },
   "evaluation_policy": {
-    "scoring_revision": "v14-linear-1",
     "max_score": 100,
     "submission_attempts": 3,
     "wall_clock_seconds": 7200
