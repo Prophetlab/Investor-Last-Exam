@@ -20,9 +20,9 @@ Preprint; submitted to arXiv, announcement pending. This is the same author-prov
 
 ## 78-second video overview
 
-[![Watch Investor’s Last Exam — 78-second overview](docs/assets/investors-last-exam-poster.png)](https://prophetlab.github.io/Investor-Last-Exam/)
+https://github.com/user-attachments/assets/333ac228-db23-4110-86fe-9602423cded3
 
-**[▶ Watch the video](https://prophetlab.github.io/Investor-Last-Exam/)** · 1080p · English narration with Chinese and English subtitles · [Download MP4](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/assets/investors-last-exam-78s.mp4)
+[Open standalone player](https://prophetlab.github.io/Investor-Last-Exam/) · 1080p · English narration with Chinese and English subtitles · [Download MP4](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/assets/investors-last-exam-78s.mp4)
 
 A short introduction to the time-frozen environment, Tesla and Nebius research workflows, and the evaluation of eleven models.
 
