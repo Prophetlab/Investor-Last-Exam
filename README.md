@@ -6,11 +6,17 @@
 
 **Make the call. Before the reveal.**
 
-[Project page](https://prophet-lab.cn/benchmarks/investor-last-exam-v1/) · [中文介绍](README.zh-CN.md) · [Results](#results) · [Evaluation protocol](docs/evaluation.md) · [Citation](#citation)
+[Paper (PDF)](docs/paper/Investors-Last-Exam.pdf) · [Hugging Face Space](https://huggingface.co/spaces/HenryJ12/InvestorLastExam) · [Project page](https://prophet-lab.cn/benchmarks/investor-last-exam-v1/) · [中文介绍](README.zh-CN.md) · [Results](#results) · [Evaluation protocol](docs/evaluation.md) · [Citation](#citation)
 
 **86 assignments · 11 evaluated systems · 3.43 million document versions**
 
 </div>
+
+## Paper
+
+[Read the full paper](docs/paper/Investors-Last-Exam.pdf) · [Download PDF](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/paper/Investors-Last-Exam.pdf)
+
+Preprint; submitted to arXiv, announcement pending. This is the same author-provided manuscript available on the [Hugging Face Space](https://huggingface.co/spaces/HenryJ12/InvestorLastExam).
 
 ## 78-second video overview
 
@@ -140,6 +146,7 @@ This repository currently provides the project overview, evaluation documentatio
 
 | Resource | Availability in this repository |
 |---|---|
+| Paper PDF | [docs/paper/Investors-Last-Exam.pdf](docs/paper/Investors-Last-Exam.pdf) |
 | English / Chinese overview | [README.md](README.md) / [README.zh-CN.md](README.zh-CN.md) |
 | Evaluation and simulation protocol | [docs/evaluation.md](docs/evaluation.md) |
 | Reported model results and task counts | [results/](results/README.md) |

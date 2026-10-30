@@ -6,11 +6,17 @@
 
 **在结果揭晓之前，作出判断。**
 
-[项目主页](https://prophet-lab.cn/benchmarks/investor-last-exam-v1/) · [English](README.md) · [评测口径](docs/evaluation.md) · [完整结果 CSV](results/README.md)
+[论文 PDF](docs/paper/Investors-Last-Exam.pdf) · [Hugging Face Space](https://huggingface.co/spaces/HenryJ12/InvestorLastExam) · [项目主页](https://prophet-lab.cn/benchmarks/investor-last-exam-v1/) · [English](README.md) · [评测口径](docs/evaluation.md) · [完整结果 CSV](results/README.md)
 
 **86 道任务 · 11 个参评系统 · 343 万余个文档版本**
 
 </div>
+
+## 论文全文
+
+[在线阅读论文](docs/paper/Investors-Last-Exam.pdf) · [下载 PDF](https://github.com/Prophetlab/Investor-Last-Exam/raw/refs/heads/main/docs/paper/Investors-Last-Exam.pdf)
+
+预印本，已提交 arXiv，等待公布。此处 PDF 与 [Hugging Face Space](https://huggingface.co/spaces/HenryJ12/InvestorLastExam) 上的作者稿为同一版本。
 
 ## 78 秒了解 Investor’s Last Exam
 
